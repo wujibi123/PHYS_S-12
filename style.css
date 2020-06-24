@@ -5,7 +5,11 @@ body {
 }
 
 h2 {
-	font: 50px"Arial Black", Gadget, sans-serif;
+	font: 40px "Arial Black", Gadget, sans-serif;
+}
+
+h4 {
+	font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .center {
