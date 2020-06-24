@@ -12,6 +12,12 @@ h4 {
 	font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
+p {
+	margin-right: 50px;
+	margin-left: 50px;
+	text-align: left;
+}
+
 .center {
 	text-align: center;
 }
