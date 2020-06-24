@@ -1,8 +1,12 @@
-/*body {
+body {
     font: 20px Montserrat, sans-serif;
     line-height: 1.8;
     color: black;
-}*/
+}
+
+h2 {
+	font: 50px"Arial Black", Gadget, sans-serif;
+}
 
 .center {
 	text-align: center;
