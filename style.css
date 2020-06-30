@@ -14,20 +14,17 @@ h4 {
 }
 
 p {
-	margin-right: 50px;
-	margin-left: 50px;
+	border-radius: 25px;
+	padding: 20px;
 	text-align: left;
-	background-color: #41b3a3;
-	color: white;
+	background-color: #ffffff;
+	color: black;
+	opacity:0.6;
 }
 
-/*figure {
-	margin-right: 50px;
-	margin-left: 50px;
-	text-align: left;
-	background-color: #41b3a3;
-	color: white;
-}*/
+figure {
+	margin: 25px;
+}
 
 .center {
 	text-align: center;
