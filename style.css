@@ -1,7 +1,8 @@
 body {
     font: 20px Montserrat, sans-serif;
     line-height: 1.8;
-    color: black;
+    background-color: #9df9ef;
+  	color: black;
 }
 
 h2 {
@@ -16,7 +17,17 @@ p {
 	margin-right: 50px;
 	margin-left: 50px;
 	text-align: left;
+	background-color: #41b3a3;
+	color: white;
 }
+
+/*figure {
+	margin-right: 50px;
+	margin-left: 50px;
+	text-align: left;
+	background-color: #41b3a3;
+	color: white;
+}*/
 
 .center {
 	text-align: center;
