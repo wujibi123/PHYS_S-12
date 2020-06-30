@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link href="./style.css" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet">
 </head>
     
 <body>
@@ -47,6 +47,49 @@
                     <img src = "screw_back.png" alt = "screw_back" style="width:25%">
                     <figcaption>Screw</figcaption>
                 </figure>
+            </div>
+        </div>
+        <h2 class="What I Learned">Process</h2>
+        <div class="row">
+            <h4 class = "center">General</h4>
+            <div class="col-sm-12 center round_border transparent">
+                    <ul class="left">
+                        <li>After seeing the nonfunctional details of the bearings, I realized that I don't need to measure additional details that won't affect the application of the product.</li>
+                        <li>Parameters allow your design to be fluid and forgiving.</li>
+                        <li>The backside of the caliper can be used to measure the insides of components. I used this to measure the inner diameters of the bearing and the nut.</li>
+                        <li>During assembly, different components can be combined easily using : "move" → "point to point".</li>
+                    </ul>
+            </div>
+            <h4 class = "center">Threading</h4>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 center round_border transparent">
+                    <ul class="left">
+                        <li>Threading can be done on any cylindrical surface.</li>
+                        <li>The "modeled" option forces the computer to render the threads more clearly. However, It could become computationally heavy when modeling multiple screws.</li>
+                        <li>I need to create a small offset (0.01 mm) for the threads so that the nut's opening remains a circle.</li>
+                        <li>I need to measure the pitch of the threads.</li>
+                    </ul>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class = "center">Joints</h4>
+            <div class="col-sm-12 center round_border transparent">
+                    <ul class="left">
+                        <li>The "Joint" option moves the components so that they connect together.</li>
+                        <li>By selecting two components, I can then choose the way in which they move together.</li>
+                        <li>I chose "revolute", which makes the two parts of my joint spin together.</li>
+                        <li>After the joint is created, I could freely spin one part of it by grounding the other component.</li>
+                    </ul>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class = "center">Decal</h4>
+            <div class="col-sm-12 center round_border transparent">
+                    <ul class="left">
+                        <li>I used decal to put two "stickers" of my dog, Annie, onto the bearing so that I can clearly see its spinning motion.</li>
+                        <li>I had to switch to "rendering", and then choose the "decal" option. Once there, I was able to put any image I wanted onto a face that I chose.</li>
+                    </ul>
             </div>
         </div>
     </div>

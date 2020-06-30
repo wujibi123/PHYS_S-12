@@ -26,8 +26,23 @@ figure {
 	margin: 25px;
 }
 
+.round_border {
+	border-radius: 25px;
+	padding: 20px;
+}
+
+.transparent {
+	background-color: #ffffff;
+	color: black;
+	opacity:0.6;
+}
+
 .center {
 	text-align: center;
+}
+
+.left {
+	text-align: left;
 }
 
 .large {
