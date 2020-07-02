@@ -36,11 +36,25 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-sm-12 center">
+                <p>
+                    I used a code demo called "AnalogReadSerial" to program the Arduino. The name is very self explanatory, it reads an Analog signal and puts it up on a Serial monitor. The comments on the demo are very descriptive as well.
+                </p>
+
+                <figure>
+                    <img src = "code.png" alt = "potentiometer layout" style="width:70%">
+                    <figcaption>Potentiometer Demo</figcaption>
+                </figure>
+
+            </div>
+        </div>
+
         <h2 class="center">Motor Circuit</h2>
         <div class="row">
             <div class="col-sm-12 center">
                 <p>
-					After building the potentiometer circuit, I adapted it for a DC Motor. A DC Motor directly converts electrical energy into mechanical energy, and is very simple to use. It has a positive and negative side, and it will run as long as there is a powerful enough current going through it.               
+					After building the potentiometer circuit, I adapted it for a DC Motor. A DC Motor directly converts electrical energy into mechanical energy, and is very simple to use. It has a positive and negative side, and it will run as long as there is a powerful enough current going through it.
 				</p>
 			</div>
 		</div>
@@ -56,9 +70,16 @@
                     <iframe style="width:100% height:100%" src="https://www.youtube.com/embed/VUHX-92y4Wc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <figcaption>Motor Demo</figcaption>
                 </figure>
-            </div>
-        </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-12 center">
+                <p>
+					I measured the voltage going through the potentiometer using a Multimeter. At the setting with the <b>least</b> resistance, the voltage actually showed to be <b>4.97v</b>. I infer that this is because the potentiometer does not truly have a 0Ω setting, but rather the lowest setting is simply very close to 0Ω.
+
+					After this, in an attempt to practice using Ohm's law, I turned the potentiometer knob to the middle. The voltage was <b>7.81mV = 0.00781V</b>. I then turned off the Arduino in order to measure the resistance of the potentiometer at that setting, and it was <b>64.2Ω</b>. According to Ohm's law, <b> I = ΔV/R </b>, so <b>I = 0.00781V/64.2Ω = 0.00012A = 0.12mA</b>. Using Ohm's law, I figured out that this motor circuit with this particular potentiometer setting has a current of 0.12mA.
+				</p>
+			</div>
+		</div>
+    </div> <!-- Container End -->
 
 </body>
 
