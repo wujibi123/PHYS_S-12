@@ -52,6 +52,10 @@ figure {
     text-align: center;
 }
 
+.hidden-link a {
+	color: black;
+}
+
 .container-fluid {
 	padding: 23%;
 	padding-bottom: 70px;
