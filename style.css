@@ -6,7 +6,16 @@ body {
   	text-align: left;
 }
 
-h1, h2, h3, h4, h5, h6 { 
+h1 {
+    font-size: 3.2rem; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 900; 
+    line-height: 1.2; 
+    margin-bottom: 1.7rem;
+}
+
+h2, h3, h4, h5, h6 { 
 	font-size: 2.8rem; 
 	font-style: normal; 
 	font-variant: normal; 
@@ -36,6 +45,13 @@ figure {
 	margin: autopx;
 }
 
+.container-fluid {
+    padding: 23%;
+    padding-bottom: 70px;
+    padding-top:70px;
+}
+
+/* Fonts */
 .meta {
     width: auto;
     font-size: 1rem;
@@ -46,18 +62,23 @@ figure {
     font-style: italic;
 }
 
-.site-header a {
-    color: #333;
+/*links*/
+
+a.site-header {
     font-weight: 300;
-    text-align: center;
 }
 
-.hidden-link a {
+a.hidden-link {
 	color: black;
 }
 
-.container-fluid {
-	padding: 23%;
-	padding-bottom: 70px;
-	padding-top:70px;
+
+/*Colors*/
+
+.pretty-blue {
+    color: #38BFC3;
+}
+
+.orange {
+    color: #ff5d00;
 }
