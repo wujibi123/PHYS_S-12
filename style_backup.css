@@ -1,0 +1,58 @@
+body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    background-color: #9df9ef;
+  	color: black;
+  	background-image: url("images/sky.jpg");
+}
+
+h2 {
+	font: 40px "Arial Black", Gadget, sans-serif;
+}
+
+h4 {
+	font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+p {
+	border-radius: 25px;
+	padding: 20px;
+	text-align: left;
+	background-color: #ffffff;
+	color: black;
+	opacity:0.6;
+}
+
+figure {
+	margin: 25px;
+}
+
+.round_border {
+	border-radius: 25px;
+	padding: 20px;
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+
+.transparent {
+	background-color: #ffffff;
+	color: black;
+	opacity:0.6;
+}
+
+.center {
+	text-align: center;
+}
+
+.left {
+	text-align: left;
+}
+
+.large {
+	font-size: 200%;
+}
+
+.container-fluid {
+	padding: 30px;
+	padding-bottom: 70px;
+}

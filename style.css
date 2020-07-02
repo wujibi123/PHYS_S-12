@@ -1,58 +1,59 @@
 body {
-    font: 20px Montserrat, sans-serif;
+    font-family: "Ubuntu","PT Serif",Georgia,"Times New Roman",serif;
     line-height: 1.8;
-    background-color: #9df9ef;
+    background-color: #7cf9eb1f;
   	color: black;
-  	background-image: url("images/sky.jpg");
+  	text-align: left;
 }
 
-h2 {
-	font: 40px "Arial Black", Gadget, sans-serif;
-}
+h1, h2, h3, h4, h5, h6 { 
+	font-size: 2.8rem; 
+	font-style: normal; 
+	font-variant: normal; 
+	font-weight: 700; 
+	line-height: 1.2; 
+	margin-bottom: 1.7rem;
+} 
 
-h4 {
-	font: 30px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
 
 p {
-	border-radius: 25px;
-	padding: 20px;
-	text-align: left;
-	background-color: #ffffff;
-	color: black;
-	opacity:0.6;
+	font-size: 1.3rem; 
+	font-style: normal; 
+	font-variant: normal; 
+	font-weight: 300; 
+	line-height: 1.5;
+	display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
 figure {
-	margin: 25px;
+	text-align:center;
+	margin: autopx;
 }
 
-.round_border {
-	border-radius: 25px;
-	padding: 20px;
-	margin-bottom: 25px;
-	margin-top: 25px;
+.meta {
+    width: auto;
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+    padding: .25em 0;
+    color: #7a7a7a;
+    font-style: italic;
 }
 
-.transparent {
-	background-color: #ffffff;
-	color: black;
-	opacity:0.6;
-}
-
-.center {
-	text-align: center;
-}
-
-.left {
-	text-align: left;
-}
-
-.large {
-	font-size: 200%;
+.site-header a {
+    color: #333;
+    font-weight: 300;
+    text-align: center;
 }
 
 .container-fluid {
-	padding: 30px;
+	padding: 23%;
 	padding-bottom: 70px;
+	padding-top:70px;
 }

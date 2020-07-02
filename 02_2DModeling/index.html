@@ -8,102 +8,95 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link href="../style.css" rel="stylesheet">
+
+
 </head>
     
 <body>
 
     <div class = "container-fluid">
-        <h2 class="center">Process</h2>
+        <header>
+            <a href="https://wujibi123.github.io/PHYS_S-12/" class=".site-header">PHYS S-12: Dan's Documentation</a>
+        </header>
+        
+        <h2>Fusion 360 Modeling</h2>
         <div class="row">
-            <div class="col-sm-12 center">
+            <div class="col-sm-12">
                 <p>
                     I first created a folder where I would store all my components. Each component is in its own separate file. Then I measured the dimensions of each component with a caliiper, storing them as parameters. Here is a screenshot of my parameters for my bearing: 
                 </p>
                 <figure>
-                    <img src = "parameters.png" alt = "parameters" style="width:50%">
+                    <img src = "parameters.png" alt = "parameters" style="width:100%">
                     <figcaption>Note: No KERF since these designs won't be laser printed</figcaption>
                 </figure>
                 <p>
                     After I measured my parameters, I sketched the basic geometry of each component and extruded them into 3D. I used <b>threading</b> for the nut and screw, and I used <b>joints</b> for the bearing (including <b>decal</b> for aesthetics)
                 </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 center">
                 <figure>
-                    <img src = "nut.png" alt = "nut" style="width:50%">
+                    <img src = "nut.png" alt = "nut" style="width:100%">
                     <figcaption>Nut</figcaption>
                 </figure>
-            </div>
-            <div class="col-sm-4 center">
                 <figure>
-                    <iframe src="https://giphy.com/embed/KFtJJBepNtpBE2acIc" frameBorder="0" class="giphy-embed" allowFullScreen style="width:50%"></iframe>
+                    <iframe src="https://giphy.com/embed/KFtJJBepNtpBE2acIc" frameBorder="0" class="giphy-embed" allowFullScreen style="width:100%"></iframe>
                     <figcaption>Bearing</figcaption>
                 </figure>
-            </div>
-            <div class="col-sm-4 center">
                 <figure>
-                    <img src = "screw_front.png" alt = "screw_front" style="width:25%">
-                    <img src = "screw_back.png" alt = "screw_back" style="width:25%">
+                    <img src = "screw_front.png" alt = "screw_front" style="width:50%">
+                    <img src = "screw_back.png" alt = "screw_back" style="width:50%">
                     <figcaption>Screw</figcaption>
                 </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 center">
+
                 <p>
                     Finally, I combined all three components into an assembly. I used "move" --> "point to point" to easily align the parts.
                 </p>
                 <figure>
-                    <iframe src="https://giphy.com/embed/Y4W8xGxy1PECMcmWHy" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    <iframe src="https://giphy.com/embed/Y4W8xGxy1PECMcmWHy" style="width:100%" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
                     <figcaption>Assembly</figcaption>
                 </figure>
-            </div>
-        </div>
-        <h2 class="center">What I Learned</h2>
-        <div class="row">
-            <h4 class = "center">General</h4>
-            <div class="col-sm-12 center round_border transparent">
-                    <ul class="left">
+                <p>
+                    I loved this Fusion360 exercise because it introduced me to the wonderful world of 2D Modeling. Below are a few of the tips and tricks that I picked up while doing this assignment.
+                </p>
+
+                <h4>General Modeling Tips</h4>
+                <p>
+                    <ul>
                         <li>After seeing the nonfunctional details of the bearings, I realized that I don't need to measure additional details that won't affect the application of the product.</li>
                         <li>Parameters allow your design to be fluid and forgiving.</li>
                         <li>The backside of the caliper can be used to measure the insides of components. I used this to measure the inner diameters of the bearing and the nut.</li>
                         <li>During assembly, different components can be combined easily using : "move" → "point to point".</li>
                     </ul>
-            </div>
-            <h4 class = "center">Threading</h4>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 center round_border transparent">
-                    <ul class="left">
+                </p>
+                
+                <h4>Threading Tips</h4>
+                <p>
+                    <ul>
                         <li>Threading can be done on any cylindrical surface.</li>
                         <li>The "modeled" option forces the computer to render the threads more clearly. However, It could become computationally heavy when modeling multiple screws.</li>
                         <li>I need to create a small offset (0.01 mm) for the threads so that the nut's opening remains a circle.</li>
                         <li>I need to measure the pitch of the threads.</li>
                     </ul>
-            </div>
-        </div>
-        <div class="row">
-            <h4 class = "center">Joints</h4>
-            <div class="col-sm-12 center round_border transparent">
-                    <ul class="left">
+                </p>
+                
+                <h4>Joints</h4>
+                <p>
+                    <ul>
                         <li>The "Joint" option moves the components so that they connect together.</li>
                         <li>By selecting two components, I can then choose the way in which they move together.</li>
                         <li>I chose "revolute", which makes the two parts of my joint spin together.</li>
                         <li>After the joint is created, I could freely spin one part of it by grounding the other component.</li>
                     </ul>
-            </div>
-        </div>
-        <div class="row">
-            <h4 class = "center">Decal</h4>
-            <div class="col-sm-12 center round_border transparent">
-                    <ul class="left">
+                </p>
+                
+                <h4>Decal</h4>
+                <p>
+                    <ul>
                         <li>I used decal to put two "stickers" of my dog, Annie, onto the bearing so that I can clearly see its spinning motion.</li>
                         <li>I had to switch to "rendering", and then choose the "decal" option. Once there, I was able to put any image I wanted onto a face that I chose.</li>
                     </ul>
-            </div>
-        </div>
-    </div>
+                </p>
+            </div> <!-- column end -->
+        </div> <!-- row end -->
+    </div> <!-- container end -->
 </body>
 
 </html>
