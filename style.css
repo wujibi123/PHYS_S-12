@@ -50,7 +50,7 @@ figure {
 .container-fluid { /*MAIN CONTAINER*/
     padding: 23%;
     padding-bottom: 70px;
-    padding-top:70px;
+    padding-top:1%;
 }
 
 .date-header {
@@ -95,6 +95,25 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+/* Menu 
+ul.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li a.menu {
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active).menu {
+  background-color: #333;
+}*/
 
 
 /*Colors*/
