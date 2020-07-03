@@ -7,7 +7,7 @@ body {
 }
 
 h1 {
-    font-size: 3.2rem; 
+    font-size: 3.6rem; 
     font-style: normal; 
     font-variant: normal; 
     font-weight: 900; 
@@ -45,11 +45,19 @@ figure {
 	margin: autopx;
 }
 
-.container-fluid {
+/*Containers*/
+
+.container-fluid { /*MAIN CONTAINER*/
     padding: 23%;
     padding-bottom: 70px;
     padding-top:70px;
 }
+
+.date-header {
+    margin-bottom: 2rem;
+}
+
+
 
 /* Fonts */
 .meta {
@@ -70,6 +78,22 @@ a.site-header {
 
 a.hidden-link {
 	color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }
 
 
