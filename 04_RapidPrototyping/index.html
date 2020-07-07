@@ -33,17 +33,35 @@
             <h1>Rapid Prototyping</h1>
             <span class="meta">Day 4: 7/2</span>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-12">
+                <h2>Contents</h2>
+                <p>
+                    This documentation is quite long, so please feel free to click on the links below and skip around:
+                    <ul>
+                        <li><a href="intro">Introduction</a></li>
+                        <li><a href="rot_motion">Rotaional Motion</a></li>
+                        <li><a href="sketch">Sketch</a></li>
+                        <li><a href="assembly">Assembly</a></li>
+                        <li><a href="trial_error">Trial and Error</a></li>
+                        <li><a href="tune_params">Tuning Parameters</a></li>
+                        <li><a href="prototype_1">Prototype #1</a></li>
+                        <li><a href="add_steering">Steering</a></li>
+                        <li><a href="prototype_2">Prototype #2</a></li>
+                        <li><a href="improve_steering">Improving the Steering</a></li>
+                        <li><a href="prototype_3">Prototype #3</a></li>
+                        <li><a href="reflection">Reflection</a></li>
+                    </ul>
+                </p>
                 <!-- New Section -->
-                <h2>Plane Rudder</h2>
+                <h2 id="intro">Plane Rudder</h2>
                 <p>
                     My preliminary final project idea was to build an RC plane. One of the most important parts of a plane is its rudder, so I decided to make a rapid prototype to test its feasibility.
                 </p>
 
                 <!-- New Section -->
-                <h2>Rotational Motion</h2>
+                <h2 id="rot_motion">Rotational Motion</h2>
                 <p>
                     A plane's rudder moves in an oscillating motion, but first, I needed to achieve the most rudimentary type of motion: rotational motion. To achieve this, I used the motor circuit we build during class on Thursday. It is an <b>N2O DC motor</b> controlled by an <b>Arduino Metro Express</b> through a <b>L9110 motor driver</b>.
                 </p>
@@ -54,43 +72,43 @@
                 <p>
                     The Arduino code used to run the motor simply sends two analog signals to the motor driver indefinitely, which then analyzes the signals and controls the motor accordingly. 
                 </p>
-                <pre><code class="language-arduino">
-                const int A1A = 3;  // define pin 3 for A-1A
-                const int A1B = 4;  // define pin 4 for A-1B
+<pre><code class="language-arduino">
+const int A1A = 3;  // define pin 3 for A-1A
+const int A1B = 4;  // define pin 4 for A-1B
 
-                void setup() {
-                  pinMode(A1A, OUTPUT); // specify these pins as outputs
-                  pinMode(A1B, OUTPUT);    
-                }
+void setup() {
+  pinMode(A1A, OUTPUT); // specify these pins as outputs
+  pinMode(A1B, OUTPUT);    
+}
 
-                void loop() {
-                  motorA('R', 5000, 200); // time doesn't really matter since it will loop forever
-                }
+void loop() {
+  motorA('R', 5000, 200); // time doesn't really matter since it will loop forever
+}
 
 
-                /*
-                 * This is a custom function to drive Motor A
-                 * inputs: direction (L/R), duration (int), speed (int between 0 and 255)
-                 * outputs: motor control
-                 */
-                void motorA(char d, int t, int s) {
-                  if(d =='R'){
-                    analogWrite(A1A, 0);
-                    analogWrite(A1B, s);
-                  } else if (d =='L'){
-                    analogWrite(A1A, s);
-                    analogWrite(A1B, 0);    
-                  }
+/*
+ * This is a custom function to drive Motor A
+ * inputs: direction (L/R), duration (int), speed (int between 0 and 255)
+ * outputs: motor control
+ */
+void motorA(char d, int t, int s) {
+  if(d =='R'){
+    analogWrite(A1A, 0);
+    analogWrite(A1B, s);
+  } else if (d =='L'){
+    analogWrite(A1A, s);
+    analogWrite(A1B, 0);    
+  }
 
-                  delay(t); // allow motor to run for specified time
-                 
-                  digitalWrite(A1A, LOW); // turn motor OFF
-                  digitalWrite(A1B, LOW);    
-                }
+  delay(t); // allow motor to run for specified time
+ 
+  digitalWrite(A1A, LOW); // turn motor OFF
+  digitalWrite(A1B, LOW);    
+}
                 </code></pre>
 
                 <!-- New Section -->
-                <h2>Sketch</h2>
+                <h2 id="sketch">Sketch</h2>
                 <p>
                     Now, I needed a way to convert that <b>rotational</b> motion from my motor into an <b>oscillating</b> motion. Turns out it can be done using a <b>positive-drive oscillating crank</b>. I drew a sketch of it below.
                 </p>
@@ -107,7 +125,7 @@
                 </figure>
 
                 <!-- New Section -->
-                <h2>Assembly</h2>
+                <h2 id="assembly">Assembly</h2>
                 <p>
                     It was time to assemble these pieces into separate parts. The first part was the motor + piece #1. As I tried to attach the circle piece to the motor, I realized that I need spacers so that my circle stays flat on the motor and so that piece number 2 doesn't interact with the motor's axle. With the spacers put in, my circle piece now fits snugly onto the motor axle, and I secured it with duct tape. I then ductaped it into a foam board, which I will be using as the fundation of the prototype.
                 </p>
@@ -124,7 +142,7 @@
                 </figure>
 
                 <!-- New Section -->
-                <h2>Trial and Error</h2>
+                <h2 id="trial_error">Trial and Error</h2>
                 <p>
                     The prototype looks complete, but it is <b>far</b> from over. The next step is experimentation. I needed to test the contraption and fix any problems that arise.
                 </p>
@@ -136,13 +154,13 @@
                 </p>
 
                 <!-- New Section -->
-                <h2>Tuning Parameters</h2>
+                <h2 id="tune_params">Tuning Parameters</h2>
                 <p>
                    All that was left to do was to fine tune the parameters by testing. I first adjusted the spacing of the axles to guarantee my rudder has a full range of motion. Then I moved on to the motor speed. I adjusted the voltage going to the motor using analog output and PWM. Now the rudder can correctly move around! 
                 </p>
 
                 <!-- New Section -->
-                <h2>Prototype #1</h2>
+                <h2 id="prototype_1">Prototype #1</h2>
                 <figure>
                     <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/iomxbQaECtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </figure>
@@ -151,7 +169,7 @@
                 </p>
 
                 <!-- New Section -->
-                <h2>Adding Steering</h2>
+                <h2 id="add_steering">Adding Steering</h2>
                 <p>
                     I started fixing the steering problem by adding a potentiometer. I planned on adjusting the <b>power</b> of the motor based on how far its knob turns and the <b>direction</b> based on which way its knob turns. If the potentiometer is in the middle, then the motor would stop. I quickly built a potentiometer circuit modeled after the following design I created a few days ago.
                 </p>
@@ -165,12 +183,12 @@
                 <p class="edits">
                     Edit: I am writing this after attending the lab on monday. Sadly, I wrote the following code before we learned about connecting potentiometers to motors in the Lab. Therefore, you won't see me using convenient functions like <code class="language-arduino">map()</code> here. I believe, however, that my clunckier code does achieve the same,functionality as what we talked about in class.
                 </p>
-                <pre><code class="language-arduino">
-                int analogNum = analogRead(analogInputPin);
-                analogNum = analogNum / 100 - 5; // divide by 100 and subtract 5 to reduce the input to a -5 to 5 scale.
-                                                 // When divided by 102.3, the numbers would flicker at the ends, so I decided to go with 100.
-                analogNum *= (255/5); // now scale the small numbers up to 255 (or -255).
-                </code></pre>
+<pre><code class="language-arduino">
+int analogNum = analogRead(analogInputPin);
+analogNum = analogNum / 100 - 5; // divide by 100 and subtract 5 to reduce the input to a -5 to 5 scale.
+                                 // When divided by 102.3, the numbers would flicker at the ends, so I decided to go with 100.
+analogNum *= (255/5); // now scale the small numbers up to 255 (or -255).
+</code></pre>
                 <p>
                     The main goal here was to combine the potentiometer's <b>1023 parts</b> into just <b>10 total parts</b>. This is important mostly because it would be nearly impossible to turn to the exact middle of 1023 in order to stop the motor from spinning. But when there are only 10 total numbers, there is a comfortably wide middle section of the potentiometer's knob that lets me easily stop the motor. Secondly, this would give me more control over the motor as it won't sporadically change power at the slightest turn of the knob.
                 </p>
@@ -181,57 +199,59 @@
                 <p>
                     The 10 parts scale from -255 to 255 because 0 to 255 is the range of power a motor receives. The sign indicates the direction of the motor. <b>Positive is Left</b>, <b>Negative is Right</b>. The numbers are implemented in the following way.
                 </p>
-                <pre><code class="language-arduino">
-                if (analogNum > 0) { // this means potentiometer is turned to the left, so turn left accordingly
-                    motorA('L', analogNum); // turns motor left with analogNum as power
-                }
-                else if (analogNum < 0) { // turns right
-                    motorA('R', analogNum * -1); // needs to make the analogNum postive first.
-                                                 // turns motor right with analogNum as power
-                }
-                else { // stops the motors if analog reading = 0
-                    analogWrite(A1A, 0);
-                    analogWrite(A1B, 0);
-                }
-                </code></pre>
+<pre><code class="language-arduino">
+if (analogNum > 0) { // this means potentiometer is turned to the left, so turn left accordingly
+    motorA('L', analogNum); // turns motor left with analogNum as power
+}
+else if (analogNum < 0) { // turns right
+    motorA('R', analogNum * -1); // needs to make the analogNum postive first.
+                                 // turns motor right with analogNum as power
+}
+else { // stops the motors if analog reading = 0
+    analogWrite(A1A, 0);
+    analogWrite(A1B, 0);
+}
+</code></pre>
                 <p>A1A and A1B are predefined analog output pins connected to the L9110 motor drive. The complete code can be downloaded <a href='./code/l9110_Motor.ino' download > here </a>.
                 </p>
 
                 <!-- New Section -->
-                <h2>Prototype #2</h2>
+                <h2 id="prototype_2">Prototype #2</h2>
                 <figure>
                     <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/fJLXrY3IOMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </figure>
                 <p>
                     This type of steering is by no means ideal. I'd want the rudder's angle to correspond to how much I turn my potentiometer. However, this is unrealistic for a DC motor as it won't rotate the same amount when following the same exact commands.
                 </p>
-                <h2>Improving the steering</h2>
+
+                <!-- New Section -->
+                <h2 id="improve_steering">Improving the steering</h2>
                 <p>
                     After doing some research and asking for help, I realized that I needed to use a Servo motor, which would give me precise control of its angular position. It is quite a simple motor to use. It has three wires: power, ground, and signal. And it can be controlled using an analog signal between 0 and 180, which corresponds to degrees.
                 </p>
                 <p>
                     My job was made even easier when I stumbled across a <b>demo code</b> which links a potentiometer to a servo. I found it on the Arduino's official website while looking up documentation for the Servo library. 
                 </p>
-                <pre><code class="language-arduino">
-                // The following code came from the official arduino website: https://www.arduino.cc/en/Tutorial/Knob
-                #include <Servo.h>
+<pre><code class="language-arduino">
+// The following code came from the official arduino website: https://www.arduino.cc/en/Tutorial/Knob
+#include <Servo.h>
 
-                Servo myservo;  // create servo object to control a servo
+Servo myservo;  // create servo object to control a servo
 
-                int potpin = 0;  // analog pin used to connect the potentiometer
-                int val;    // variable to read the value from the analog pin
+int potpin = 0;  // analog pin used to connect the potentiometer
+int val;    // variable to read the value from the analog pin
 
-                void setup() {
-                  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-                }
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
 
-                void loop() {
-                  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
-                  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-                  myservo.write(val);                  // sets the servo position according to the scaled value
-                  delay(15);                           // waits for the servo to get there
-                }
-                </pre></code>
+void loop() {
+  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
+  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+  myservo.write(val);                  // sets the servo position according to the scaled value
+  delay(15);                           // waits for the servo to get there
+}
+</pre></code>
                 <p>
                 I drew up a quick layout of the servo motor. I wasn't able to do this for the DC motor because tinkercad doesn't have the L9110 motor driver.
                 </p>
@@ -244,7 +264,7 @@
                 </p>
 
                 <!-- New Section -->
-                <h2>Prototype #3</h2>
+                <h2 id="prototype_3">Prototype #3</h2>
                 <figure>
                     <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/o9-WTCsPeAc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </figure>
@@ -253,7 +273,7 @@
                 </p>
 
                 <!-- New Section -->
-                <h2>Reflection</h2>
+                <h2 id="reflection">Reflection</h2>
                 <p>
                     This prototype helped me gain a better understanding of oscillary motion and how to convert to it. It also made me assess my available materials, so now I know what supplies to buy. Furthermore, I learned how to use a servo motor. It seems very useful since I can precisely control its angular position. It was also very fun to come up with creative ways to replace standard material (such as a paperclip for an axle). 
                 </p>
