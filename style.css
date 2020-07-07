@@ -45,6 +45,11 @@ figure {
 	margin: autopx;
 }
 
+figcaption {
+  font-size: 1rem;
+  color: #7a7a7a;
+}
+
 /*Containers*/
 
 .container-fluid { /*MAIN CONTAINER*/
@@ -68,6 +73,13 @@ figure {
     padding: .25em 0;
     color: #7a7a7a;
     font-style: italic;
+}
+
+.edits {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #7a7a7a;
+  font-style: italic;
 }
 
 /*links*/
