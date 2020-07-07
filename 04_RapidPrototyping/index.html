@@ -127,14 +127,14 @@ void motorA(char d, int t, int s) {
                 <!-- New Section -->
                 <h2 id="assembly">Assembly</h2>
                 <p>
-                    It was time to assemble these pieces into separate parts. The first part was the motor + piece #1. As I tried to attach the circle piece to the motor, I realized that I need spacers so that my circle stays flat on the motor and so that piece number 2 doesn't interact with the motor's axle. With the spacers put in, my circle piece now fits snugly onto the motor axle, and I secured it with duct tape. I then ductaped it into a foam board, which I will be using as the fundation of the prototype.
+                    It was time to assemble these pieces into separate parts. The first part was the motor + piece #1. As I tried to attach piece #1 (circle piece) to the motor, I realized that I needed spacers so that my circle stays flat on the motor and so that piece #2 doesn't interact with the motor's axle. With the spacers put in, piece #1 now fits snugly onto the motor axle, and I secured it with duct tape. I then ductaped the whole contraption into a foam board, which I will be using as the fundation of the prototype.
                 </p>
                 <figure>
                     <img src = "img/motor_mounted.png" alt = "mounted motor" style="width:100%">
                     <figcaption>Mounted Motor</figcaption>
                 </figure>
                 <p>
-                    Later on, I ductaped the motor to the foam board as well. Moving on to the second part, I first combined pieces #2 and #3 with a paperclip. Then I mounted the axle of piece #3 and added two spacers (in order to compensate for how high up piece #1 is). After that, I simply lowered the assembled pieces onto the axles. 
+                    Moving on to the second part, I first combined pieces #2 and #3 with a paperclip. Then I mounted the axle of piece #3 and added two spacers (in order to compensate for how high up piece #1 was). After that, I simply lowered the assembled pieces onto the axles. 
                 </p>
                 <figure>
                     <img src = "img/prototype.png" alt = "assembled pieces" style="width:100%">
@@ -144,19 +144,19 @@ void motorA(char d, int t, int s) {
                 <!-- New Section -->
                 <h2 id="trial_error">Trial and Error</h2>
                 <p>
-                    The prototype looks complete, but it is <b>far</b> from over. The next step is experimentation. I needed to test the contraption and fix any problems that arise.
+                    The prototype looked complete, but it was <b>far</b> from over. The next step was experimentation. I needed to test the contraption and fix any problems that arise.
                 </p>
                 <p>
-                    The first time I ran the motor, piece #1 wouldn't spin at all. The motor's axle was spinning, but the cardboard couldn't cling on to the axle. I decided to use Elmer's glue (the only one I had availble) to stick together the axle and the cardboard. I set it to dry for a few minutes while I took a break. After a lengthy wait, it worked!
+                    The first time I ran the motor, piece #1 wouldn't spin at all. The motor's axle was spinning, but the cardboard couldn't cling on to the axle. I decided to use Elmer's glue (the only one I had availble) to stick together the axle and the cardboard. I set it to dry while I took a break. After a lengthy wait, it worked!
                 </p>
                 <p>
-                    However, the rudder quickly stopped turning again. This time the cardboard was caught on the styrofoam. In order to fix this, I disassembled the axles and added more spacers to elevate the cardboard pieces from the foam board.
+                    However, the rudder quickly stopped turning again. This time the cardboard was caught on the styrofoam. In order to fix this, I disassembled the axles and added more spacers to elevate the cardboard pieces off of the foam board.
                 </p>
 
                 <!-- New Section -->
                 <h2 id="tune_params">Tuning Parameters</h2>
                 <p>
-                   All that was left to do was to fine tune the parameters by testing. I first adjusted the spacing of the axles to guarantee my rudder has a full range of motion. Then I moved on to the motor speed. I adjusted the voltage going to the motor using analog output and PWM. Now the rudder can correctly move around! 
+                   All that was left to do was to fine tune the parameters by testing. I first adjusted the spacings of the axles to guarantee that my rudder had a full range of motion. Then I moved on to the motor speed. I adjusted the voltage going to the motor using analog output and PWM. Now the rudder can correctly move around! 
                 </p>
 
                 <!-- New Section -->
@@ -165,23 +165,23 @@ void motorA(char d, int t, int s) {
                     <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/iomxbQaECtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </figure>
                 <p>
-                    The obvious shortcomings of this prototype are that <b>It can't be controlled</b> (therefore useless as a means of steering) and <b>It is not structurally sound</b>. The second problem is harder to fix since I currently don't have anything other than weak Elmer's glue and cardboard at home. This can be dealt with in future designs by using Metal Epoxy and 3D-Printed parts. The first issue, however, is not nearly as hard to fix.
+                    The obvious shortcomings of this prototype were that <b>It couldn't be controlled</b> (therefore useless as a means of steering) and <b>it was not structurally sound</b>. The second problem was harder to fix since I didn't have anything other than weak Elmer's glue and cardboard at home. This could be dealt with in future designs by using Metal Epoxy and 3D-Printed parts. The first issue, however, was not nearly as hard to fix.
                 </p>
 
                 <!-- New Section -->
                 <h2 id="add_steering">Adding Steering</h2>
                 <p>
-                    I started fixing the steering problem by adding a potentiometer. I planned on adjusting the <b>power</b> of the motor based on how far its knob turns and the <b>direction</b> based on which way its knob turns. If the potentiometer is in the middle, then the motor would stop. I quickly built a potentiometer circuit modeled after the following design I created a few days ago.
+                    I started fixing the steering problem by adding a potentiometer. I planned on adjusting the <b>power</b> of the motor based on how far its knob turned and the <b>direction</b> based on which way its knob turned. If the potentiometer was in the middle, then the motor would stop. I quickly built a potentiometer circuit modeled after the following design I created a few days ago.
                 </p>
                 <figure>
                     <img src = "img/pot_layout.png" alt = "potentiometer layout" style="width:100%">
                     <figcaption>potentiometer layout</figcaption>
                 </figure>
                 <p>
-                    Now armed with a potentiometer, all I had to do was convert its analog reading, <b>0 - 1023</b> into my motor's power level, <b>0 - 255</b>. I do this using the following code inside the main loop.
+                    Now armed with a potentiometer, all I had to do was convert its analog reading, <b>0 - 1023</b>, into my motor's power level, <b>0 - 255</b>. I did this using the following code inside the main loop.
                 </p>
                 <p class="edits">
-                    Edit: I am writing this after attending the lab on monday. Sadly, I wrote the following code before we learned about connecting potentiometers to motors in the Lab. Therefore, you won't see me using convenient functions like <code class="language-arduino">map()</code> here. I believe, however, that my clunckier code does achieve the same,functionality as what we talked about in class.
+                    Edit: I am writing this short note after attending the lab on monday. Sadly, I wrote the following code before we learned about connecting potentiometers to motors in the Lab. Therefore, you won't see me using convenient functions like <code class="language-arduino">map()</code> here. I believe, however, that my clunckier code does achieve the same functionality as what we talked about in class.
                 </p>
 <pre><code class="language-arduino">
 int analogNum = analogRead(analogInputPin);
@@ -190,7 +190,7 @@ analogNum = analogNum / 100 - 5; // divide by 100 and subtract 5 to reduce the i
 analogNum *= (255/5); // now scale the small numbers up to 255 (or -255).
 </code></pre>
                 <p>
-                    The main goal here was to combine the potentiometer's <b>1023 parts</b> into just <b>10 total parts</b>. This is important mostly because it would be nearly impossible to turn to the exact middle of 1023 in order to stop the motor from spinning. But when there are only 10 total numbers, there is a comfortably wide middle section of the potentiometer's knob that lets me easily stop the motor. Secondly, this would give me more control over the motor as it won't sporadically change power at the slightest turn of the knob.
+                    The main goal here was to combine the potentiometer's <b>1023 parts</b> into just <b>10 total parts</b>. This is important mostly because it would be nearly impossible to turn to the exact middle of 1023 in order to stop the motor from spinning. But when the knob only corresponds to 10 total numbers, there would be a comfortably wide middle section of the potentiometer's knob that lets me easily stop the motor. Secondly, this would give me more control over the motor as it won't sporadically change power at the slightest turn of the knob.
                 </p>
                 <figure>
                     <iframe src="https://giphy.com/embed/ge8QUJ1VRXLQE6biIe" style="position:relative; width:100%" height=400rem frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -227,7 +227,7 @@ else { // stops the motors if analog reading = 0
                 <!-- New Section -->
                 <h2 id="improve_steering">Improving the steering</h2>
                 <p>
-                    After doing some research and asking for help, I realized that I needed to use a Servo motor, which would give me precise control of its angular position. It is quite a simple motor to use. It has three wires: power, ground, and signal. And it can be controlled using an analog signal between 0 and 180, which corresponds to degrees.
+                    After doing some research and asking for help, I realized that I needed to use a Servo motor, which would give me precise control over its angular position. It is quite a simple motor to use. It has three wires: power, ground, and signal. And it can be controlled using an analog signal between 0 and 180, which corresponds to degrees.
                 </p>
                 <p>
                     My job was made even easier when I stumbled across a <b>demo code</b> which links a potentiometer to a servo. I found it on the Arduino's official website while looking up documentation for the Servo library. 
@@ -275,7 +275,7 @@ void loop() {
                 <!-- New Section -->
                 <h2 id="reflection">Reflection</h2>
                 <p>
-                    This prototype helped me gain a better understanding of oscillary motion and how to convert to it. It also made me assess my available materials, so now I know what supplies to buy. Furthermore, I learned how to use a servo motor. It seems very useful since I can precisely control its angular position. It was also very fun to come up with creative ways to replace standard material (such as a paperclip for an axle). 
+                    This prototype helped me gain a better understanding of oscillatory motion and how to convert to it. It also made me assess my available materials, so now I know what supplies to buy. Furthermore, I learned how to use a servo motor. It seems very useful since I can precisely control its angular position. It was also very fun to come up with creative ways to replace standard material (such as a paperclip for an axle). 
                 </p>
                 <p>
                     Even if I don't end up building a plane for my final project, I can still find a lot of uses for this oscillating motion. For example, I could replace the rudder with a propeller, which would allow me to control a hot air balloon.
