@@ -33,8 +33,7 @@
             <h1>Rapid Prototyping</h1>
             <span class="meta">Day 4: 7/2</span>
         </div>
-
-        <h2>Reading Analog Input</h2>
+        
         <div class="row">
             <div class="col-sm-12">
                 <!-- New Section -->
@@ -56,37 +55,37 @@
                     The Arduino code used to run the motor simply sends two analog signals to the motor driver indefinitely, which then analyzes the signals and controls the motor accordingly. 
                 </p>
                 <pre><code class="language-arduino">
-                    const int A1A = 3;  // define pin 3 for A-1A
-                    const int A1B = 4;  // define pin 4 for A-1B
+                const int A1A = 3;  // define pin 3 for A-1A
+                const int A1B = 4;  // define pin 4 for A-1B
 
-                    void setup() {
-                      pinMode(A1A, OUTPUT); // specify these pins as outputs
-                      pinMode(A1B, OUTPUT);    
-                    }
+                void setup() {
+                  pinMode(A1A, OUTPUT); // specify these pins as outputs
+                  pinMode(A1B, OUTPUT);    
+                }
 
-                    void loop() {
-                      motorA('R', 5000, 200); // time doesn't really matter since it will loop forever
-                    }
+                void loop() {
+                  motorA('R', 5000, 200); // time doesn't really matter since it will loop forever
+                }
 
 
-                    /*
-                     * This is a custom function to drive Motor A
-                     * inputs: direction (L/R), duration (int), speed (int between 0 and 255)
-                     * outputs: motor control
-                     */
-                    void motorA(char d, int t, int s) {
-                      if(d =='R'){
-                        analogWrite(A1A, 0);
-                        analogWrite(A1B, s);
-                      } else if (d =='L'){
-                        analogWrite(A1A, s);
-                        analogWrite(A1B, 0);    
-                      }
+                /*
+                 * This is a custom function to drive Motor A
+                 * inputs: direction (L/R), duration (int), speed (int between 0 and 255)
+                 * outputs: motor control
+                 */
+                void motorA(char d, int t, int s) {
+                  if(d =='R'){
+                    analogWrite(A1A, 0);
+                    analogWrite(A1B, s);
+                  } else if (d =='L'){
+                    analogWrite(A1A, s);
+                    analogWrite(A1B, 0);    
+                  }
 
-                      delay(t); // allow motor to run for specified time
-                     
-                      digitalWrite(A1A, LOW); // turn motor OFF
-                      digitalWrite(A1B, LOW);    
+                  delay(t); // allow motor to run for specified time
+                 
+                  digitalWrite(A1A, LOW); // turn motor OFF
+                  digitalWrite(A1B, LOW);    
                 }
                 </code></pre>
 
@@ -167,10 +166,10 @@
                     Edit: I am writing this after attending the lab on monday. Sadly, I wrote the following code before we learned about connecting potentiometers to motors in the Lab. Therefore, you won't see me using convenient functions like <code class="language-arduino">map()</code> here. I believe, however, that my clunckier code does achieve the same,functionality as what we talked about in class.
                 </p>
                 <pre><code class="language-arduino">
-                    int analogNum = analogRead(analogInputPin);
-                    analogNum = analogNum / 100 - 5; // divide by 100 and subtract 5 to reduce the input to a -5 to 5 scale.
-                                                     // When divided by 102.3, the numbers would flicker at the ends, so I decided to go with 100.
-                    analogNum *= (255/5); // now scale the small numbers up to 255 (or -255).
+                int analogNum = analogRead(analogInputPin);
+                analogNum = analogNum / 100 - 5; // divide by 100 and subtract 5 to reduce the input to a -5 to 5 scale.
+                                                 // When divided by 102.3, the numbers would flicker at the ends, so I decided to go with 100.
+                analogNum *= (255/5); // now scale the small numbers up to 255 (or -255).
                 </code></pre>
                 <p>
                     The main goal here was to combine the potentiometer's <b>1023 parts</b> into just <b>10 total parts</b>. This is important mostly because it would be nearly impossible to turn to the exact middle of 1023 in order to stop the motor from spinning. But when there are only 10 total numbers, there is a comfortably wide middle section of the potentiometer's knob that lets me easily stop the motor. Secondly, this would give me more control over the motor as it won't sporadically change power at the slightest turn of the knob.
@@ -183,17 +182,17 @@
                     The 10 parts scale from -255 to 255 because 0 to 255 is the range of power a motor receives. The sign indicates the direction of the motor. <b>Positive is Left</b>, <b>Negative is Right</b>. The numbers are implemented in the following way.
                 </p>
                 <pre><code class="language-arduino">
-                    if (analogNum > 0) { // this means potentiometer is turned to the left, so turn left accordingly
-                        motorA('L', analogNum); // turns motor left with analogNum as power
-                    }
-                    else if (analogNum < 0) { // turns right
-                        motorA('R', analogNum * -1); // needs to make the analogNum postive first.
-                                                     // turns motor right with analogNum as power
-                    }
-                    else { // stops the motors if analog reading = 0
-                        analogWrite(A1A, 0);
-                        analogWrite(A1B, 0);
-                    }
+                if (analogNum > 0) { // this means potentiometer is turned to the left, so turn left accordingly
+                    motorA('L', analogNum); // turns motor left with analogNum as power
+                }
+                else if (analogNum < 0) { // turns right
+                    motorA('R', analogNum * -1); // needs to make the analogNum postive first.
+                                                 // turns motor right with analogNum as power
+                }
+                else { // stops the motors if analog reading = 0
+                    analogWrite(A1A, 0);
+                    analogWrite(A1B, 0);
+                }
                 </code></pre>
                 <p>A1A and A1B are predefined analog output pins connected to the L9110 motor drive. The complete code can be downloaded <a href='./code/l9110_Motor.ino' download > here </a>.
                 </p>
@@ -201,7 +200,7 @@
                 <!-- New Section -->
                 <h2>Prototype #2</h2>
                 <figure>
-                    <iframe style="position:relative; width:100%" height=400rem src="https://youtu.be/embed/fJLXrY3IOMc " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/fJLXrY3IOMc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </figure>
                 <p>
                     This type of steering is by no means ideal. I'd want the rudder's angle to correspond to how much I turn my potentiometer. However, this is unrealistic for a DC motor as it won't rotate the same amount when following the same exact commands.
@@ -214,24 +213,24 @@
                     My job was made even easier when I stumbled across a <b>demo code</b> which links a potentiometer to a servo. I found it on the Arduino's official website while looking up documentation for the Servo library. 
                 </p>
                 <pre><code class="language-arduino">
-                    // The following code came from the official arduino website: https://www.arduino.cc/en/Tutorial/Knob
-                    #include <Servo.h>
+                // The following code came from the official arduino website: https://www.arduino.cc/en/Tutorial/Knob
+                #include <Servo.h>
 
-                    Servo myservo;  // create servo object to control a servo
+                Servo myservo;  // create servo object to control a servo
 
-                    int potpin = 0;  // analog pin used to connect the potentiometer
-                    int val;    // variable to read the value from the analog pin
+                int potpin = 0;  // analog pin used to connect the potentiometer
+                int val;    // variable to read the value from the analog pin
 
-                    void setup() {
-                      myservo.attach(9);  // attaches the servo on pin 9 to the servo object
-                    }
+                void setup() {
+                  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+                }
 
-                    void loop() {
-                      val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
-                      val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
-                      myservo.write(val);                  // sets the servo position according to the scaled value
-                      delay(15);                           // waits for the servo to get there
-                    }
+                void loop() {
+                  val = analogRead(potpin);            // reads the value of the potentiometer (value between 0 and 1023)
+                  val = map(val, 0, 1023, 0, 180);     // scale it to use it with the servo (value between 0 and 180)
+                  myservo.write(val);                  // sets the servo position according to the scaled value
+                  delay(15);                           // waits for the servo to get there
+                }
                 </pre></code>
                 <p>
                 I drew up a quick layout of the servo motor. I wasn't able to do this for the DC motor because tinkercad doesn't have the L9110 motor driver.
