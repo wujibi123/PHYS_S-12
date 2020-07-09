@@ -37,7 +37,136 @@
                     </ul>
                 </p>
                 <h1 class="date-header" id="7_07">7/7</h1>
+                <p>
+                    Dr. Hart suggested that I should adapt my RC plane idea into a hot air balloon, and I honestly think it's even cooler than my original plan. As a bonus, it will also be easier to execute, given the much more forgiving aerodynamics behind a hot air balloon.
+                </p>
+                <p>
+                    After a few very helpful discussions with Nathan, Victoria, and Dr. Hart, I identified the challenges I'm facing and how I should approach them. My biggest problem would be providing enough buoyancy force for my load. Below are a list of materials that I've come up with to decrease my weight and increase my buoyancy as much as possible.
+                </p>
+                <p>
+                    <ul>
+                        <li>Power Source: Litho 3V battery for the microcontroller</li>
+                        <li>Basket: Laser Cut 1/16 inch plywood (Drawback is it could be Flammable)</li>
+                        <li>Additional Bouancy Source: Helium filled mylar balloons.</li>
+                    </ul>
+                </p>
+                <p>
+                    My thought was that I could balance the load and helium balloons precisely so that the hot air balloon is barely floating. Then I would produce hot air with light weight candles in order to lift off. I could control the height of the ballon by covering up the flames with a piece of aluminum foil controlled by a servo motor.
+                </p>
+                <p>
+                    I'd like to learn and calculate the weight of my load. Then use that and calculate the amount of helium I would need to buy. However, in order to do these calculations, I needed to learn the physics behind a hot air balloon.
+                </p>
 
+                <!-- New Section -->
+                <h2>Physics</h2>
+                <p>
+                    The most important factors when considering a hot air balloon is its center of mass, centroid, weight, volume and buoyancy force.
+                </p>
+                <p>
+                    This <a href="https://www.real-world-physics-problems.com/hot-air-balloon-physics.html">website</a> explains buoyancy very clearly: "For a hot air balloon, the upward buoyant force acting on it is equal to the weight (or mass) of the cooler surrounding air displaced by the hot air balloon. And for lift to be generated, this buoyant force must exceed the weight of the heated air, plus the weight of the envelope, plus the weight of the gondola, plus the weight of equipments on board."
+                </p>
+                <figure>
+                    <img src = "img/hot-air-balloon-physics.png" alt = "Hot Air Balloon Physics" style="width:100%">
+                    <figcaption>Physcis behind a hot air balloon</figcaption>
+                </figure>
+                <p>
+                    One more important thing to note is that the centroid(C) of the ballon must be directly above its center of mass(G) in order for the ballon to keep its balance.
+                </p>
+                <p>
+                    Now, to calculate the buoyancy force, I first needed to calculate the density of the air using the Ideal gas law: P = ρRT. (The following equations are derived from this <a href="https://www.real-world-physics-problems.com/hot-air-balloon-physics.html">website</a> 
+                </p>
+                <p>
+                    <ul>
+                        <li>(P) Normal atmospheric pressure is approximately 101,300 Pa.</li>
+                        <li>(R) The gas constant for dry air is 287 Joules/kg.</li>
+                        <li>(T) The heat of the air inside the envelop is still unknown, I will have to conduct experiments with my hot air source.</li>
+                    </ul>
+                </p>
+                <p>
+                    Substituting all three values, I get ρ = 2.83 * 10<sup>-3</sup>T  kg/m<sup>3</sup>. This is the density of the heated air, whereas normal dry air is around 1.2 kg/m<sup>3</sup>. 
+                </p>
+                <p>
+                    The net buoyant force is defined here as the difference in density between the surrounding air and the heated air (1.2−0.946), multiplied by the envelope volume (m<sup>3</sup>). Thus,
+                </p>
+                <p class="center">
+                    F<sub>B, net</sub> = (1.2 - 2.83 * 10<sup>-3</sup>T)×V<sub>envelope</sub> kg
+                </p>
+                <p>
+                    For now, I have no concrete data on the Temperature or the Volume. However, let us assume that I use <a href="https://www.amazon.com/iChefer-Emergency-Blanket-Survival-Two-Sided/dp/B06XWD79JT/ref=sr_1_11?crid=3KHTMR8ZF3Y5U&dchild=1&keywords=large%2Bmylar%2Bblanket&qid=1594238821&sprefix=large%2Bmylar%2B%2Caps%2C170&sr=8-11&th=1">a 210 cm * 160 cm mylar blanket</a> as the envelop. By approximating it as a sephere, I can convert the 3.36 m<sup>2</sup> surface area into a 0.58 m<sup>3</sup> volume. Let's also assume that the temperature is raised by 60 degrees kelvin. That would give me… 
+                </p>
+                <p class="center">
+                    F<sub>B, net</sub> = 600 grams (rounded with sig figs)
+                </p>
+
+                <!-- New Section -->
+                <h2>Load Weight</h2>
+                <p>
+                    600 grams of buoyancy force doesn't sound like a lot to work with, however, that is not the case when we examine the weight of our components
+                </p>
+                <p>
+                    <ul>
+                        <li>Servo Motor: 9 grams</li>
+                        <li>Huzzah: 8.4g</li>
+                        <li>1/16 Plywood: Unknown, but let's assume around 100g.</li>
+                        <li>Mylar envelop: 60g</li>
+                        <li>Aluminum foil: Barely anything</li>
+                        <li>Wax: Around 28 grams (1 ounce) for five to six hours of burn time</li>
+                        <li>Wax container: 3D printed, assume around 200g for now</li>
+                    </ul>
+                </p>
+                <p>
+                    That gives us a total of 405.4 grams of weight. This means the hot air balloon would rise comfortably while still being flexible to variables such as the candle's heat and the envelope's volume.
+                </p>
+
+                <!-- New Section -->
+                <h2>Revised Plan</h2>
+                <p>
+                    After doing these theoretical calculations, I realized that I can make some significant changes to the original balloon.
+                </p>
+                <p>
+                    First of all, there's no longer any need for helium balloons as the buoyancy force that could be generated from my materials is greater than the weight of the load.
+                </p>
+                <p>
+                    Secondly, I've decided on using mylar as the material for my envelope. It is sold in a large surface area, it is super light weight, and it has 90% Heat Retention. 
+                </p>
+                <p>
+                    Finally, I've decided on replacing the wax candles with custom wax that I am going to make. I will modify the wax to create as much heat as possible by adding more wicks, using thicker wicks, and mixing flammable liquids into the wax. Because of this, I will need a custom candle holder, which I am about to make as part of Day 5's assignment.
+                </p>
+
+                <!-- New Section -->
+                <h2>3D Modeling</h2>
+                <p>
+                    Time to finally stop planning and get to work! Day 5's assignment, to create a simple 3D model, fits very well into my final project. I will be using this opportunity to create a wax holder.
+                </p>
+                <p>
+                    First, I needed to decide on the volume. Although an average 1 oz candle's burn time is five to six hours, my custom wax will burn far hotter, and therefore have a shorter lifespan. I'll go with 2 ounces (59147 mm<sup>3</sup>) for now. If I need to change this after I've done some testing, I can always get new material since I live so close to the Harvard Fab Lab. Next, I chose an arbitrary radius for the cylinder: 31.75 mm (1.25 in). However, let's make the thickness 4 mm so that the holder doesn't break. Now the inner radius is 27.75.
+                </p>
+                <div class="center">
+                    <p>V = πr<sup>2</sup>h</p>
+                    <p>59147 / π27.75<sup>2</sup> = h</p>
+                    <p>h = 24.45 mm</p>
+                </div>
+                <p>
+                    Now, I'm going to add 10mm to the height to prevent overspill. 
+                </p>
+                <p class="center">h = 34.45 mm</p>
+                <p>
+                    I finished off the design by adding a fillet at the bottom so the wax won't get stuck, chamfering the top for aesthetics, and adding standoffs that will fit snugly into 1/16 inch plywood.
+                </p>
+                <figure>
+                    <img src = "img/candle_holder_top.png" alt = "Wax Holder Top" style="width:50%">
+                    <img src = "img/candle_holder_bottom.png" alt = "Wax Holder Bottom" style="width:50%">
+                    <figcaption>Wax Holders 3D Model</figcaption>
+                </figure>
+                <p>
+                    To see the model yourself, go <a href="https://a360.co/2ZcMzCG">here</a>.
+                </p>
+
+                <!-- New Section -->
+                <h2>Future Plans</h2>
+                <p>
+                    Next time I work on the final project, I want to create a lasercuttable model of my basket. I will also start testing as soon as the materials arrive through Amazon.
+                </p>
             </div> <!-- column end -->
         </div> <!-- row end -->
     </div> <!-- container end -->
