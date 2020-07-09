@@ -141,3 +141,8 @@ li a:hover:not(.active).menu {
 .light-gray {
     color: #00000047;
 }
+
+/*Allignment*/
+.center {
+  text-align: center;
+}
