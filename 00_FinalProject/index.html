@@ -218,10 +218,13 @@
                     I was worried that the Servo motor wouldn't cooperate with the 3.3V power source of the esp32. Even the product's <a href="https://www.jsumo.com/sg90-micro-servo-motor">documentation</a> suggested a minimum operating voltage of 4.8V.
                 </p>
                 <p>
-                    I quickly hooked up the servo to the Huzzah and tried to run a test. However, I was stumped by the fact that the ESP32 didn't support the arduino's servo library. After a quick look online, I found that I could control the servo with the LEDC library. While this worked, I still wanted to use the Arduino's convenient servo library, and my wish was granted when I found its wrapper library for the ESP32 called <a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a>. I also learned that I could set up the servo's pulse width range through <code class="language-arduino">myservo.attach(pin, min, max)</code>. Using the documentation of the motor I linked above, I found this particular servo's pulse width to be between 900 - 2100μs. You can download the code <a href="code/servo_test.ino">here</a>.
+                    I quickly hooked up the servo to the Huzzah and tried to run a test. However, I was stumped by the fact that the ESP32 didn't support the arduino's servo library. After a quick look online, I found that I could control the servo with the LEDC library. While this worked, I still wanted to use the Arduino's convenient servo library, and my wish was granted when I found its wrapper library for the ESP32 called <a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a>. 
                 </p>
                 <p>
-                    It worked! I even put some load on it to make sure it would turn 3D printed axle.
+                    I also learned that I could set up the servo's pulse width range through <code class="language-arduino">myservo.attach(pin, min, max)</code>. Using the documentation of the motor I linked above, I found this particular servo's pulse width to be between 900 - 2100μs. Anyways, here we go, finally testing...
+                </p>
+                <p>
+                    It worked! I even put some load on it to make sure it could turn a 3D printed axle. You can download the code <a href="code/servo_test.ino">here</a>.
                 </p>
 
                 <!-- New Section -->
