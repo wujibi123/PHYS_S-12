@@ -7,6 +7,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Arduino Code CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Arduino Code CSS -->
     <link href="../style.css" rel="stylesheet">
 </head>
 
@@ -34,9 +40,11 @@
                     This documentation will become quite long as I keep adding more content, so please feel free to click on the links below and skip around:
                     <ul>
                         <li><a href="#7_07">7/7: Getting Started</a></li>
+                        <li><a href="#7_09">7/9: 3D Design and Printing</a></li>
                     </ul>
                 </p>
                 <h1 class="date-header" id="7_07">7/7</h1>
+                <div class="meta">Getting Started, Physics, 3D Modeling</div>
                 <p>
                     Dr. Hart suggested that I should adapt my RC plane idea into an RC hot air balloon, and I honestly think it's even cooler than my original plan. As a bonus, it will also be easier to execute, given the much more forgiving aerodynamics behind a hot air balloon.
                 </p>
@@ -45,7 +53,7 @@
                 </p>
                 <p>
                     <ul>
-                        <li>Power Source: Lithium 3V battery for the microcontroller</li>
+                        <li>Power Source: Lipo 3V battery for the microcontroller</li>
                         <li>Basket: Laser Cut 1/16 inch plywood (Drawback is it could be Flammable)</li>
                         <li>Additional Bouancy Source: Helium filled mylar balloons.</li>
                     </ul>
@@ -167,6 +175,65 @@
                 <p>
                     Next time I work on the final project, I want to create a lasercuttable model of my basket. I will also start testing as soon as the materials arrive through Amazon.
                 </p>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="7_09">7/9</h1>
+                <div class="meta">Confronting Obstacles, 3D Design and Printing</div>
+
+                <!-- New Section -->
+                <h2>Heat</h2>
+                <p>
+                    I've forgotten about a very important factor up until today. Electronics are only functional below a certain temperature. Most Servo Motors and Lipo Batteries can't survive temperatures above around 50 degrees celsius. However, the components should be able to avoid the heat if we place them below the wax holder (hot air rises up, not down). Because of this, there will be some design changes I need to make.
+                </p>
+                <ul>
+                    <li>
+                        The basket now needs two compartments stacked on top of each other. One for the fuel (wax) and one for the circuit.
+                    </li>
+                    <li>
+                        I'll need to 3D print an extended axle for the servo motor that holds on to the aluminum. This axle will be made out of PLA, which is heat resistant. This will place the motor well below the flames, protecting it from the heat.
+                    </li>
+                    <li>
+                        As a last resort, I can always wrap the electronics in thin heat insulators.
+                    </li>
+                </ul>
+
+                <!-- New Section -->
+                <h2>Servo Motor</h2>
+                <p>
+                    I was worried that the Servo motor wouldn't cooperate with the 3.3V power source of the esp32. Even the product's <a href="https://www.jsumo.com/sg90-micro-servo-motor">documentation</a> suggested a minimum operating voltage of 4.8V.
+                </p>
+                <p>
+                    I quickly hooked up the servo to the Huzzah and tried to run a test. However, I was stumped by the fact that the ESP32 didn't support the arduino's servo library. After a quick look online, I found that I could control the servo with the LEDC library. While this worked, I still wanted to use the Arduino's convenient servo library, and my wish was granted when I found its wrapper library for the ESP32 called <a href="https://github.com/jkb-git/ESP32Servo">ESP32Servo</a>. You can download the code <a href="code/servo_test.ino">here</a>.
+                </p>
+                <p>
+                    It worked! I even put some load on it to make sure it would turn 3D printed axle.
+                </p>
+
+                <!-- New Section -->
+                <h2>3D Design and Printing</h2>
+                <p>
+                    Since 7/14 is the deadline for submitting requests for custom materials, I thought it would be best to get started designing them right away. Here's a list of what I need to submit by then:
+                </p>
+                <ul>
+                    <li>3D printed Servo motor mount.</li>
+                    <li>
+                        3D printed extended axle that attaches to the servo's white "horn", which holds on to a piece of aluminum. Main purpose is for keeping the motor away from the heat.
+                    </li>
+                    <li>Lasercut Basket with two compartments</li>
+                </ul>
             </div> <!-- column end -->
         </div> <!-- row end -->
     </div> <!-- container end -->
