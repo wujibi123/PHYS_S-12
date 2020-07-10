@@ -3,7 +3,7 @@
 Servo myservo;  // create servo object to control a servo
 
 void setup() {
-  myservo.attach(12);  // attaches the servo on pin 12 to the servo object
+  myservo.attach(12, 900, 2100);  // attaches the servo on pin 12 to the servo object
 }
 
 void loop() {
