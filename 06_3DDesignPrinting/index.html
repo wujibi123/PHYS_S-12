@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dan Bi PHYS_S-12 Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Arduino Code CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Arduino Code CSS -->
+    <link href="../style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class = "container-fluid">
+        <header>
+            <h1>
+                <a href="https://wujibi123.github.io/PHYS_S-12/" class="site-header">
+                <span class="orange">PHYS S-12</span>
+                <span class="light-gray">:</span>
+                <span class="pretty-blue"> Dan's Documentation</span></a>
+            </h1>
+        </header>
+
+        <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
+
+        <div class="date-header">
+            <h1>3D Design and Printing</h1>
+            <span class="meta">Day 6: 7/9</span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    Today I'll be designing some parts for my final project. If you haven't already, please go checkout my <a href="../00_FinalProject/index.html">final project page</a> and read the documentations for "7/7" and "7/9". This will explain my project and my reasoning behind what I'm about to model below.
+                </p>
+                <p>
+                    At this point, I've already designed the Basket that is to be laser cut, and all that's left to do is the Motor Mount.
+                </p>
+
+                <!-- New Section -->
+                <h2>Motor Mount</h2>
+                <p>
+                    First I created a sketch of the birdseye view of the Servo Motor. I used a caliber to measure all the dimensions, and I used the "mirror" tool to do half of my work.
+                </p>
+                <figure>
+                    <img src = "birdseye.png" alt = "Birdseye Sketch" style="width:100%">
+                    <figcaption>Birdseye Sketch</figcaption>
+                </figure>
+                <p>
+                    I started to design the mount around this top-down view of the motor. My first step was making the surface to which the servo will be screwed in. I drew a larger rectangle around my original sketch and extruded selected areas. I also added 0.4 mm to all openings in order to ensure a snug fit with the motor.
+                </p>
+                <figure>
+                    <img src = "mount_01.png" alt = "mount_01" style="width:100%">
+                    <figcaption>Motor Mount First Draft</figcaption>
+                </figure>
+                <p>
+                    Next up, building the part that will be glued to the wooden box. To do this, I created a sketch on the long side of the rectangle and extruded it. Next, I needed to add some diagonal support on the sides. Again, I created and extruded another sketch on the surface I wanted to add the support to. Finally, I added some fillets for support and chamfered the edges for aesthetics.
+                </p>
+                <figure>
+                    <img src = "mount_02.png" alt = "mount_02" style="width:100%">
+                    <figcaption>Motor Mount Complete</figcaption>
+                </figure>
+                <p>
+                    For the finishing touch, I exported the file as STL and configured it in the Prusa software. I rotated the orientation so that Z, the weakest direction, had the least amount of stress. I also added supports for the opening of the servo motor.
+                </p>
+
+                <!-- New Section -->
+                <h2>Downloadable Files</h2>
+                <p>
+                    Please go <a href="../00_FinalProject/index.html#download_files">here</a> for downloadable links to everything I'm submitting to be custom made.
+                </p>
+
+                <!-- New Section -->
+                <h2>Photogrammetry</h2>
+                <p>
+                    I used the Bellus app to scan my face. I am lucky to have an Iphone X, which contains the trueDepth camera that enhanced my model by a lot.
+                </p>
+                <p>
+                    All I had to while scanning was to tilt my head in given directions. The app then turned the video of me tilting my head into a 3D model, and it only took around twenty seconds to compute. Here are the results:
+                </p>
+                <figure>
+                    <img src = "front.jpg" alt = "front face" style="width:100%">
+                    <figcaption>Front Face</figcaption>
+                </figure>
+                <figure>
+                    <img src = "right.jpg" alt = "right face" style="width:100%">
+                    <figcaption>Right Face</figcaption>
+                </figure>
+                <figure>
+                    <img src = "left.jpg" alt = "left face" style="width:100%">
+                    <figcaption>Left Face</figcaption>
+                </figure>
+                <figure>
+                    <img src = "back.jpg" alt = "back face" style="width:100%">
+                    <figcaption>Back Face</figcaption>
+                </figure>
+                <p>
+                    As you can see, the model is great from the front. However, the app isn't capable of capturing the back of my head. The ends of my hair also blended in with my forehead a bit. The app probably saw them as one entity.
+                </p>
+            </div> <!-- column end -->
+        </div> <!-- row end -->
+    </div> <!-- container end -->
+
+    <script src="../scripts/back_top.js"></script>
+</body>
+</html>
