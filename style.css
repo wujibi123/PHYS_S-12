@@ -82,6 +82,15 @@ figcaption {
   font-style: italic;
 }
 
+.parenthesis {
+  color: #7a7a7a;
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
 /*links*/
 
 a.site-header {
