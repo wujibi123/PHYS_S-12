@@ -44,6 +44,7 @@
                         <li><a href="#7_07">7/7: Getting Started</a></li>
                         <li><a href="#7_09">7/9: 3D Design and Printing</a></li>
                         <li><a href="#7_14">7/14: Sensor Brainstorming</a></li>
+                        <li><a href="#7_16">7/16: Testing</a></li>
                     </ul>
                 </p>
                 <h1 class="date-header" id="7_07">7/7</h1>
@@ -101,6 +102,9 @@
                 </p>
                 <p class="center">
                     F<sub>B, net</sub> = (1.2 - 2.83 * 10<sup>-3</sup>T)×V<sub>envelope</sub> kg
+                </p>
+                <p class="edits">
+                    Writing this on 7/16: I made some mistakes in this formula, please go <a href="#calc">here</a> to see the new version.
                 </p>
                 <p>
                     For now, I have no concrete data on the Temperature or the Volume. However, let us assume that I use <a href="https://www.amazon.com/iChefer-Emergency-Blanket-Survival-Two-Sided/dp/B06XWD79JT/ref=sr_1_11?crid=3KHTMR8ZF3Y5U&dchild=1&keywords=large%2Bmylar%2Bblanket&qid=1594238821&sprefix=large%2Bmylar%2B%2Caps%2C170&sr=8-11&th=1">a 210 cm * 160 cm mylar blanket</a> as the envelop. By approximating it as a sephere, I can convert the 3.36 m<sup>2</sup> surface area into a 0.58 m<sup>3</sup> volume. Let's also assume that the temperature is raised by 60 degrees kelvin. That would give me… 
@@ -351,6 +355,130 @@
                 </p>
                 <p>
                     These sensors all weigh next to nothing, and they can be attached and organized via this <a href="https://www.amazon.com/MCIGICM-6PCS-tie-Points-Breadboard-Arduino/dp/B07PZXD69L/ref=pb_allspark_session_sims_desktop_328_4/136-6348837-2789611?_encoding=UTF8&pd_rd_i=B07PZXD69L&pd_rd_r=9ae48644-c198-4183-9126-7d3117a2ae89&pd_rd_w=3WNX3&pd_rd_wg=ztmh8&pf_rd_p=6dab4af8-14d2-4d59-b0a2-dd973ff1f166&pf_rd_r=F138A3419FNKHBBN1XC4&psc=1&refRID=F138A3419FNKHBBN1XC4">tiny breadboard</a> (47mm x 36mm) I found online.
+                </p>
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="7_16">7/16</h1>
+                <div class="meta">Testing</div>
+                <p>
+                    Before we dive into the testing, I'd just like to mention that I figured out a potential solution for keeping my Servo motor out of the heat. I have paper clips that fit perfectly into the tiny holes in my servo's horn when they're stripped. I can use this to hold up the aluminum and keep the motor safe from the flames.
+                </p>
+
+                <!-- New Section -->
+                <h2>Molding Wax</h2>
+                <p>
+                    My wax was recently delivered by Amazon. Over the weekend, I will make different kinds of wax and record their temperatures.
+                </p>
+                <p>
+                    First, I needed to make the wax. I consulted <a href="https://www.candlescience.com/learning/beginner-candle-making-with-soy-wax">this guide</a>, and it seemed surprisingly more involved than I had imagined. Nevertheless, I still went ahead and made the candles.
+                </p>
+                <p>
+                    I made 2 types of candles for testing, both with four wicks to increase the flame size.
+                </p>
+                <ol>
+                    <li>4 oz Soy Wax</li>
+                    <li>2 oz Soy Wax mixed with 2 oz 60% Isopropyl Alcochol</li>
+                </ol>
+                <p>
+                    I used Soy Wax because it doesn't release fumes that are toxic to the environment. Sadly, it also burns at a lesser temperature than paraffin wax. As for the container, I substituted some glasses for my 3D printed wax holder (currently on the way).
+                </p>
+                <figure>
+                    <img src = "img/wax_cooling.JPG" alt = "wax" style="width:100%">
+                    <figcaption>Wax cooling down right after I poured them</figcaption>
+                </figure>
+                <p>
+                    After 4 hours of cooling, which is what the guide recommended, the wax was ready for burning. However, the mix of wax and alcohol did not turn out well. The wax was lighter than the alcohol, so they separated into two different layers. I have yet to find a solution for this, but for now I literally just poured more alcohol on top of the wax, just to see the temperature at which it burns.
+                </p>
+
+                <!-- New Section -->
+                <h2>Testing Temperature</h2>
+                <p>
+                    I taped my mylar blanket to the glasses as a temporary envelope. I quickly rebuilt my thermistor circuit and taped the thermistor to the top of the envelope. I can easily sense temperature with it since I had already <a href="../07_ElectronicInput/index.html">calibrated</a> it. 
+                </p>
+                <p>
+                    I took my setup outside and got to testing. My envelop for now is simply a rectangle with its corners attached to the container, so that's why it looks off. However, I didn't need to get any more complicated than that for a temperature test.
+                </p>
+                <figure>
+                    <img src = "img/thermistor.JPG" alt = "thermistor" style="width:100%">
+                    <figcaption>Testing Setup</figcaption>
+                </figure>
+                <p>
+                    Unfortunately, I had to restart the experiment since a wire my thermistor circuit accidentally came off. I also witnessed this moth flying into my fire with no regard for his life.
+                </p>
+                <figure>
+                    <img src = "img/moth.JPG" alt = "moth" style="width:100%">
+                    <figcaption>The Embodiment of Bravery</figcaption>
+                </figure>
+                <p>
+                    Perhaps I can harness the wind energy that moths generate and use it for steering? I'll have to do some serious research into this later. 
+                </p>
+                <p>
+                    Anyways, here are the results of my tests in Celsius.
+                </p>
+                <figure>
+                    <img src = "img/28.png" alt = "normal" style="width:33%">
+                    <figcaption>Normal</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/60.png" alt = "wax" style="width:33%">
+                    <figcaption>Soy Wax</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/110.png" alt = "alcohol" style="width:33%">
+                    <figcaption>60% Isopropyl Alcochol</figcaption>
+                </figure>
+                <p>
+                    One thing I'd like to note is that my thermistor isn't great at calculating temperatures above 100 degrees celsius. I am getting an actual thermometer so hopefully I'll be able to know the temperature more accurately.
+                </p>
+
+                <!-- New Section -->
+                <h2 id="calc">Calculations</h2>
+                <p>
+                    I plan on using the same formula I wrote way back on <a href="#7_07">7/7</a>. I actually noticed a few mistake that I made back then. My first mistake was that I set a static density for the "outside" air, and my second was an arithmetic error. Here is the corrected formula (resulting units are in kg).
+
+                </p>
+                <figure class="center">
+                    <img src = "img/formula.png" alt = "formula" style="width:100%">
+                    <figcaption><a href="https://www.desmos.com/calculator/undeovyl4k">Click to access interactive version"</a></figcaption>
+                </figure>
+                <p>
+                    Ideally I want my <span class="bold">buoyancy force</span> to be 500 grams so that I have some leeway. I converted my results above into Kelvins, and ran the calculations.
+                </p>
+                <p>
+                    I found that I need a 1.99 m<sup>3</sup> envelope to lift 500 grams if I used 60% Isopropyl Alcochol, and 4.44 m<sup>3</sup> if I used the soy wax. Obviously, I'll go with the smaller envelope.
+                </p>
+                <p>
+                    My envelope will be made from a cutout of a circle.
+                </p>
+                <figure>
+                    <img src = "img/envelope_design.png" alt = "design" style="width:100%">
+                    <figcaption>Envelope Design</figcaption>
+                </figure>
+                <p>
+                    Approximating it as a sphere, the diameter of that circle becomes the circumference of a plane of the sphere. So starting with the volume, which is 1.99 m<sup>3</sup>, and working backwards, I can get to the radius (0.78 m), and from there calculate the circumference, which is equal to the diameter of the circle cutout (4.9 m).
+                </p>
+                <!-- New Section -->
+                <h2>Conclusions and looking ahead</h2>
+                <p>
+                    To summarize, I learned from this weekend's testing that I need a circle with a radius of 2.45 meters in order to make an envelop big enough for my hot air balloon. Use <a href="https://www.kubicekballoons.eu/envelopes/envelope-construction">this site</a> to help with construction.
+                </p>
+                <p>
+                    Alternatively, I could use 99% Isopropyl Alcochol, which will surely increase the temperature by a lot more than the 60% did. My house already has some of this, and I'll test it as soon as my thermometer arrives (thermistors can't go above 100 Celsius)
+                </p>
+                <p>
+                    The final option would be to strap on some 36'' helium balloons and use a smaller envelope. I would balance the load weight and the balloon's buoyancy force just right so that I'll be able to control the height with my hot air.
                 </p>
             </div> <!-- column end -->
         </div> <!-- row end -->
