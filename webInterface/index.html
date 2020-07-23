@@ -17,6 +17,14 @@
 	<p>
 		Temperature: <span id="tempDisplay"></span>
 	</p>
+	<br>
+	<br>
+	<br>
+	<button onclick="getWeather()">Get Weather</button>
+	<p id="time"></p> <!-- Time -->
+	<p id="temp"></p> <!-- Temperature (Celsius)-->
+	<p id="wind"></p> <!-- Wind Direction (angle) and Speed (km/h)-->
+	<p id="humid"></p> <!-- Humidity (percent) -->
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
@@ -27,6 +35,9 @@
 
 	<!-- Adding realtime-database Library -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+	<!-- Adding Axios for API requests -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<!-- Adding my own Javascript -->
 	<script src="./script.js"></script>
