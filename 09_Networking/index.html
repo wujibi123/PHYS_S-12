@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dan Bi PHYS_S-12 Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Arduino Code CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Arduino Code CSS -->
+    <link href="../style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class = "container-fluid">
+        <header>
+            <h1>
+                <a href="https://wujibi123.github.io/PHYS_S-12/" class="site-header">
+                <span class="orange">PHYS S-12</span>
+                <span class="light-gray">:</span>
+                <span class="pretty-blue"> Dan's Documentation</span></a>
+            </h1>
+        </header>
+
+        <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
+
+        <div class="date-header">
+            <h1>Networking</h1>
+            <span class="meta">Day 9: 7/21</span>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    <a href="../webInterface/index.html">Product of Today's Work</a>
+                </p>
+                <p>
+                    Networking will be a big part of my project as I can't have hardwire connections from my laptop to a flying Huzzah. Today I'll try to setup WAN connections with my ESP32 via a firebase server. While a LAN connection is more than enough for me, I feel more comfortable with firebase, which allows me to easily establish a database and website. On the other hand, I would have to code everything on the Arduino IDE for a LAN only connection.
+                </p>
+
+                <!-- New Section -->
+                <h2>Learning</h2>
+                <p>
+                    I started off by following the tutorials. A few problems arose due to mismatched versions of firebase, but I easily fixed them. The real issue was GitHub pages. For some unknown reasons, Github couldn't load my code onto my website.
+                </p>
+                <figure>
+                    <img src = "github_error.png" alt = "Github error" style="width:100%">
+                    <figcaption>Github Error</figcaption>
+                </figure>
+                <p>
+                    After a good two hours of struggling, Github finally seemed to fix itself.
+                </p>
+                <p>
+                    Next, I went on Firebase's <a href="https://firebase.google.com/docs/reference/js/firebase.database" reference page</a> and the <a href="https://github.com/mobizt/Firebase-ESP32/blob/master/src/README.md">esp32 firebase library</a> to learn how to send and request informations between an esp32, a database, and a website.
+                </p>
+                <p>
+                    The two functions I found particularly useful were <code>set()</code> and <code>update()</code>, which both allow me to make realtime changes to the database. The former completely replaces the preexisting data in a specified node, while the latter only changes one of its values. 
+                </p>
+
+                <!-- New Section -->
+                <h2>Planning</h2>
+                <p>
+                    A drew up a plan for the networking side of my final project.
+                </p>
+                <figure>
+                    <img src = "network_structure.png" alt = "Network Structure" style="width:100%">
+                    <figcaption>Network Structure</figcaption>
+                </figure>
+                <p>
+                    I don't have the IMU and the Altimeter ready at the moment since I need to solder them at my friend's place. So for now, I will just build the database for the thermistor and the servo.
+                </p>
+
+                <!-- New Section -->
+                <h2>ESP32 Feather</h2>
+                <p>
+                    I started off by hooking up the thermistor and the servo, and writing code to transmit their data to the database. I used the following code to build the database structure.
+                </p>
+<pre><code class="language-arduino">
+void setup() {
+    //…
+    //…
+    //...
+// Set initial data to 0. Not sure if some of these will be in "double", I'll fix this once I start testing the sensors
+Firebase.setDouble(firebaseData, root + "Sensors/Temperature/Data", 0);
+Firebase.setDouble(firebaseData, root + "Sensors/Humidity/Data", 0);
+Firebase.setDouble(firebaseData, root + "Sensors/Altitute/Data", 0);
+Firebase.setDouble(firebaseData, root + "Sensors/Velocity/Data", 0);
+Firebase.setDouble(firebaseData, root + "Sensors/Orientation/Data", 0);
+
+Firebase.setInt(firebaseData, root + "Motors/Servo/Data", 0); // set initial Servo angle to 0. (from 0 to 180)
+//…
+    //…
+    //...
+}
+</code></pre>
+                <figure>
+                    <img src = "database_structure.png" alt = "database structure" style="width:100%">
+                    <figcaption>Database Structure</figcaption>
+                </figure>
+                <p>
+                    I added other sensor values that I won't be able to use yet, but it's good to plan ahead and write them in advance.
+                </p>
+                <p>
+                    Then I converted my thermistor code from <a href="../07_ElectronicInput/index.html">day 7</a> into a function and called it within the main loop.
+                </p>
+
+                <!-- New Section -->
+                <h2>Thermistor Problems</h2>
+                <p>
+                    I quickly ran into problems with my <code class="language-arduino">analogRead()</code> when I started testing. After fooling around for half an hour, I found this very helpful <a href="https://github.com/espressif/arduino-esp32/issues/102">GitHub thread</a>. Basically, all the ADC#2 pins on the esp32 are being used while Wifi is enabled. This meant that my analogRead pins were limited to A2, A3, A4, A7, and A9.
+                </p>
+                <p>
+                    Anyways, I quickly switched pins, and it worked!
+                </p>
+                <figure>
+                    <iframe src="https://giphy.com/embed/l1xxsB6fQgS42cyyTa" style="position:relative; width:100%" height=400rem frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    <figcaption>Database Changing According to Thermistor</figcaption>
+                </figure>
+                <p>
+                    Unfortunately, this pin reads in data slightly differently from the one I used for the calibration, pin 13. When I turn off the Wifi and use pin 13, it is always accurate. As a result of this difference in reading signals between these pins, my temperature reading is now 4 degrees off.
+                </p>
+
+                <!-- New Section -->
+                <h2>Servo Motor</h2>
+                <p>
+                    I copied and pasted servo code from <a href="../04_RapidPrototyping/index.html#improve_steering">day 4</a>. This turned out to be smooth sailing, and now the Servo motor responds when I change the database.
+                </p>
+                <p>
+                    You can see my esp32 networking code <a href="./esp32_network.ino" download>here</a>.
+                </p>
+
+                <!-- New Section -->
+                <h2>Web Interface</h2>
+                <p>
+                    I finished linking my esp32 to my database, but now I need a webpage to act as an interface for the database.
+                </p>
+                <p>
+                    I want to add a textfield that let's me change the servo's angle, and I want to display the thermistor's temperature as well.
+                </p>
+                <p>
+                    To achieve the first goal, I threw together some javaScript and an html form.
+                </p>
+<pre><code>
+&ltbody&gt
+    //…
+    //…
+    //...
+&ltform&gt
+    &ltlabel for="vol"&gtServo Angle (between 0 and 180):&lt/label&gt
+    &ltinput type="range" id="angle" name="angle" min="0" max="180" onchange="updateServo()"&gt
+&lt/form&gt
+//…
+//...
+    //...
+&lt/body&gt
+
+&ltscript&gt
+    //…
+    //…
+    //...
+function updateServo(){
+    var angle = document.getElementById('angle').value * 1.0;
+    console.log("Current Angle" + angle);
+    ref.update({
+        "Motors/Servo/Data": angle
+    });
+}
+    //…
+    //…
+    //...
+&lt/script&gt
+</code></pre>
+                <p>
+                    To see this for yourself, go <a href="../webInterface/index.html">here</a>.
+                </p>
+
+                <!-- New Section -->
+                <h2>Temperature reading</h2>
+                <p>
+                    This required me to read data from the database using javaScript. It wasn't too difficult after I learned about the <code>on()</code> function in the firebase library. It lets me take a <code>DataSnapshot</code> of my database when a sepecified <code>event</code> occurs.
+                </p>
+<pre><code>
+var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
+tempRef.on('value', function(tempDataSnapshot) {
+    var temp = tempDataSnapshot.val();
+    document.getElementById("tempDisplay").innerHTML = temp;
+});
+</code></pre>
+                <figure>
+                    <iframe src="https://giphy.com/embed/URw8XhvDb4LVd1LF26" style="position:relative; width:100%" height=400rem frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+                    <figcaption>Website Changing According to Thermistor</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Weather API</h2>
+                <p>
+                    I want to display weather data on my website, since knowing the weather will make flying the hot air balloon easier.
+                </p>
+                <p>
+                    I did some digging online and found the endpoint for Boston's weather: <a href="https://api.weather.gov/stations/KBOS/observations/latest">https://api.weather.gov/stations/KBOS/observations/latest</a>.
+                </p>
+                <p>
+                    I wasn't quite sure how to request data from APIs using javaScript. After learning about various methods from this <a href="https://levelup.gitconnected.com/all-possible-ways-of-making-an-api-call-in-plain-javascript-c0dee3c11b8b">very helpful article</a>, I landed on Axios. It provided me with a very easy way to pull data from an API, and it also automatically parses the JSON response into a javaScript object.
+                </p>
+                <p>
+                    Here is the function I wrote for the API request.
+                </p>
+<pre><code>
+function getWeather() {
+    axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
+        .then((response) => {
+            document.getElementByID("time").innerHTML = "Time: " +  response.data.properties.timestamp;
+            document.getElementByID("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
+            document.getElementByID("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
+            document.getElementByID("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
+    });
+}
+</code></pre>
+                <p>
+                    Sometimes the values sent in by the API will be null. I double checked that it wasn't my fault by going to the endpoint myself. Sadly, I can't stop the National Weather Service from changing their database, so I can't do anything about it.
+                </p>
+                <p>
+                    Again, go to the <a href="../webInterface/index.html">interface</a> to test it out yourself.
+                </p>
+                <p>
+                    <a href="../webInterface/script.js" download>Download My JavaScript File</a>
+                    <br>
+                    <a href="../webInterface/index.html" download>Download My HTML File</a>
+
+                </p>
+
+
+                <!-- New Section -->
+                <h2>Future Plans</h2>
+                <p>
+                    Although I now have the underlying logic of the website, I still need to make it a lot more visually appealing. It would be nice to be able to control the Servo motor with a virtual knob. On top of that, I'll need to incorporate more sensors as I start soldering them. 
+                </p>
+            </div> <!-- column end -->
+        </div> <!-- row end -->
+    </div> <!-- container end -->
+
+    <script src="../scripts/back_top.js"></script>
+</body>
+</html>
