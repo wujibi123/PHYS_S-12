@@ -33,9 +33,9 @@ tempRef.on('value', function(tempDataSnapshot) {
 function getWeather() {
 	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 		.then((response) => {
-			document.getElementByID("time").innerHTML = "Time: " +  response.data.properties.timestamp;
-			document.getElementByID("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
-			document.getElementByID("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
-			document.getElementByID("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
+			document.getElementById("time").innerHTML = "Time: " +  response.data.properties.timestamp;
+			document.getElementById("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
+			document.getElementById("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
+			document.getElementById("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
 	});
 }
