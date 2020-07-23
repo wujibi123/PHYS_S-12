@@ -32,10 +32,15 @@ tempRef.on('value', function(tempDataSnapshot) {
 
 function getWeather() {
 	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
-		.then((response) => {
+		.then(response => {
+			console.log("Getting Weather Data");
 			document.getElementById("time").innerHTML = "Time: " +  response.data.properties.timestamp;
 			document.getElementById("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
 			document.getElementById("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
 			document.getElementById("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
-	});
+		})
+		.catch(error => {
+			console.error(error);
+			document.getElementById("time").innerHTML = "Error"
+		});
 }
