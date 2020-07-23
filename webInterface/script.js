@@ -26,6 +26,6 @@
 
 	var tempRef = firebase.database().ref("/Sensors/Temperature")
 	ref.on('value', function(tempDataSnapshot) {
-		double temp = tempDataSnapshot.val();
+		var temp = tempDataSnapshot.val();
 		document.getElementById("tempDisplay").innerHTML = temp;
 	});
