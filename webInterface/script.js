@@ -24,7 +24,7 @@
 		});
 	}
 
-	var tempRef = firebase.database().ref("/Sensors/Temperature")
+	var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
 	tempRef.on('value', function(tempDataSnapshot) {
 		var temp = tempDataSnapshot.val();
 		document.getElementById("tempDisplay").innerHTML = temp;
