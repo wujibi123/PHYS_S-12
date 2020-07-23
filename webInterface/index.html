@@ -9,9 +9,9 @@
 <body>
 	
 	
-	<form action="">
+	<form>
 		<label for="vol">Servo Angle (between 0 and 180):</label>
-		<input type="range" id="vol" name="vol" min="0" max="180" onchange="updateServo()">
+		<input type="range" id="angle" name="angle" min="0" max="180" onchange="updateServo()">
 	</form>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -44,7 +44,7 @@
 	var ref = firebase.database().ref("/");
 
 	function updateServo(){
-		var angle = document.getElementById('vol').value * 1.0;
+		var angle = document.getElementById('angle').value * 1.0;
 		console.log("Current Angle" + angle);
 		ref.update({
 			"Motors/Servo/Data": angle
