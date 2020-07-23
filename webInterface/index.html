@@ -13,6 +13,10 @@
 		<label for="vol">Servo Angle (between 0 and 180):</label>
 		<input type="range" id="angle" name="angle" min="0" max="180" onchange="updateServo()">
 	</form>
+	<br>
+	<p>
+		Temperature: <span id="tempDisplay"></span>
+	</p>
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
@@ -24,32 +28,7 @@
 	<!-- Adding realtime-database Library -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
 
-	<script>
-	// Your web app's Firebase configuration
-	var firebaseConfig = {
-	    apiKey: "AIzaSyDJfZDE9dTVltl0PWkOnxRG6gapHoDhW8k",
-	    authDomain: "hot-air-balloon-interface.firebaseapp.com",
-	    databaseURL: "https://hot-air-balloon-interface.firebaseio.com",
-	    projectId: "hot-air-balloon-interface",
-	    storageBucket: "hot-air-balloon-interface.appspot.com",
-	    messagingSenderId: "270661976089",
-	    appId: "1:270661976089:web:6189cae23d08252161aa88",
-	    measurementId: "G-SLLF9YV2F4"
-	};
-	
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-
-	// Get a database reference to our blog
-	var ref = firebase.database().ref("/");
-
-	function updateServo(){
-		var angle = document.getElementById('angle').value * 1.0;
-		console.log("Current Angle" + angle);
-		ref.update({
-			"Motors/Servo/Data": angle
-		});
-	}
-    </script>
+	<!-- Adding my own Javascript -->
+	<script src="./script.js"></script>
 
 </body>
