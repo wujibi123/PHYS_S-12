@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    
+    <!-- HTML CSS -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/htmlbars.min.js"></script>-->
+    <!-- javaScript CSS -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/javascript.min.js"></script>-->
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- Arduino Code CSS -->
     <link href="../style.css" rel="stylesheet">
 </head>
 
@@ -56,7 +60,7 @@
                     After a good two hours of struggling, Github finally seemed to fix itself.
                 </p>
                 <p>
-                    Next, I went on Firebase's <a href="https://firebase.google.com/docs/reference/js/firebase.database" reference page</a> and the <a href="https://github.com/mobizt/Firebase-ESP32/blob/master/src/README.md">esp32 firebase library</a> to learn how to send and request informations between an esp32, a database, and a website.
+                    Next, I went on Firebase's <a href="https://firebase.google.com/docs/reference/js/firebase.database"> reference page</a> and the <a href="https://github.com/mobizt/Firebase-ESP32/blob/master/src/README.md">esp32 firebase library</a> to learn how to send and request informations between an esp32, a database, and a website.
                 </p>
                 <p>
                     The two functions I found particularly useful were <code>set()</code> and <code>update()</code>, which both allow me to make realtime changes to the database. The former completely replaces the preexisting data in a specified node, while the latter only changes one of its values. 
@@ -99,7 +103,7 @@ Firebase.setInt(firebaseData, root + "Motors/Servo/Data", 0); // set initial Ser
 }
 </code></pre>
                 <figure>
-                    <img src = "database_structure.png" alt = "database structure" style="width:100%">
+                    <img src = "database_structure.png" alt = "database structure" style="width:40%">
                     <figcaption>Database Structure</figcaption>
                 </figure>
                 <p>
@@ -147,22 +151,22 @@ Firebase.setInt(firebaseData, root + "Motors/Servo/Data", 0); // set initial Ser
                 </p>
 <pre><code>
 &ltbody&gt
-    //…
-    //…
-    //...
+    ...
+    ...
+    ...
 &ltform&gt
     &ltlabel for="vol"&gtServo Angle (between 0 and 180):&lt/label&gt
     &ltinput type="range" id="angle" name="angle" min="0" max="180" onchange="updateServo()"&gt
 &lt/form&gt
-//…
-//...
-    //...
+    ...
+    ...
+    ...
 &lt/body&gt
 
 &ltscript&gt
-    //…
-    //…
-    //...
+    ...
+    ...
+    ...
 function updateServo(){
     var angle = document.getElementById('angle').value * 1.0;
     console.log("Current Angle" + angle);
@@ -170,9 +174,9 @@ function updateServo(){
         "Motors/Servo/Data": angle
     });
 }
-    //…
-    //…
-    //...
+    ...
+    ...
+    ...
 &lt/script&gt
 </code></pre>
                 <p>
@@ -199,7 +203,7 @@ tempRef.on('value', function(tempDataSnapshot) {
                 <!-- New Section -->
                 <h2>Weather API</h2>
                 <p>
-                    I want to display weather data on my website, since knowing the weather will make flying the hot air balloon easier.
+                    I want to display weather data on my website since knowing the weather will make flying the hot air balloon easier.
                 </p>
                 <p>
                     I did some digging online and found the endpoint for Boston's weather: <a href="https://api.weather.gov/stations/KBOS/observations/latest">https://api.weather.gov/stations/KBOS/observations/latest</a>.
