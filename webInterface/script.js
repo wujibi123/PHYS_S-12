@@ -19,7 +19,7 @@ firebase.initializeApp(firebaseConfig);
 var ref = firebase.database().ref("/");
 
 // Update Time every second
-setInteral(updateTime, 1000);
+setInterval(updateTime, 1000);
 
 // Updating temperature value
 updateData(firebase.database().ref("/Sensors/Temperature/Data"), "tempDisplay");
