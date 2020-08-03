@@ -18,12 +18,17 @@ firebase.initializeApp(firebaseConfig);
 // Get a database reference
 var ref = firebase.database().ref("/");
 
+// Update Time every second
+setInteral(updateTime, 1000);
+
 // Updating temperature value
-var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
-tempRef.on('value', function(tempDataSnapshot) {
-	var temp = tempDataSnapshot.val();
-	document.getElementById("tempDisplay").innerHTML = temp;
-});
+updateData(firebase.database().ref("/Sensors/Temperature/Data"), "tempDisplay");
+
+// Updating Orientation
+updateOrientation(firebase.database().ref("/Sensors/Orientation/Data"));
+
+// Updating Altitude
+updateData(firebase.database().ref("/Sensors/Altitude/Data"), "altDisplay");
 
 // Sending API data to the database every minute
 setInterval(updateSeaLevelPressure, 60000);
@@ -68,4 +73,29 @@ function updateSeaLevelPressure(){
 			console.error(error);
 			document.getElementById("time").innerHTML = "Error"
 		});
+}
+function updateTime(){
+	// updates time
+	var d = new Date();
+  	document.getElementById("timeDisplay").innerHTML = d.toLocaleTimeString();
+}
+
+function updateData(tempRef, htmlID){
+	// gets data in the databse at tempRef and updates the website according to the htmlID
+	// can only handle simple data, no vectors or arrays
+	tempRef.on('value', function(tempDataSnapshot) {
+		var tempData = tempDataSnapshot.val();
+		document.getElementById(htmlID).innerHTML = tempData;
+	});
+}
+
+function updateOrientation(tempRef) {
+	// gets orientation frmo databse and updates the website
+	// tempRef = the reference of the data
+	tempRef.on('value', function(tempDataSnapshot) {
+		var x = tempDataSnapshot.child("X").val();
+		var y = tempDataSnapshot.child("Y").val();
+		var z = tempDataSnapshot.child("Z").val();
+		document.getElementById("oriDisplay").innerHTML = "X: " + x + ", Y: " + y + ", Z: " + z;
+	});
 }
