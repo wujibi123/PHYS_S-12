@@ -13,8 +13,38 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Get a database reference to our blog
+//*************
+
+// Get a database reference
 var ref = firebase.database().ref("/");
+
+// Updating temperature value
+var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
+tempRef.on('value', function(tempDataSnapshot) {
+	var temp = tempDataSnapshot.val();
+	document.getElementById("tempDisplay").innerHTML = temp;
+});
+
+// Sending API data to the database
+updateSeaLevelPressure();
+
+
+
+// ****************  FUNCTIONS  *****************
+function getWeather() {
+	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
+		.then(response => {
+			console.log("Getting Weather Data");
+			document.getElementById("time").innerHTML = "Time: " +  response.data.properties.timestamp;
+			document.getElementById("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
+			document.getElementById("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
+			document.getElementById("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
+		})
+		.catch(error => {
+			console.error(error);
+			document.getElementById("time").innerHTML = "Error"
+		});
+}
 
 function updateServo(){
 	var angle = document.getElementById('angle').value * 1.0;
@@ -24,20 +54,15 @@ function updateServo(){
 	});
 }
 
-var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
-tempRef.on('value', function(tempDataSnapshot) {
-	var temp = tempDataSnapshot.val();
-	document.getElementById("tempDisplay").innerHTML = temp;
-});
-
-function getWeather() {
+function updateSeaLevelPressure(){
+	// Sending API data about sea level pressure to the database
 	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 		.then(response => {
-			console.log("Getting Weather Data");
-			document.getElementById("time").innerHTML = "Time: " +  response.data.properties.timestamp;
-			document.getElementById("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
-			document.getElementById("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
-			document.getElementById("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
+			var pressure = response.data.properties.seaLevelPressure;
+			console.log("Current Sea level pressure: " + pressure);
+			ref.update({
+				"WeatherAPI/SeaLevelPressure/Data": pressure
+			});
 		})
 		.catch(error => {
 			console.error(error);
