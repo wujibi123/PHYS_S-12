@@ -25,8 +25,8 @@ tempRef.on('value', function(tempDataSnapshot) {
 	document.getElementById("tempDisplay").innerHTML = temp;
 });
 
-// Sending API data to the database
-updateSeaLevelPressure();
+// Sending API data to the database every minute
+setInterval(updateSeaLevelPressure, 60000);
 
 
 
@@ -58,7 +58,7 @@ function updateSeaLevelPressure(){
 	// Sending API data about sea level pressure to the database
 	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 		.then(response => {
-			var pressure = response.data.properties.seaLevelPressure;
+			var pressure = response.data.properties.seaLevelPressure.value;
 			console.log("Current Sea level pressure: " + pressure);
 			ref.update({
 				"WeatherAPI/SeaLevelPressure/Data": pressure
