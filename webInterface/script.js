@@ -114,7 +114,7 @@ let servoAngle = 90; // servo angle
 let dataBeginY; // y coordinate of data line beginnings
 let dataEndY; // y coordinate of data line ends
 let dataDistance; // distance between beginning and end
-let rateOfChange = 0.1; // rate of change of data
+let rateOfChange = 0.01; // rate of change of data
 let dataStrokeWeight;
 
 let tempY = 0;
@@ -204,7 +204,7 @@ function draw() {
   // Writing down temperature in text
   noStroke();
   fill(0);
-  text(tempData, tempBeginX, tempY + dataStrokeWeight);
+  text(tempData, tempBeginX, tempY - dataStrokeWeight);
   text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
 
@@ -213,11 +213,9 @@ function drawline(newY, oldY) {
   while (oldY < newY) {
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY += rateOfChange;
-    console.log("decreasing");
   }
   while (oldY > newY) {
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY -= rateOfChange;
-    console.log("increasing");
   }
 }
