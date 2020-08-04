@@ -85,7 +85,7 @@ function updateData(tempRef, htmlID){
 	// can only handle simple data, no vectors or arrays
 	tempRef.on('value', function(tempDataSnapshot) {
 		var tempData = tempDataSnapshot.val();
-		document.getElementById(htmlID).innerHTML = tempData;
+		return tempData;
 	});
 }
 
@@ -111,6 +111,16 @@ let mousePct = 0.5;
 let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
 
+let dataBeginY; // y coordinate of data line beginnings
+let dataEndY; // y coordinate of data line ends
+let dataDistance; // distance between beginning and end
+let rateOfChange = 0.1; // rate of change of data
+let dataStrokeWeight;
+
+let tempY = 0;
+let maxTemp = 200; // Celcius
+let tempX;
+
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
 	servo = loadImage('../assets/servo_art.png');
@@ -127,10 +137,19 @@ function setup() {
   distX = endX - beginX;// X-axis distance to move
   radius = displayWidth/6; // radius of the circle the object is moving along
   x = displayWidth/2 // default x coordinate
+
+  dataBeginY = 3 * displayHeight/4; // initiation for data lines
+  dataEndY = displayHeight/4;
+  dataDistance = dataBeginY - dataEndY;
+  dataStrokeWeight = displayWidth/30;
+
+  tempX = displayWidth/6;
 }
 
 function draw() {
   background('#effefc');
+
+  /******* SERVO MOTOR ******/
   fill('#effefc');
   stroke('#ff5d00');
   strokeWeight(displayWidth/50);
@@ -148,6 +167,43 @@ function draw() {
   ellipse(x, y, displayWidth/30, displayWidth/30);
   
   servoAngle = 180 * pct;
-
   image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)); // original img is 1013 × 880
+  /******* SERVO MOTOR ******/
+
+  /******* Temperature ******/
+  stroke('#ff5d00');
+  strokeWeight(displayWidth / 30);
+
+  var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
+  var tempData = 0;
+  var prevTempData = tempData;
+
+  tempRef.once('value', function(tempDataSnapshot) {
+		tempData = tempDataSnapshot.val();
+  });// 200 total
+
+  let tempPct = tempData/maxTemp;
+  let tempY = tempPct * dataDistance + dataBeginY; // y coord of temperautre data
+
+  let prevTempPct = prevTempData/maxTemp;
+  let prevTempY = prevTempPct * dataDistance + dataBeginY
+
+  drawline(tempY, prevTempY)
+
+  noStroke()
+  text(tempData, tempX, tempPct * dataDistance + dataStrokeWeight)
+}
+
+function drawline(newY, oldY) {
+  if (newY == oldY) {
+    line(tempX, dataBeginY, tempX, oldY);
+  }
+  while (oldY < newY) {
+    line(tempX, dataBeginY, tempX, oldY);
+    oldY += rateOfChange;
+  }
+  while (oldY > newY) {
+    line(tempX, dataBeginY, tempX, oldY);
+    oldY -= rateOfChange;
+  }
 }
