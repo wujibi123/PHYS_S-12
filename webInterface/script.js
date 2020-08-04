@@ -114,13 +114,14 @@ let servoAngle = 90; // servo angle
 let dataBeginY; // y coordinate of data line beginnings
 let dataEndY; // y coordinate of data line ends
 let dataDistance; // distance between beginning and end
-let rateOfChange = 0.01; // rate of change of data
+let rateOfChange = 0.1; // rate of change of data
 let dataStrokeWeight;
 
 let tempY = 0;
 let maxTemp = 200; // Celcius
 let tempBeginX;
 let tempData = 0;
+let realTempY = 0; // this will be the y coordinate of the temp display
 
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
@@ -184,12 +185,18 @@ function draw() {
   let tempPct = tempData/maxTemp;
   let tempY = dataBeginY - tempPct * dataDistance; // y coord of temperautre data
 
-  let prevTempPct = prevTempData/maxTemp;
-  let prevTempY = dataBeginY - prevTempPct * dataDistance;
+  //let prevTempPct = prevTempData/maxTemp;
+  //let prevTempY = dataBeginY - prevTempPct * dataDistance;
+
+  if (realTempY < tempY) {
+  	realTempY += rateOfChange;
+  } else if (realTempY > tempY) {
+  	realTempY -= rateOfChange;
+  }
 
   stroke('#ff5d00');
   strokeWeight(dataStrokeWeight);
-  drawline(tempY, prevTempY);
+  line(tempBeginX, dataBeginY, tempBeginX, realTempY);
 
   // Drawing the Outline of the Data
   stroke(0);
@@ -207,9 +214,8 @@ function draw() {
   text(tempData, tempBeginX, tempY - dataStrokeWeight);
   text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
-
+/*
 function drawline(newY, oldY) {
-  line(tempBeginX, dataBeginY, tempBeginX, oldY);
   while (oldY < newY) {
   	oldY += rateOfChange;
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
@@ -218,4 +224,5 @@ function drawline(newY, oldY) {
   	oldY -= rateOfChange;
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
   }
-}
+  line(tempBeginX, dataBeginY, tempBeginX, oldY);
+}*/
