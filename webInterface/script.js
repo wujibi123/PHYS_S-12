@@ -215,9 +215,7 @@ function draw() {
 }
 
 function drawline(newY, oldY) {
-  if (newY == oldY) {
-    line(tempX, dataBeginY, tempX, oldY);
-  }
+  line(tempX, dataBeginY, tempX, oldY);
   while (oldY < newY) {
     line(tempX, dataBeginY, tempX, oldY);
     oldY += rateOfChange;
