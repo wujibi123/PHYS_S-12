@@ -172,9 +172,6 @@ function draw() {
   /******* SERVO MOTOR ******/
 
   /******* Temperature ******/
-  stroke('#ff5d00');
-  strokeWeight(displayWidth / 30);
-
   // Get Temp data from database
   var tempRef = firebase.database().ref("/Sensors/Temperature/Data");
   var prevTempData = tempData;
@@ -190,9 +187,14 @@ function draw() {
   let prevTempPct = prevTempData/maxTemp;
   let prevTempY = dataBeginY - prevTempPct * dataDistance;
 
+  stroke('#ff5d00');
+  strokeWeight(dataStrokeWeight);
   drawline(tempY, prevTempY);
 
   // Drawing the Outline of the Data
+  stroke(0);
+  strokeWeight(5);
+  
   line(tempBeginX - dataStrokeWeight/2, dataBeginY, tempBeginX - dataStrokeWeight/2, dataEndY);
   line(tempBeginX + dataStrokeWeight/2, dataBeginY, tempBeginX + dataStrokeWeight/2, dataEndY);
   noFill();
@@ -202,7 +204,7 @@ function draw() {
   // Writing down temperature in text
   noStroke();
   fill(0);
-  text(tempData, tempBeginX, tempPct * dataDistance + dataStrokeWeight);
+  text(tempData, tempBeginX, tempY);
   text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
 
