@@ -174,6 +174,7 @@ function draw() {
   stroke('#ff5d00');
   strokeWeight(displayWidth / 30);
 
+  // Get Temp data from database
   var tempRef = firebase.database().ref("/Sensors/Temperature/Data")
   var tempData = 0;
   var prevTempData = tempData;
@@ -182,6 +183,7 @@ function draw() {
 		tempData = tempDataSnapshot.val();
   });// 200 total
 
+  // Draw Temperature Data
   let tempPct = tempData/maxTemp;
   let tempY = dataBeginY - tempPct * dataDistance; // y coord of temperautre data
 
@@ -190,6 +192,14 @@ function draw() {
 
   drawline(tempY, prevTempY);
 
+  // Drawing the Outline of the Data
+  line(tempX - dataStrokeWeight/2, dataBeginY, tempX - dataStrokeWeight/2, dataEndY);
+  line(tempX + dataStrokeWeight/2, dataBeginY, tempX + dataStrokeWeight/2, dataEndY);
+  noFill();
+  arc(tempX, dataBeginY, dataStrokeWeight, dataStrokeWeight, 0, PI);
+  arc(tempX, dataEndY, dataStrokeWeight, dataStrokeWeight, PI, 0);
+
+  // Writing down temperature in text
   noStroke();
   text(tempData, tempX, tempPct * dataDistance + dataStrokeWeight);
   text("Temperature (C)",tempX , dataBeginY + dataStrokeWeight);
