@@ -204,7 +204,7 @@ function draw() {
   // Writing down temperature in text
   noStroke();
   fill(0);
-  text(tempData, tempBeginX, tempY);
+  text(tempData, tempBeginX, tempY + dataStrokeWeight);
   text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
 
