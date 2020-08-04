@@ -190,14 +190,6 @@ function draw() {
   let prevTempPct = prevTempData/maxTemp;
   let prevTempY = dataBeginY - prevTempPct * dataDistance;
 
-  console.log("Temp: " + tempData);
-  console.log("Temp pct: " + tempPct);
-  console.log("TempY: " + tempY);
-
-  console.log("Prev Temp: " + prevTempData);
-  console.log("Prev Temp pct: " + prevTempPct);
-  console.log("Prev TempY: " + prevTempY);
-
   drawline(tempY, prevTempY);
 
   // Drawing the Outline of the Data
