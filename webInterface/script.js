@@ -146,7 +146,7 @@ function setup() {
   dataStrokeWeight = displayWidth/30;
 
   tempBeginX = displayWidth/6;
-  goalTempY = dataBeginY;
+  currentTempY = dataBeginY;
 }
 
 function draw() {
