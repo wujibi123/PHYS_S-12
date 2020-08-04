@@ -149,5 +149,5 @@ function draw() {
   
   servoAngle = 180 * pct;
 
-  image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)) // original img is 1013 × 880
+  image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)); // original img is 1013 × 880
 }
