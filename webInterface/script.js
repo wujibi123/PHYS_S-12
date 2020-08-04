@@ -99,3 +99,45 @@ function updateOrientation(tempRef) {
 		document.getElementById("oriDisplay").innerHTML = "X: " + x + ", Y: " + y + ", Z: " + z;
 	});
 }
+
+
+/***********************p5.js*****************************/
+let beginX; // Initial x-coordinate
+let endX; // Final x-coordinate
+let distX;// X-axis distance to move
+let radius; // radius of the circle the object is moving along
+let x; // x-coordinate
+let mousePct = 0.5;
+let pct = 0.5; // Percentage traveled (0.0 to 1.0)
+let servoAngle = 90; // servo angle
+
+function setup() {
+  createCanvas(displayWidth, displayHeight);
+  beginX = displayWidth/2 - displayWidth/6; // Initial x-coordinate
+  endX = displayWidth/2 + displayWidth/6; // Final x-coordinate
+  distX = endX - beginX;// X-axis distance to move
+  radius = displayWidth/6; // radius of the circle the object is moving along
+  x = displayWidth/2 // default x coordinate
+}
+
+function draw() {
+  background('#effefc');
+  fill('#effefc');
+  stroke('#ff5d00');
+  strokeWeight(displayWidth/50);
+  arc(displayWidth/2, displayHeight/2, displayWidth/3, displayWidth/3, PI, 0);
+  if (mouseIsPressed) {
+    halfPct = abs(mousePct - 0.5) // percent traveled along each half circle
+    tempX = (mouseX - displayWidth/2) * (halfPct * 4) + displayWidth/2;
+    x = constrain(tempX, beginX, endX);
+    mousePct = (constrain(mouseX, beginX, endX) - beginX)/(endX - beginX); // mouse position relative to the curve
+    pct = (x - beginX)/(endX - beginX); // circle positon relative to the curve
+  }
+  y = displayHeight/2 - sqrt(pow(radius, 2) - pow(displayWidth/2 - x, 2)); // use equation of circle to get Y coordinate
+  noStroke();
+  fill(0);
+  ellipse(x, y, displayWidth/50, displayWidth/50);
+  
+  servoAngle = 180 * pct;
+  console.log(servoAngle);
+}
