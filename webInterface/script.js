@@ -183,15 +183,16 @@ function draw() {
   });// 200 total
 
   let tempPct = tempData/maxTemp;
-  let tempY = tempPct * dataDistance + dataBeginY; // y coord of temperautre data
+  let tempY = dataBeginY - tempPct * dataDistance; // y coord of temperautre data
 
   let prevTempPct = prevTempData/maxTemp;
-  let prevTempY = prevTempPct * dataDistance + dataBeginY
+  let prevTempY = dataBeginY - prevTempPct * dataDistance;
 
-  drawline(tempY, prevTempY)
+  drawline(tempY, prevTempY);
 
-  noStroke()
-  text(tempData, tempX, tempPct * dataDistance + dataStrokeWeight)
+  noStroke();
+  text(tempData, tempX, tempPct * dataDistance + dataStrokeWeight);
+  text("Temperature (C)",tempX , dataBeginY + dataStrokeWeight);
 }
 
 function drawline(newY, oldY) {
