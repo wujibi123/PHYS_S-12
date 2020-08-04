@@ -194,7 +194,7 @@ function draw() {
   // Drawing the Outline of the Data
   stroke(0);
   strokeWeight(5);
-  
+
   line(tempBeginX - dataStrokeWeight/2, dataBeginY, tempBeginX - dataStrokeWeight/2, dataEndY);
   line(tempBeginX + dataStrokeWeight/2, dataBeginY, tempBeginX + dataStrokeWeight/2, dataEndY);
   noFill();
@@ -213,9 +213,11 @@ function drawline(newY, oldY) {
   while (oldY < newY) {
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY += rateOfChange;
+    console.log("decreasing");
   }
   while (oldY > newY) {
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY -= rateOfChange;
+    console.log("increasing");
   }
 }
