@@ -120,6 +120,7 @@ let dataStrokeWeight;
 let tempY = 0;
 let maxTemp = 200; // Celcius
 let tempX;
+let tempData = 0;
 
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
@@ -176,7 +177,6 @@ function draw() {
 
   // Get Temp data from database
   var tempRef = firebase.database().ref("/Sensors/Temperature/Data");
-  var tempData = 0;
   var prevTempData = tempData;
 
   tempRef.once('value', function(tempDataSnapshot) {
