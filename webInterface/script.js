@@ -211,11 +211,11 @@ function draw() {
 function drawline(newY, oldY) {
   line(tempBeginX, dataBeginY, tempBeginX, oldY);
   while (oldY < newY) {
+  	oldY += rateOfChange;
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
-    oldY += rateOfChange;
   }
   while (oldY > newY) {
+  	oldY -= rateOfChange;
     line(tempBeginX, dataBeginY, tempBeginX, oldY);
-    oldY -= rateOfChange;
   }
 }
