@@ -136,7 +136,7 @@ function setup() {
   endX = displayWidth/2 + displayWidth/6; // Final x-coordinate
   distX = endX - beginX;// X-axis distance to move
   radius = displayWidth/6; // radius of the circle the object is moving along
-  x = displayWidth/2 // default x coordinate
+  x = displayWidth/2; // default x coordinate
 
   dataBeginY = 3 * displayHeight/4; // initiation for data lines
   dataEndY = displayHeight/4;
@@ -155,7 +155,7 @@ function draw() {
   strokeWeight(displayWidth/50);
   arc(displayWidth/2, displayHeight/2, displayWidth/3, displayWidth/3, PI, 0);
   if (mouseIsPressed) {
-    halfPct = abs(mousePct - 0.5) // percent traveled along each half circle
+    halfPct = abs(mousePct - 0.5); // percent traveled along each half circle
     tempX = (mouseX - displayWidth/2) * (halfPct * 4) + displayWidth/2;
     x = constrain(tempX, beginX, endX);
     mousePct = (constrain(mouseX, beginX, endX) - beginX)/(endX - beginX); // mouse position relative to the curve
