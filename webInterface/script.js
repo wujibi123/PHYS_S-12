@@ -111,8 +111,17 @@ let mousePct = 0.5;
 let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
 
+function preload() {
+	uBuntu = loadFont('assets/Ubuntu-C.ttf');
+	servo = loadImage('assets/servo_art.png');
+}
+
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  textFont(uBuntu);
+  textSize(displayWidth/80);
+  textAlign(CENTER, CENTER);
+
   beginX = displayWidth/2 - displayWidth/6; // Initial x-coordinate
   endX = displayWidth/2 + displayWidth/6; // Final x-coordinate
   distX = endX - beginX;// X-axis distance to move
@@ -136,8 +145,9 @@ function draw() {
   y = displayHeight/2 - sqrt(pow(radius, 2) - pow(displayWidth/2 - x, 2)); // use equation of circle to get Y coordinate
   noStroke();
   fill(0);
-  ellipse(x, y, displayWidth/50, displayWidth/50);
+  ellipse(x, y, displayWidth/30, displayWidth/30);
   
   servoAngle = 180 * pct;
-  console.log(servoAngle);
+
+  image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)) // original img is 1013 × 880
 }
