@@ -112,8 +112,8 @@ let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
 
 function preload() {
-	uBuntu = loadFont('assets/Ubuntu-C.ttf');
-	servo = loadImage('assets/servo_art.png');
+	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
+	servo = loadImage('../assets/servo_art.png');
 }
 
 function setup() {
