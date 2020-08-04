@@ -119,7 +119,7 @@ let dataStrokeWeight;
 
 let tempY = 0;
 let maxTemp = 200; // Celcius
-let tempX;
+let tempBeginX;
 let tempData = 0;
 
 function preload() {
@@ -144,7 +144,7 @@ function setup() {
   dataDistance = dataBeginY - dataEndY;
   dataStrokeWeight = displayWidth/30;
 
-  tempX = displayWidth/6;
+  tempBeginX = displayWidth/6;
 }
 
 function draw() {
@@ -201,27 +201,27 @@ function draw() {
   drawline(tempY, prevTempY);
 
   // Drawing the Outline of the Data
-  line(tempX - dataStrokeWeight/2, dataBeginY, tempX - dataStrokeWeight/2, dataEndY);
-  line(tempX + dataStrokeWeight/2, dataBeginY, tempX + dataStrokeWeight/2, dataEndY);
+  line(tempBeginX - dataStrokeWeight/2, dataBeginY, tempBeginX - dataStrokeWeight/2, dataEndY);
+  line(tempBeginX + dataStrokeWeight/2, dataBeginY, tempBeginX + dataStrokeWeight/2, dataEndY);
   noFill();
-  arc(tempX, dataBeginY, dataStrokeWeight, dataStrokeWeight, 0, PI);
-  arc(tempX, dataEndY, dataStrokeWeight, dataStrokeWeight, PI, 0);
+  arc(tempBeginX, dataBeginY, dataStrokeWeight, dataStrokeWeight, 0, PI);
+  arc(tempBeginX, dataEndY, dataStrokeWeight, dataStrokeWeight, PI, 0);
 
   // Writing down temperature in text
   noStroke();
   fill(0);
-  text(tempData, tempX, tempPct * dataDistance + dataStrokeWeight);
-  text("Temperature (C)",tempX , dataBeginY + dataStrokeWeight);
+  text(tempData, tempBeginX, tempPct * dataDistance + dataStrokeWeight);
+  text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
 
 function drawline(newY, oldY) {
-  line(tempX, dataBeginY, tempX, oldY);
+  line(tempBeginX, dataBeginY, tempBeginX, oldY);
   while (oldY < newY) {
-    line(tempX, dataBeginY, tempX, oldY);
+    line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY += rateOfChange;
   }
   while (oldY > newY) {
-    line(tempX, dataBeginY, tempX, oldY);
+    line(tempBeginX, dataBeginY, tempBeginX, oldY);
     oldY -= rateOfChange;
   }
 }
