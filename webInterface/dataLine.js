@@ -1,6 +1,6 @@
 class dataLine {
 	// For a single animated data line.
-	constructor(x, y1, y2, minData, maxData, trokeWeight, frames) {
+	constructor(x, y1, y2, minData, maxData, strokeWeight, frames) {
 		// x, beginning y coord, end y coord, stroke weight, frames = number of frames needed for data to slide
 		this.dataX = x;
 		this.dataBeginY = y1;
@@ -8,8 +8,8 @@ class dataLine {
 		this.dataDistance = abs(y1 - y2);
 		this.dataStrokeWeight = strokeWeight;
 		this.frames = frames;
-		this.currentY;
-		this.newData;
+		this.currentY = 0;
+		this.newData = 0;
 		this.minData = minData;
 		this.maxData = maxData;
 		this.dataRange = abs(maxData - minData);
@@ -18,10 +18,10 @@ class dataLine {
 	update(rawData) {
 		this.newData = round(rawData, 2);
 		if (this.minData < 0) {
-			rawData += abs(minData);
+			rawData += abs(this.minData);
 		}
-		this.currentY = this.dataBeginY - (rawData/dataRange) * dataDistance;
-		rateOfChange = abs(rawData - this.currentY)/frames;
+		this.currentY = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
+		rateOfChange = abs(rawData - this.currentY)/this.frames;
 		if (this.currentY < rawData) {
 			this.currentY += rateOfChange;
 		} else if (this.currentY > rawData) {
