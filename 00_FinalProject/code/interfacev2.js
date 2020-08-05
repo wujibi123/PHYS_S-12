@@ -111,6 +111,18 @@ let mousePct = 0.5;
 let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
 
+let dataBeginY; // y coordinate of data line beginnings
+let dataEndY; // y coordinate of data line ends
+let dataDistance; // distance between beginning and end
+let rateOfChange = 1; // rate of change of data
+let dataStrokeWeight;
+
+let maxTemp = 200; // Celcius
+let tempBeginX;
+let tempData = 0;
+let goalTempY; // this is the y coordinate the temp display will always be trying to reach
+let currentTempY = 0; // this will be the y coordinate of the temp display
+
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
 	servo = loadImage('../assets/servo_art.png');
@@ -128,12 +140,13 @@ function setup() {
   radius = displayWidth/6; // radius of the circle the object is moving along
   x = displayWidth/2; // default x coordinate
 
-  let dataBeginY = 3 * displayHeight/4; // initiation for data lines
-  let dataEndY = displayHeight/4;
-  let dataStrokeWeight = displayWidth/30;
-  let dataFrameRate = 60;
+  dataBeginY = 3 * displayHeight/4; // initiation for data lines
+  dataEndY = displayHeight/4;
+  dataDistance = dataBeginY - dataEndY;
+  dataStrokeWeight = displayWidth/30;
 
-  tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate);
+  tempBeginX = displayWidth/6;
+  currentTempY = dataBeginY;
 }
 
 function draw() {
@@ -163,8 +176,41 @@ function draw() {
   /******* Temperature ******/
   // Get Temp data from database
   var tempRef = firebase.database().ref("/Sensors/Temperature/Data");
+  var prevTempData = tempData;
+
   tempRef.once('value', function(tempDataSnapshot) {
-		tempDataLine.update(tempDataSnapshot.val());
-  });
-  tempDataLine.show();
+		tempData = tempDataSnapshot.val();
+  });// 200 total
+
+  // Draw Temperature Data
+  let tempPct = tempData/maxTemp;
+  let goalTempY = dataBeginY - tempPct * dataDistance; // y coord of temperautre data
+
+  rateOfChange = abs(goalTempY - currentTempY)/60;
+
+  if (currentTempY < goalTempY) {
+  	currentTempY += rateOfChange;
+  } else if (currentTempY > goalTempY) {
+  	currentTempY -= rateOfChange;
+  }
+
+  stroke('#ff5d00');
+  strokeWeight(dataStrokeWeight);
+  line(tempBeginX, dataBeginY, tempBeginX, currentTempY);
+
+  // Drawing the Outline of the Data
+  stroke(0);
+  strokeWeight(5);
+
+  line(tempBeginX - dataStrokeWeight/2, dataBeginY, tempBeginX - dataStrokeWeight/2, dataEndY);
+  line(tempBeginX + dataStrokeWeight/2, dataBeginY, tempBeginX + dataStrokeWeight/2, dataEndY);
+  noFill();
+  arc(tempBeginX, dataBeginY, dataStrokeWeight, dataStrokeWeight, 0, PI);
+  arc(tempBeginX, dataEndY, dataStrokeWeight, dataStrokeWeight, PI, 0);
+
+  // Writing down temperature in text
+  noStroke();
+  fill(0);
+  text(tempData, tempBeginX, currentTempY - dataStrokeWeight);
+  text("Temperature (C)",tempBeginX , dataBeginY + dataStrokeWeight);
 }
