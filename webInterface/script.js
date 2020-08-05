@@ -182,9 +182,6 @@ function draw() {
 	/******* Altitude ******/
 
 	/******* Weather API ******/
-	noStroke();
-	fill(0);
-	textSize(displayWidth/60);
 
 	if (frameCount % 54000 == 1) { // 54000 frames = 15 minutes
 	  axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
@@ -202,7 +199,9 @@ function draw() {
 		weatherString = "Weather API is not available"
 	  })
 	}
-
+	noStroke();
+	fill(0);
+	textSize(displayWidth/60);
 	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/5);
 	/******* Weather API ******/
 
@@ -217,6 +216,7 @@ function draw() {
 
 
   	/******* Orientation ******/
+  	textSize(displayWidth/40);
   	text(getOrientation(), displayWidth/2, displayHeight/2 + displayHeight/2.2);
   	/******* Orientation ******/
 } // End of Draw()
