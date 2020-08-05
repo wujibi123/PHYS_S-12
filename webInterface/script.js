@@ -51,9 +51,8 @@ function getWeather() {
 		});
 }
 
-function updateServo(){
-	var angle = document.getElementById('angle').value * 1.0;
-	console.log("Current Angle" + angle);
+function updateServo(angle){
+	console.log("Current Angle: " + angle);
 	ref.update({
 		"Motors/Servo/Data": angle
 	});
@@ -106,10 +105,10 @@ let beginX; // Initial x-coordinate
 let endX; // Final x-coordinate
 let distX;// X-axis distance to move
 let radius; // radius of the circle the object is moving along
-let x; // x-coordinate
 let mousePct = 0.5;
 let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
+let servoCoordinates = [];
 
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
@@ -118,6 +117,8 @@ function preload() {
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  angleMode(DEGREES); // Change the mode to DEGREES
+
   textFont(uBuntu);
   textSize(displayWidth/80);
   textAlign(CENTER, CENTER);
@@ -129,13 +130,12 @@ function setup() {
   endY = abs(endX - beginX)/2; // Final y-coordinate of curve
   distX = endX - beginX;// X-axis distance to move
   radius = displayWidth/6; // radius of the circle the object is moving along
-  x = displayWidth/2; // default x coordinate
 
+  /******** Temperature Data *******/
   let dataBeginY = 3 * displayHeight/4; // initiation for data lines
   let dataEndY = displayHeight/4;
   let dataStrokeWeight = displayWidth/30;
   let dataFrameRate = 60;
-
   tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate);
 }
 
@@ -146,20 +146,39 @@ function draw() {
   fill('#effefc');
   stroke('#ff5d00');
   strokeWeight(displayWidth/50);
-  arc(displayWidth/2, displayHeight/2, displayWidth/3, displayWidth/3, PI, 0);
+  arc(displayWidth/2, displayHeight/2, displayWidth/3, displayWidth/3, 180, 0);
   if (mouseIsPressed) {
-    halfPct = abs(mousePct - 0.5); // percent traveled along each half circle
-    tempX = (mouseX - displayWidth/2) * (halfPct * 4) + displayWidth/2;
-    x = constrain(tempX, beginX, endX);
-    mousePct = (constrain(mouseX, beginX, endX) - beginX)/(endX - beginX); // mouse position relative to the curve
-    pct = (x - beginX)/(endX - beginX); // circle positon relative to the curve
+  	// making a coordinate plane with center at the center of the page
+    servoCoordinates[0] = mouseX - displayWidth/2;
+    servoCoordinates[1] = -(mouseY - displayHeight/2);
+    var servoAngle = -atan(servoCoordinates[1]/servoCoordinates[0]);
+    if (servoCoordinates[0] > 0 && servoCoordinates[1] > 0) {
+      servoAngle = 180 +(servoAngle)
+    } else if (servoCoordinates[0] > 0 && servoCoordinates[1] < 0) {
+      servoAngle *= -1;
+    }
   }
-  y = displayHeight/2 - sqrt(pow(radius, 2) - pow(displayWidth/2 - x, 2)); // use equation of circle to get Y coordinate
+  if (servoAngle > 0) {
+	  y = -radius*sin(servoAngle) + displayHeight/2;
+	  x = -radius*cos(servoAngle) + displayWidth/2;
+	  updateServo(servoAngle);
+  } else {
+    y = displayHeight/2;
+    if (mouseX > displayWidth/2) {
+      x = displayWidth/2 + displayWidth/6;
+      updateServo(180);
+    } else {
+      x = displayWidth/2 - displayWidth/6;
+      updateServo(0);
+    }
+  } else if (servoAngle == 0) {
+  	updateServo(0);
+  }
+
   noStroke();
   fill(0);
   ellipse(x, y, displayWidth/30, displayWidth/30);
   
-  servoAngle = 180 * pct;
   image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)); // original img is 1013 × 880
   /******* SERVO MOTOR ******/
 

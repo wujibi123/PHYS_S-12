@@ -42,8 +42,8 @@ class dataLine {
 		line(this.dataX - this.dataStrokeWeight/2, this.dataBeginY, this.dataX - this.dataStrokeWeight/2, this.dataEndY);
 		line(this.dataX + this.dataStrokeWeight/2, this.dataBeginY, this.dataX + this.dataStrokeWeight/2, this.dataEndY);
 		noFill();
-		arc(this.dataX, this.dataBeginY, this.dataStrokeWeight, this.dataStrokeWeight, 0, PI);
-		arc(this.dataX, this.dataEndY, this.dataStrokeWeight, this.dataStrokeWeight, PI, 0);
+		arc(this.dataX, this.dataBeginY, this.dataStrokeWeight, this.dataStrokeWeight, 0, 180);
+		arc(this.dataX, this.dataEndY, this.dataStrokeWeight, this.dataStrokeWeight, 180, 0);
 
 		// Writing down temperature in text
 		noStroke();
