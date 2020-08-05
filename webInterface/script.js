@@ -30,23 +30,21 @@ function updateServo(angle){
 function getTemperature() {
   var tempRef = firebase.database().ref("Sensors/Temperature/Data");
   var temp;
-  tempRef.on('value', function(tempDataSnapshot) {
-  		console.log("temp inside once 1: " + tempDataSnapshot.val());
+  var listener = tempRef.on('value', function(tempDataSnapshot) {
 		temp = tempDataSnapshot.val();
-		console.log("temp inside once 2: " + temp);
   });
-  console.log("Inside getTemp: " + temp);
+  tempRef.off("value", listener);
+  return temp;
 }
 
 function getAltitude() {
   var altRef = firebase.database().ref("Sensors/Altitude/Data");
   var alt;
-  altRef.on('value', function(altDataSnapshot) {
-  		console.log("alt inside once 1: " + altDataSnapshot.val());
+  var listener = altRef.on('value', function(altDataSnapshot) {
 		alt = altDataSnapshot.val();
-		console.log("alt inside once 2: " + alt);
   });
-  console.log("Inside getAlt: " + alt);
+  altRef.off("value", listener);
+  return alt;
 }
 
 function updateSeaLevelPressure(){
@@ -68,13 +66,15 @@ function updateSeaLevelPressure(){
 function getOrientation() {
 	// gets orientation frmo databse and updates the website
 	// tempRef = the reference of the data
+	var oriRef = firebase.database().ref("/Sensors/Orientation/Data");
 	var result;
-	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
+	var listener = oriRef.once('value', function(tempDataSnapshot) {
 		x = tempDataSnapshot.child("X").val();
 		y = tempDataSnapshot.child("Y").val();
 		z = tempDataSnapshot.child("Z").val();
 		result = "(" + x + ", " + y + ", " + z + ")";
 	});
+	oriRef.off("value", listener);
 	return result;
 }
 
