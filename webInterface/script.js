@@ -36,18 +36,21 @@ setInterval(updateSeaLevelPressure, 60000);
 
 
 // ****************  FUNCTIONS  *****************
-function getWeather() {
+function getWeatherString() {
+	// Returns a formatted String of the weather
 	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 		.then(response => {
 			console.log("Getting Weather Data");
-			document.getElementById("time").innerHTML = "Time: " +  response.data.properties.timestamp;
-			document.getElementById("temp").innerHTML = "Outside Temperature (Celsius): " +  response.data.properties.temperature.value;
-			document.getElementById("wind").innerHTML = "Wind Direction (degree): " +  response.data.properties.windDirection.value + ", Wind Speed (km/h): " +  response.data.properties.windSpeed.value;;
-			document.getElementById("humid").innerHTML = "Humidity (percent): " +  response.data.properties.relativeHumidity.value;
+			return
+			"Time Of Observation: " +  response.data.properties.timestamp + "\n" +
+			"Outside Temperature: " +  response.data.properties.temperature.value + "Celsius\n" +
+			"Wind Direction: " +  response.data.properties.windDirection.value + " Degrees" + "\n" +
+			"Wind Speed: " +  response.data.properties.windSpeed.value + "km/h" + "\n" +
+			"Humidity: " +  response.data.properties.relativeHumidity.value + " %";
 		})
 		.catch(error => {
 			console.error(error);
-			document.getElementById("time").innerHTML = "Error"
+			return "error";
 		});
 }
 
@@ -56,6 +59,13 @@ function updateServo(angle){
 	ref.update({
 		"Motors/Servo/Data": angle
 	});
+}
+
+function getTemperature() {
+  var tempRef = firebase.database().ref("Sensors/Temperature/Data");
+  tempRef.once('value', function(tempDataSnapshot) {
+		return tempDataSnapshot.val();
+  });
 }
 
 function updateSeaLevelPressure(){
@@ -151,19 +161,18 @@ function draw() {
   	// making a coordinate plane with center at the center of the page
     servoCoordinates[0] = mouseX - displayWidth/2;
     servoCoordinates[1] = -(mouseY - displayHeight/2);
-    var servoAngle = -atan(servoCoordinates[1]/servoCoordinates[0]);
+    servoAngle = -atan(servoCoordinates[1]/servoCoordinates[0]);
     if (servoCoordinates[0] > 0 && servoCoordinates[1] > 0) {
       servoAngle = 180 +(servoAngle)
     } else if (servoCoordinates[0] > 0 && servoCoordinates[1] < 0) {
       servoAngle *= -1;
     }
   }
+
   if (servoAngle > 0) {
 	  y = -radius*sin(servoAngle) + displayHeight/2;
 	  x = -radius*cos(servoAngle) + displayWidth/2;
 	  updateServo(servoAngle);
-  } else if (servoAngle == 0) {
-  	updateServo(0);
   } else {
     y = displayHeight/2;
     if (mouseX > displayWidth/2) {
@@ -184,10 +193,7 @@ function draw() {
 
   /******* Temperature ******/
   // Get Temp data from database
-  var tempRef = firebase.database().ref("/Sensors/Temperature/Data");
-  tempRef.once('value', function(tempDataSnapshot) {
-		tempDataLine.update(tempDataSnapshot.val());
-  });
-
+  tempDataLine.update(getTemperature());
+  // Update the Data
   tempDataLine.show();
 }
