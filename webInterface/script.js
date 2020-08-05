@@ -13,61 +13,11 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//*************
-
 // Get a database reference
 var ref = firebase.database().ref("/");
 
-// Updating Orientation
-updateOrientation(firebase.database().ref("/Sensors/Orientation/Data"));
-
 // Sending API data to the database every minute
 setInterval(updateSeaLevelPressure, 60000);
-
-
-
-// ****************  FUNCTIONS  *****************
-function updateServo(angle){
-	console.log("Current Angle: " + angle);
-	ref.update({
-		"Motors/Servo/Data": angle
-	});
-}
-
-function getData(tempRef) {
-  var temp;
-  tempRef.once('value', function(tempDataSnapshot) {
-		temp = tempDataSnapshot.val();
-  });
-  return temp;
-}
-
-function updateSeaLevelPressure(){
-	// Sending API data about sea level pressure to the database
-	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
-		.then(response => {
-			var pressure = response.data.properties.seaLevelPressure.value;
-			console.log("Current Sea level pressure: " + pressure);
-			ref.update({
-				"WeatherAPI/SeaLevelPressure/Data": pressure
-			});
-		})
-		.catch(error => {
-			console.error(error);
-			document.getElementById("time").innerHTML = "Error"
-		});
-}
-
-function updateOrientation(tempRef) {
-	// gets orientation frmo databse and updates the website
-	// tempRef = the reference of the data
-	tempRef.on('value', function(tempDataSnapshot) {
-		var x = tempDataSnapshot.child("X").val();
-		var y = tempDataSnapshot.child("Y").val();
-		var z = tempDataSnapshot.child("Z").val();
-		document.getElementById("oriDisplay").innerHTML = "X: " + x + ", Y: " + y + ", Z: " + z;
-	});
-}
 
 /***********************p5.js*****************************/
 let beginX; // Initial x-coordinate
@@ -112,7 +62,7 @@ function setup() {
   let dataFrameRate = 60;
 
   tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate, "Temperature(C)", "rgb(255,0,0)");
-  altitudeDataLine = new altitudeDataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -10, 50, dataStrokeWeight, dataFrameRate, "Altitude(M)", "rgb(0,0,255)");
+  altitudeDataLine = new dataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -10, 50, dataStrokeWeight, dataFrameRate, "Altitude(M)", "rgb(0,0,255)");
 }
 
 function draw() {
@@ -175,7 +125,6 @@ function draw() {
 	textSize(displayWidth/60);
 
 	if (frameCount % 54000 == 1) { // 54000 frames = 15 minutes
-	  console.log("Inside 15 min");
 	  axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 	  .then(response => {
 		console.log("Getting Weather Data");
@@ -183,7 +132,7 @@ function draw() {
 		"Time Of Observation: " +  response.data.properties.timestamp + "\n" +
 		"Outside Temperature: " +  response.data.properties.temperature.value + "Celsius\n" +
 		"Wind Direction: " +  response.data.properties.windDirection.value + " Degrees" + "\n" +
-		"Wind Speed: " +  response.data.properties.windSpeed.value + "km/h" + "\n" +
+		"Wind Speed: " +  response.data.properties.windSpeed.value + " km/h" + "\n" +
 		"Humidity: " +  response.data.properties.relativeHumidity.value + " %";
 	  })
 	  .catch(error => {
@@ -197,11 +146,61 @@ function draw() {
 
 	/******* Time ******/
 	if (frameCount % 60 == 1) { // 60 frames = 1 second
-		console.log("Inside 1 min");
 		var d = new Date();
 		time = d.toLocaleTimeString();
 	}
 	textSize(displayWidth/20);
   	text(time, displayWidth/2, displayHeight/2 - displayHeight/2.5);
   	/******* Time ******/
+
+
+  	/******* Orientation ******/
+  	text(getOrientation(), displayWidth/2, displayHeight/2 + displayHeight/2.2);
+  	/******* Orientation ******/
+} // End of Draw()
+
+
+// ****************  Helper Functions  *****************
+function updateServo(angle){
+	console.log("Current Angle: " + angle);
+	ref.update({
+		"Motors/Servo/Data": angle
+	});
+}
+
+function getData(tempRef) {
+  var temp;
+  tempRef.once('value', function(tempDataSnapshot) {
+		temp = tempDataSnapshot.val();
+  });
+  return temp;
+}
+
+function updateSeaLevelPressure(){
+	// Sending API data about sea level pressure to the database
+	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
+		.then(response => {
+			var pressure = response.data.properties.seaLevelPressure.value;
+			console.log("Current Sea level pressure: " + pressure);
+			ref.update({
+				"WeatherAPI/SeaLevelPressure/Data": pressure
+			});
+		})
+		.catch(error => {
+			console.error(error);
+			document.getElementById("time").innerHTML = "Error"
+		});
+}
+
+function getOrientation() {
+	// gets orientation frmo databse and updates the website
+	// tempRef = the reference of the data
+	var result;
+	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
+		x = tempDataSnapshot.child("X").val();
+		y = tempDataSnapshot.child("Y").val();
+		z = tempDataSnapshot.child("Z").val();
+		result = "(" + x + ", " + y + ", " + z + ")";
+	});
+	return result;
 }
