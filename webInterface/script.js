@@ -18,12 +18,22 @@ function updateServo(angle){
 	});
 }
 
-function getData(tempRef) {
+function getTemperature() {
+  var tempRef = firebase.database().ref("Sensors/Temperature/Data");
   var temp;
   tempRef.once('value', function(tempDataSnapshot) {
 		temp = tempDataSnapshot.val();
   });
   return temp;
+}
+
+function getAltitude() {
+  var altRef = firebase.database().ref("/Sensors/Altitude/Data");
+  var alt;
+  altRef.once('value', function(altDataSnapshot) {
+		alt = altDataSnapshot.val();
+  });
+  return alt;
 }
 
 function updateSeaLevelPressure(){
@@ -157,18 +167,18 @@ function draw() {
 
 	/******* Temperature ******/
 	// Get Temp data from database
-	tempDataLine.update(getData(firebase.database().ref("Sensors/Temperature/Data")));
+	tempDataLine.update(getTemperature());
 	// Update the Data
 	tempDataLine.show();
 
-	console.log(getData(firebase.database().ref("Sensors/Temperature/Data")));
+	console.log(getTemperature());
 	/******* Temperature ******/
 
 	/******* Altitude ******/
-	altitudeDataLine.update(getData(firebase.database().ref("/Sensors/Altitude/Data")));
+	altitudeDataLine.update(getAltitude());
 	altitudeDataLine.show();
 
-	console.log(getData(firebase.database().ref("/Sensors/Altitude/Data")));
+	console.log(getAltitude());
 	/******* Altitude ******/
 
 	/******* Weather API ******/
