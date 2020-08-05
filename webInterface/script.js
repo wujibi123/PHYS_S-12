@@ -115,11 +115,15 @@ function draw() {
 	tempDataLine.update(getData(firebase.database().ref("Sensors/Temperature/Data")));
 	// Update the Data
 	tempDataLine.show();
+
+	console.log(getData(firebase.database().ref("Sensors/Temperature/Data")));
 	/******* Temperature ******/
 
 	/******* Altitude ******/
 	altitudeDataLine.update(getData(firebase.database().ref("/Sensors/Altitude/Data")));
 	altitudeDataLine.show();
+
+	console.log(getData(firebase.database().ref("/Sensors/Altitude/Data")));
 	/******* Altitude ******/
 
 	/******* Weather API ******/
@@ -165,7 +169,7 @@ function draw() {
 
 // ****************  Helper Functions  *****************
 function updateServo(angle){
-	console.log("Current Angle: " + angle);
+	//console.log("Current Angle: " + angle);
 	ref.update({
 		"Motors/Servo/Data": angle
 	});
