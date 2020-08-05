@@ -22,6 +22,8 @@ class dataLine {
 		this.rawData = round(rawData, 2);
 		if (this.minData < 0) {
 			rawData += abs(this.minData);
+		} else if (this.minData > 0) {
+			rawData -= this.minData;
 		}
 		this.processedData = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
 		var rateOfChange = abs(this.processedData - this.currentY)/this.frames;
