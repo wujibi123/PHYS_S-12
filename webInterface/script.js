@@ -208,7 +208,7 @@ function draw() {
 	noStroke();
 	fill(0);
 	textSize(displayWidth/60);
-	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/5);
+	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/4.3);
 	/******* Weather API ******/
 
 	/******* Time ******/
@@ -229,6 +229,6 @@ function draw() {
 		z = tempDataSnapshot.child("Z").val();
 		orientationResult = "(" + x + ", " + y + ", " + z + ")";
 	});
-	text("Orientation: " + orientationResult, displayWidth/2, displayHeight/2 + displayHeight/5 + displayHeight/5);
+	text("Orientation: " + orientationResult, displayWidth/2, displayHeight/2 + displayHeight/5 + displayHeight/11);
   	/******* Orientation ******/
 } // End of Draw()
