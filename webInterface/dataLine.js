@@ -1,6 +1,6 @@
 class dataLine {
 	// For a single animated data line.
-	constructor(x, y1, y2, minData, maxData, strokeWeight, frames, caption) {
+	constructor(x, y1, y2, minData, maxData, strokeWeight, frames, caption, color) {
 		// x, beginning y coord, end y coord, stroke weight, frames = number of frames needed for data to slide
 		this.dataX = x;
 		this.dataBeginY = y1;
@@ -15,6 +15,7 @@ class dataLine {
 		this.maxData = maxData;
 		this.dataRange = abs(maxData - minData);
 		this.caption = caption;
+		this.color = color;
 	}
 
 	update(rawData) {
@@ -32,7 +33,7 @@ class dataLine {
 	}
 
 	show() {
-		stroke('#ff5d00');
+		stroke(this.color);
 		strokeWeight(this.dataStrokeWeight);
 		line(this.dataX, this.dataBeginY, this.dataX, this.currentY);
 

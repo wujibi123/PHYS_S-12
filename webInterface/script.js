@@ -111,8 +111,8 @@ function setup() {
   let dataStrokeWeight = displayWidth/30;
   let dataFrameRate = 60;
 
-  tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate, "Temperature(C)");
-  altitudeDataLine = new altitudeDataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -10, 50, dataStrokeWeight, dataFrameRate, "Altitude(M)");
+  tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate, "Temperature(C)", "rgb(255,0,0)");
+  altitudeDataLine = new altitudeDataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -10, 50, dataStrokeWeight, dataFrameRate, "Altitude(M)", "rgb(0,0,255)");
 }
 
 function draw() {
@@ -192,7 +192,7 @@ function draw() {
 	  })
 	}
 
-	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
+	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/5);
 	/******* Weather API ******/
 
 	/******* Time ******/
