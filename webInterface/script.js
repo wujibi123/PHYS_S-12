@@ -26,7 +26,7 @@ function updateServo(angle){
 		"Motors/Servo/Data": angle
 	});
 }
-
+/*
 function getTemperature() {
   var tempRef = firebase.database().ref("Sensors/Temperature/Data");
   var temp;
@@ -45,7 +45,7 @@ function getAltitude() {
   });
   altRef.off("value", listener);
   return alt;
-}
+}*/
 
 function updateSeaLevelPressure(){
 	// Sending API data about sea level pressure to the database
@@ -62,7 +62,7 @@ function updateSeaLevelPressure(){
 			document.getElementById("time").innerHTML = "Error"
 		});
 }
-
+/*
 function getOrientation() {
 	// gets orientation frmo databse and updates the website
 	// tempRef = the reference of the data
@@ -76,7 +76,7 @@ function getOrientation() {
 	});
 	oriRef.off("value", listener);
 	return result;
-}
+}*/
 
 /***********************p5.js*****************************/
 let beginX; // Initial x-coordinate
@@ -171,18 +171,19 @@ function draw() {
 
 	/******* Temperature ******/
 	// Get Temp data from database
-	tempDataLine.update(getTemperature());
+	firebase.database().ref("Sensors/Temperature/Data").once('value', function(tempDataSnapshot) {
+		tempDataLine.update(tempDataSnapshot.val());
+  	});
 	// Update the Data
 	tempDataLine.show();
-
-	console.log(getTemperature());
 	/******* Temperature ******/
 
 	/******* Altitude ******/
-	altitudeDataLine.update(getAltitude());
+	firebase.database().ref("Sensors/Altitude/Data").once('value', function(altDataSnapshot) {
+		altitudeDataLine.update(altDataSnapshot.val());
+  	});
+	
 	altitudeDataLine.show();
-
-	console.log(getAltitude());
 	/******* Altitude ******/
 
 	/******* Weather API ******/
@@ -221,6 +222,12 @@ function draw() {
 
   	/******* Orientation ******/
   	textSize(displayWidth/40);
-  	text(getOrientation(), displayWidth/2, displayHeight/2 + displayHeight/2.2);
+  	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
+		x = tempDataSnapshot.child("X").val();
+		y = tempDataSnapshot.child("Y").val();
+		z = tempDataSnapshot.child("Z").val();
+		result = "(" + x + ", " + y + ", " + z + ")";
+		text(result, displayWidth/2, displayHeight/2 + displayHeight/2.2);
+	});
   	/******* Orientation ******/
 } // End of Draw()
