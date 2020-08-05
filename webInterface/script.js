@@ -31,7 +31,9 @@ function getTemperature() {
   var tempRef = firebase.database().ref("Sensors/Temperature/Data");
   var temp;
   tempRef.once('value', function(tempDataSnapshot) {
+  		console.log("temp inside once 1: " + tempDataSnapshot.val());
 		temp = tempDataSnapshot.val();
+		console.log("temp inside once 2: " + temp);
   });
   console.log("Inside getTemp: " + temp);
 }
@@ -40,7 +42,9 @@ function getAltitude() {
   var altRef = firebase.database().ref("Sensors/Altitude/Data");
   var alt;
   altRef.once('value', function(altDataSnapshot) {
+  		console.log("alt inside once 1: " + altDataSnapshot.val());
 		alt = altDataSnapshot.val();
+		console.log("alt inside once 2: " + alt);
   });
   console.log("Inside getAlt: " + alt);
 }
