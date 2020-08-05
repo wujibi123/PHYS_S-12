@@ -30,7 +30,7 @@ function updateServo(angle){
 function getTemperature() {
   var tempRef = firebase.database().ref("Sensors/Temperature/Data");
   var temp;
-  tempRef.once('value', function(tempDataSnapshot) {
+  tempRef.on('value', function(tempDataSnapshot) {
   		console.log("temp inside once 1: " + tempDataSnapshot.val());
 		temp = tempDataSnapshot.val();
 		console.log("temp inside once 2: " + temp);
@@ -41,7 +41,7 @@ function getTemperature() {
 function getAltitude() {
   var altRef = firebase.database().ref("Sensors/Altitude/Data");
   var alt;
-  altRef.once('value', function(altDataSnapshot) {
+  altRef.on('value', function(altDataSnapshot) {
   		console.log("alt inside once 1: " + altDataSnapshot.val());
 		alt = altDataSnapshot.val();
 		console.log("alt inside once 2: " + alt);
