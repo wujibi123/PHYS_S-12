@@ -10,6 +10,51 @@ var firebaseConfig = {
     measurementId: "G-SLLF9YV2F4"
 };
 
+// ****************  Helper Functions  *****************
+function updateServo(angle){
+	//console.log("Current Angle: " + angle);
+	ref.update({
+		"Motors/Servo/Data": angle
+	});
+}
+
+function getData(tempRef) {
+  var temp;
+  tempRef.once('value', function(tempDataSnapshot) {
+		temp = tempDataSnapshot.val();
+  });
+  return temp;
+}
+
+function updateSeaLevelPressure(){
+	// Sending API data about sea level pressure to the database
+	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
+		.then(response => {
+			var pressure = response.data.properties.seaLevelPressure.value;
+			console.log("Current Sea level pressure: " + pressure);
+			ref.update({
+				"WeatherAPI/SeaLevelPressure/Data": pressure
+			});
+		})
+		.catch(error => {
+			console.error(error);
+			document.getElementById("time").innerHTML = "Error"
+		});
+}
+
+function getOrientation() {
+	// gets orientation frmo databse and updates the website
+	// tempRef = the reference of the data
+	var result;
+	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
+		x = tempDataSnapshot.child("X").val();
+		y = tempDataSnapshot.child("Y").val();
+		z = tempDataSnapshot.child("Z").val();
+		result = "(" + x + ", " + y + ", " + z + ")";
+	});
+	return result;
+}
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -165,49 +210,3 @@ function draw() {
   	text(getOrientation(), displayWidth/2, displayHeight/2 + displayHeight/2.2);
   	/******* Orientation ******/
 } // End of Draw()
-
-
-// ****************  Helper Functions  *****************
-function updateServo(angle){
-	//console.log("Current Angle: " + angle);
-	ref.update({
-		"Motors/Servo/Data": angle
-	});
-}
-
-function getData(tempRef) {
-  var temp;
-  tempRef.once('value', function(tempDataSnapshot) {
-		temp = tempDataSnapshot.val();
-  });
-  return temp;
-}
-
-function updateSeaLevelPressure(){
-	// Sending API data about sea level pressure to the database
-	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
-		.then(response => {
-			var pressure = response.data.properties.seaLevelPressure.value;
-			console.log("Current Sea level pressure: " + pressure);
-			ref.update({
-				"WeatherAPI/SeaLevelPressure/Data": pressure
-			});
-		})
-		.catch(error => {
-			console.error(error);
-			document.getElementById("time").innerHTML = "Error"
-		});
-}
-
-function getOrientation() {
-	// gets orientation frmo databse and updates the website
-	// tempRef = the reference of the data
-	var result;
-	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
-		x = tempDataSnapshot.child("X").val();
-		y = tempDataSnapshot.child("Y").val();
-		z = tempDataSnapshot.child("Z").val();
-		result = "(" + x + ", " + y + ", " + z + ")";
-	});
-	return result;
-}
