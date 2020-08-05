@@ -85,8 +85,6 @@ function updateOrientation(tempRef) {
 	});
 }
 
-var d = new Date();
-
 /***********************p5.js*****************************/
 let beginX; // Initial x-coordinate
 let endX; // Final x-coordinate
@@ -186,7 +184,7 @@ function draw() {
 	fill(0);
 	textSize(displayWidth/60);
 
-	if (frameCount % 54000 == 0) { // 54000 frames = 15 minutes
+	if (frameCount % 54000 == 1) { // 54000 frames = 15 minutes
 	  console.log("Inside 15 min");
 	  axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 	  .then(response => {
@@ -206,11 +204,11 @@ function draw() {
 
 	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
 
-	if (frameCount % 60 == 0) {
+	if (frameCount % 60 == 1) {
 		console.log("Inside 1 min");
+		var d = new Date();
 		time = d.toLocaleTimeString();
 	}
 	textSize(displayWidth/20);
   	text(time, displayWidth/2, displayHeight/2 - displayHeight/2.5);
-  	console.log(frameCount);
 }
