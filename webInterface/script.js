@@ -229,6 +229,6 @@ function draw() {
 		z = tempDataSnapshot.child("Z").val();
 		orientationResult = "(" + x + ", " + y + ", " + z + ")";
 	});
-	text(orientationResult, displayWidth/2, displayHeight/2 + displayHeight/2.2);
+	text("Orientation: " + orientationResult, displayWidth/2, displayHeight/2 + displayHeight/5 + displayHeight/5);
   	/******* Orientation ******/
 } // End of Draw()
