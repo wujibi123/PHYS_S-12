@@ -10,6 +10,15 @@ var firebaseConfig = {
     measurementId: "G-SLLF9YV2F4"
 };
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Get a database reference
+var ref = firebase.database().ref("/");
+
+// Sending API data to the database every minute
+setInterval(updateSeaLevelPressure, 60000);
+
 // ****************  Helper Functions  *****************
 function updateServo(angle){
 	//console.log("Current Angle: " + angle);
@@ -24,16 +33,16 @@ function getTemperature() {
   tempRef.once('value', function(tempDataSnapshot) {
 		temp = tempDataSnapshot.val();
   });
-  return temp;
+  console.log("Inside getTemp: " + temp);
 }
 
 function getAltitude() {
-  var altRef = firebase.database().ref("/Sensors/Altitude/Data");
+  var altRef = firebase.database().ref("Sensors/Altitude/Data");
   var alt;
   altRef.once('value', function(altDataSnapshot) {
 		alt = altDataSnapshot.val();
   });
-  return alt;
+  console.log("Inside getAlt: " + alt);
 }
 
 function updateSeaLevelPressure(){
@@ -64,15 +73,6 @@ function getOrientation() {
 	});
 	return result;
 }
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Get a database reference
-var ref = firebase.database().ref("/");
-
-// Sending API data to the database every minute
-setInterval(updateSeaLevelPressure, 60000);
 
 /***********************p5.js*****************************/
 let beginX; // Initial x-coordinate
