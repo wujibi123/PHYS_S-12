@@ -16,7 +16,7 @@ class dataLine {
 	}
 
 	update(rawData) {
-		this.newData = rawData;
+		this.newData = round(rawData, 2);
 		if (this.minData < 0) {
 			rawData += abs(minData);
 		}
