@@ -166,5 +166,6 @@ function draw() {
   tempRef.once('value', function(tempDataSnapshot) {
 		tempDataLine.update(tempDataSnapshot.val());
   });
+  
   tempDataLine.show();
 }

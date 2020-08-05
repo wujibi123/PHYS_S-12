@@ -21,7 +21,7 @@ class dataLine {
 			rawData += abs(this.minData);
 		}
 		this.currentY = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
-		rateOfChange = abs(rawData - this.currentY)/this.frames;
+		var rateOfChange = abs(rawData - this.currentY)/this.frames;
 		if (this.currentY < rawData) {
 			this.currentY += rateOfChange;
 		} else if (this.currentY > rawData) {
