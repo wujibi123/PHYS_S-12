@@ -122,8 +122,11 @@ function setup() {
   textSize(displayWidth/80);
   textAlign(CENTER, CENTER);
 
-  beginX = displayWidth/2 - displayWidth/6; // Initial x-coordinate
-  endX = displayWidth/2 + displayWidth/6; // Final x-coordinate
+  /**** Servo Motor ***/
+  beginX = displayWidth / 2 - displayWidth / 6; // Initial x-coordinate of curve
+  endX = displayWidth / 2 + displayWidth / 6; // Final x-coordinate of curve
+  beginY = displayHeight/2; // Initial y-coordinate of curve
+  endY = abs(endX - beginX)/2; // Final y-coordinate of curve
   distX = endX - beginX;// X-axis distance to move
   radius = displayWidth/6; // radius of the circle the object is moving along
   x = displayWidth/2; // default x coordinate
@@ -166,6 +169,6 @@ function draw() {
   tempRef.once('value', function(tempDataSnapshot) {
 		tempDataLine.update(tempDataSnapshot.val());
   });
-  
+
   tempDataLine.show();
 }

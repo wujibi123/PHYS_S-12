@@ -8,23 +8,24 @@ class dataLine {
 		this.dataDistance = abs(y1 - y2);
 		this.dataStrokeWeight = strokeWeight;
 		this.frames = frames;
-		this.currentY = 0;
-		this.newData = 0;
+		this.currentY = y1;
+		this.rawData = 0;
+		this.processedData = 0; // the "goal" that currentY is always trying to reach
 		this.minData = minData;
 		this.maxData = maxData;
 		this.dataRange = abs(maxData - minData);
 	}
 
 	update(rawData) {
-		this.newData = round(rawData, 2);
+		this.rawData = round(rawData, 2);
 		if (this.minData < 0) {
 			rawData += abs(this.minData);
 		}
-		this.currentY = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
+		this.processedData = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
 		var rateOfChange = abs(rawData - this.currentY)/this.frames;
-		if (this.currentY < rawData) {
+		if (this.currentY < this.processedData) {
 			this.currentY += rateOfChange;
-		} else if (this.currentY > rawData) {
+		} else if (this.currentY > this.processedData) {
 			this.currentY -= rateOfChange;
 		}
 	}
@@ -47,7 +48,7 @@ class dataLine {
 		// Writing down temperature in text
 		noStroke();
 		fill(0);
-		text(this.newData, this.dataX, this.currentY - this.dataStrokeWeight);
+		text(this.rawData, this.dataX, this.currentY - this.dataStrokeWeight);
 		text("Temperature (C)",this.dataX , this.dataBeginY + this.dataStrokeWeight);
 	}
 }
