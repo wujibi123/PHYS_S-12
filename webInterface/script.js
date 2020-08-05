@@ -36,24 +36,6 @@ setInterval(updateSeaLevelPressure, 60000);
 
 
 // ****************  FUNCTIONS  *****************
-function getWeatherString() {
-	// Returns a formatted String of the weather
-	axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
-		.then(response => {
-			console.log("Getting Weather Data");
-			return
-			"Time Of Observation: " +  response.data.properties.timestamp + "\n" +
-			"Outside Temperature: " +  response.data.properties.temperature.value + "Celsius\n" +
-			"Wind Direction: " +  response.data.properties.windDirection.value + " Degrees" + "\n" +
-			"Wind Speed: " +  response.data.properties.windSpeed.value + "km/h" + "\n" +
-			"Humidity: " +  response.data.properties.relativeHumidity.value + " %";
-		})
-		.catch(error => {
-			console.error(error);
-			return "error";
-		});
-}
-
 function updateServo(angle){
 	console.log("Current Angle: " + angle);
 	ref.update({
@@ -122,6 +104,8 @@ let pct = 0.5; // Percentage traveled (0.0 to 1.0)
 let servoAngle = 90; // servo angle
 let servoCoordinates = [];
 
+let weatherString;
+
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
 	servo = loadImage('../assets/servo_art.png');
@@ -129,6 +113,7 @@ function preload() {
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  frameRate(60);
   angleMode(DEGREES); // Change the mode to DEGREES
 
   textFont(uBuntu);
@@ -205,5 +190,23 @@ function draw() {
   noStroke();
   fill(0);
   textSize(displayWidth/60);
-  text(getWeatherString(), displayWidth/2, displayHeight/2 + displayHeight/15);
+
+  if (frameCount % 54000 == 0) { // 54000 frames = 15 minutes
+	  axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
+	  .then(response => {
+		console.log("Getting Weather Data");
+		weatherString = 
+		"Time Of Observation: " +  response.data.properties.timestamp + "\n" +
+		"Outside Temperature: " +  response.data.properties.temperature.value + "Celsius\n" +
+		"Wind Direction: " +  response.data.properties.windDirection.value + " Degrees" + "\n" +
+		"Wind Speed: " +  response.data.properties.windSpeed.value + "km/h" + "\n" +
+		"Humidity: " +  response.data.properties.relativeHumidity.value + " %";
+	  })
+	  .catch(error => {
+		console.error(error);
+		weatherString = "Weather API is not available"
+	  })
+   }
+
+   text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
 }
