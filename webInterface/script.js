@@ -125,7 +125,7 @@ function setup() {
   let dataFrameRate = 60;
 
   tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate, "Temperature(C)", "rgb(255,0,0)");
-  altitudeDataLine = new dataLine((5 * displayWidth)/6, dataBeginY, dataEndY, 3, 10, dataStrokeWeight, dataFrameRate, "Altitude(M)", "rgb(0,0,255)");
+  altitudeDataLine = new dataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -5, 10, dataStrokeWeight, dataFrameRate, "Altitude(M)", "rgb(0,0,255)");
 }
 
 function draw() {
