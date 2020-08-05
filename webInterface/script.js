@@ -33,6 +33,9 @@ let weatherString;
 
 let time;
 
+let tempDataLine;
+let altitudeDataLine;
+
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
 	servo = loadImage('../assets/servo_art.png');
@@ -115,7 +118,7 @@ function draw() {
 	/******* Temperature ******/
 
 	/******* Altitude ******/
-	altitudeDataLine.update(firebase.database().ref("/Sensors/Altitude/Data"));
+	altitudeDataLine.update(getData(firebase.database().ref("/Sensors/Altitude/Data")));
 	altitudeDataLine.show();
 	/******* Altitude ******/
 
