@@ -22,7 +22,7 @@ class dataLine {
 			rawData += abs(this.minData);
 		}
 		this.processedData = this.dataBeginY - (rawData/this.dataRange) * this.dataDistance;
-		var rateOfChange = abs(rawData - this.currentY)/this.frames;
+		var rateOfChange = abs(this.processedData - this.currentY)/this.frames;
 		if (this.currentY < this.processedData) {
 			this.currentY += rateOfChange;
 		} else if (this.currentY > this.processedData) {
