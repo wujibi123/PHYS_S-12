@@ -7,33 +7,6 @@
 </head>
 
 <body>
-	
-	
-	<form>
-		<label for="vol">Servo Angle (between 0 and 180):</label>
-		<input type="range" id="angle" name="angle" min="0" max="180" onchange="updateServo()">
-	</form>
-	<br>
-	<p>
-		Current Time: <span id="timeDisplay"></span>
-	</p>
-	<p>
-		Thermistor Temperature: <span id="tempDisplay"></span> C
-	</p>
-	<p>
-		Orientation: <span id="oriDisplay"></span>  Degrees
-	</p>
-	<p>
-		Altitute: <span id="altDisplay"></span> Meters
-	</p>
-	<br>
-	<br>
-	<br>
-	<button onclick="getWeather()">Get Weather</button>
-	<p id="time"></p> <!-- Time -->
-	<p id="temp"></p> <!-- Temperature (Celsius)-->
-	<p id="wind"></p> <!-- Wind Direction (angle) and Speed (km/h)-->
-	<p id="humid"></p> <!-- Humidity (percent) -->
 
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
