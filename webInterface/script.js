@@ -162,6 +162,8 @@ function draw() {
 	  y = -radius*sin(servoAngle) + displayHeight/2;
 	  x = -radius*cos(servoAngle) + displayWidth/2;
 	  updateServo(servoAngle);
+  } else if (servoAngle == 0) {
+  	updateServo(0);
   } else {
     y = displayHeight/2;
     if (mouseX > displayWidth/2) {
@@ -171,8 +173,6 @@ function draw() {
       x = displayWidth/2 - displayWidth/6;
       updateServo(0);
     }
-  } else if (servoAngle == 0) {
-  	updateServo(0);
   }
 
   noStroke();
