@@ -18,14 +18,8 @@ firebase.initializeApp(firebaseConfig);
 // Get a database reference
 var ref = firebase.database().ref("/");
 
-// Updating temperature value
-updateData(firebase.database().ref("/Sensors/Temperature/Data"), "tempDisplay");
-
 // Updating Orientation
 updateOrientation(firebase.database().ref("/Sensors/Orientation/Data"));
-
-// Updating Altitude
-updateData(firebase.database().ref("/Sensors/Altitude/Data"), "altDisplay");
 
 // Sending API data to the database every minute
 setInterval(updateSeaLevelPressure, 60000);
@@ -40,8 +34,7 @@ function updateServo(angle){
 	});
 }
 
-function getTemperature() {
-  var tempRef = firebase.database().ref("Sensors/Temperature/Data");
+function getData(tempRef) {
   var temp;
   tempRef.once('value', function(tempDataSnapshot) {
 		temp = tempDataSnapshot.val();
@@ -63,15 +56,6 @@ function updateSeaLevelPressure(){
 			console.error(error);
 			document.getElementById("time").innerHTML = "Error"
 		});
-}
-
-function updateData(tempRef, htmlID){
-	// gets data in the databse at tempRef and updates the website according to the htmlID
-	// can only handle simple data, no vectors or arrays
-	tempRef.on('value', function(tempDataSnapshot) {
-		var tempData = tempDataSnapshot.val();
-		return tempData;
-	});
 }
 
 function updateOrientation(tempRef) {
@@ -126,7 +110,9 @@ function setup() {
   let dataEndY = displayHeight/4;
   let dataStrokeWeight = displayWidth/30;
   let dataFrameRate = 60;
-  tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate);
+
+  tempDataLine = new dataLine(displayWidth/6, dataBeginY, dataEndY, 0, 200, dataStrokeWeight, dataFrameRate, "Temperature(C)");
+  altitudeDataLine = new altitudeDataLine((5 * displayWidth)/6, dataBeginY, dataEndY, -10, 50, dataStrokeWeight, dataFrameRate, "Altitude(M)");
 }
 
 function draw() {
@@ -173,11 +159,15 @@ function draw() {
 
 	/******* Temperature ******/
 	// Get Temp data from database
-	tempDataLine.update(getTemperature());
+	tempDataLine.update(getData(firebase.database().ref("Sensors/Temperature/Data")));
 	// Update the Data
 	tempDataLine.show();
 	/******* Temperature ******/
 
+	/******* Altitude ******/
+	altitudeDataLine.update(firebase.database().ref("/Sensors/Altitude/Data"));
+	altitudeDataLine.show();
+	/******* Altitude ******/
 
 	/******* Weather API ******/
 	noStroke();
@@ -203,12 +193,15 @@ function draw() {
 	}
 
 	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
+	/******* Weather API ******/
 
-	if (frameCount % 60 == 1) {
+	/******* Time ******/
+	if (frameCount % 60 == 1) { // 60 frames = 1 second
 		console.log("Inside 1 min");
 		var d = new Date();
 		time = d.toLocaleTimeString();
 	}
 	textSize(displayWidth/20);
   	text(time, displayWidth/2, displayHeight/2 - displayHeight/2.5);
+  	/******* Time ******/
 }

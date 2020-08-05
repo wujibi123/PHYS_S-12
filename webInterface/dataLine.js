@@ -1,6 +1,6 @@
 class dataLine {
 	// For a single animated data line.
-	constructor(x, y1, y2, minData, maxData, strokeWeight, frames) {
+	constructor(x, y1, y2, minData, maxData, strokeWeight, frames, caption) {
 		// x, beginning y coord, end y coord, stroke weight, frames = number of frames needed for data to slide
 		this.dataX = x;
 		this.dataBeginY = y1;
@@ -14,6 +14,7 @@ class dataLine {
 		this.minData = minData;
 		this.maxData = maxData;
 		this.dataRange = abs(maxData - minData);
+		this.caption = caption;
 	}
 
 	update(rawData) {
@@ -50,6 +51,6 @@ class dataLine {
 		fill(0);
 		textSize(displayWidth/80);
 		text(this.rawData, this.dataX, this.currentY - this.dataStrokeWeight);
-		text("Temperature (C)",this.dataX , this.dataBeginY + this.dataStrokeWeight);
+		text(this.caption, this.dataX , this.dataBeginY + this.dataStrokeWeight);
 	}
 }
