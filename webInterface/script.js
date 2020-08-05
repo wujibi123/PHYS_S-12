@@ -68,7 +68,7 @@ function getOrientation() {
 	// tempRef = the reference of the data
 	var oriRef = firebase.database().ref("/Sensors/Orientation/Data");
 	var result;
-	var listener = oriRef.once('value', function(tempDataSnapshot) {
+	var listener = oriRef.on('value', function(tempDataSnapshot) {
 		x = tempDataSnapshot.child("X").val();
 		y = tempDataSnapshot.child("Y").val();
 		z = tempDataSnapshot.child("Z").val();
