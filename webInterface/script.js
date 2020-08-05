@@ -18,9 +18,6 @@ firebase.initializeApp(firebaseConfig);
 // Get a database reference
 var ref = firebase.database().ref("/");
 
-// Update Time every second
-setInterval(updateTime, 1000);
-
 // Updating temperature value
 updateData(firebase.database().ref("/Sensors/Temperature/Data"), "tempDisplay");
 
@@ -67,11 +64,6 @@ function updateSeaLevelPressure(){
 			document.getElementById("time").innerHTML = "Error"
 		});
 }
-function updateTime(){
-	// updates time
-	var d = new Date();
-  	document.getElementById("timeDisplay").innerHTML = d.toLocaleTimeString();
-}
 
 function updateData(tempRef, htmlID){
 	// gets data in the databse at tempRef and updates the website according to the htmlID
@@ -93,6 +85,7 @@ function updateOrientation(tempRef) {
 	});
 }
 
+var d = new Date();
 
 /***********************p5.js*****************************/
 let beginX; // Initial x-coordinate
@@ -105,6 +98,8 @@ let servoAngle = 90; // servo angle
 let servoCoordinates = [];
 
 let weatherString;
+
+let time;
 
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
@@ -171,27 +166,28 @@ function draw() {
     }
   }
 
-  noStroke();
-  fill(0);
-  ellipse(x, y, displayWidth/30, displayWidth/30);
-  
-  image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)); // original img is 1013 × 880
-  /******* SERVO MOTOR ******/
+	noStroke();
+	fill(0);
+	ellipse(x, y, displayWidth/30, displayWidth/30);
 
-  /******* Temperature ******/
-  // Get Temp data from database
-  tempDataLine.update(getTemperature());
-  // Update the Data
-  tempDataLine.show();
-  /******* Temperature ******/
+	image(servo, displayWidth / 2 - 132, displayHeight / 2 - 148, distX, 880 * (distX/1013)); // original img is 1013 × 880
+	/******* SERVO MOTOR ******/
+
+	/******* Temperature ******/
+	// Get Temp data from database
+	tempDataLine.update(getTemperature());
+	// Update the Data
+	tempDataLine.show();
+	/******* Temperature ******/
 
 
-  /******* Weather API ******/
-  noStroke();
-  fill(0);
-  textSize(displayWidth/60);
+	/******* Weather API ******/
+	noStroke();
+	fill(0);
+	textSize(displayWidth/60);
 
-  if (frameCount % 54000 == 0) { // 54000 frames = 15 minutes
+	if (frameCount % 54000 == 0) { // 54000 frames = 15 minutes
+	  console.log("Inside 15 min");
 	  axios.get('https://api.weather.gov/stations/KBOS/observations/latest')
 	  .then(response => {
 		console.log("Getting Weather Data");
@@ -206,7 +202,15 @@ function draw() {
 		console.error(error);
 		weatherString = "Weather API is not available"
 	  })
-   }
+	}
 
-   text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
+	text(weatherString, displayWidth/2, displayHeight/2 + displayHeight/15);
+
+	if (frameCount % 60 == 0) {
+		console.log("Inside 1 min");
+		time = d.toLocaleTimeString();
+	}
+	textSize(displayWidth/20);
+  	text(time, displayWidth/2, displayHeight/2 - displayHeight/2.5);
+  	console.log(frameCount);
 }
