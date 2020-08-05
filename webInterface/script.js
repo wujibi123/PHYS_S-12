@@ -94,6 +94,7 @@ let time;
 
 let tempDataLine;
 let altitudeDataLine;
+let orientationResult = "Orientation data not found"
 
 function preload() {
 	uBuntu = loadFont('../assets/Ubuntu-C.ttf');
@@ -222,13 +223,12 @@ function draw() {
 
   	/******* Orientation ******/
   	textSize(displayWidth/40);
-  	var result = "Orientation data not found";
   	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
 		x = tempDataSnapshot.child("X").val();
 		y = tempDataSnapshot.child("Y").val();
 		z = tempDataSnapshot.child("Z").val();
-		result = "(" + x + ", " + y + ", " + z + ")";
+		orientationResult = "(" + x + ", " + y + ", " + z + ")";
 	});
-	text(result, displayWidth/2, displayHeight/2 + displayHeight/2.2);
+	text(orientationResult, displayWidth/2, displayHeight/2 + displayHeight/2.2);
   	/******* Orientation ******/
 } // End of Draw()
