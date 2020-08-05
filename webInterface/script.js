@@ -222,12 +222,13 @@ function draw() {
 
   	/******* Orientation ******/
   	textSize(displayWidth/40);
+  	var result = "Orientation data not found";
   	firebase.database().ref("/Sensors/Orientation/Data").once('value', function(tempDataSnapshot) {
 		x = tempDataSnapshot.child("X").val();
 		y = tempDataSnapshot.child("Y").val();
 		z = tempDataSnapshot.child("Z").val();
 		result = "(" + x + ", " + y + ", " + z + ")";
-		text(result, displayWidth/2, displayHeight/2 + displayHeight/2.2);
 	});
+	text(result, displayWidth/2, displayHeight/2 + displayHeight/2.2);
   	/******* Orientation ******/
 } // End of Draw()
