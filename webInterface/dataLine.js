@@ -48,6 +48,7 @@ class dataLine {
 		// Writing down temperature in text
 		noStroke();
 		fill(0);
+		textSize(displayWidth/80);
 		text(this.rawData, this.dataX, this.currentY - this.dataStrokeWeight);
 		text("Temperature (C)",this.dataX , this.dataBeginY + this.dataStrokeWeight);
 	}

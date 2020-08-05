@@ -63,9 +63,11 @@ function updateServo(angle){
 
 function getTemperature() {
   var tempRef = firebase.database().ref("Sensors/Temperature/Data");
+  var temp;
   tempRef.once('value', function(tempDataSnapshot) {
-		return tempDataSnapshot.val();
+		temp = tempDataSnapshot.val();
   });
+  return temp;
 }
 
 function updateSeaLevelPressure(){
@@ -172,15 +174,15 @@ function draw() {
   if (servoAngle > 0) {
 	  y = -radius*sin(servoAngle) + displayHeight/2;
 	  x = -radius*cos(servoAngle) + displayWidth/2;
-	  updateServo(servoAngle);
+	  updateServo(180 - servoAngle);
   } else {
     y = displayHeight/2;
     if (mouseX > displayWidth/2) {
       x = displayWidth/2 + displayWidth/6;
-      updateServo(180);
+      updateServo(0);
     } else {
       x = displayWidth/2 - displayWidth/6;
-      updateServo(0);
+      updateServo(180);
     }
   }
 
@@ -196,4 +198,12 @@ function draw() {
   tempDataLine.update(getTemperature());
   // Update the Data
   tempDataLine.show();
+  /******* Temperature ******/
+
+
+  /******* Weather API ******/
+  noStroke();
+  fill(0);
+  textSize(displayWidth/60);
+  text(getWeatherString(), displayWidth/2, displayHeight/2 + displayHeight/15);
 }
