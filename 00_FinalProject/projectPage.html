@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dan Bi PHYS_S-12 Documentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Arduino Code CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- Arduino Code CSS -->
+    <link href="../style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class = "container-fluid">
+        <header>
+            <h1>
+                <a href="https://wujibi123.github.io/PHYS_S-12/" class="site-header">
+                <span class="orange">PHYS S-12</span>
+                <span class="light-gray">:</span>
+                <span class="pretty-blue"> Dan's Documentation</span></a>
+            </h1>
+        </header>
+
+        <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
+
+        <div class="date-header">
+            <h1>Final Project: RC Hot Air Balloon</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <p>
+                    My final project is a remote controlled hot air balloon with sensors on board. Click <a href="../webInterface/index.html">here</a> to see my hot air balloon interface page, which I used to control and monitor the balloon.
+                </p>
+                <figure>
+                    <iframe style="position:relative; width:100%" height=400rem src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <figcaption></figcaption>
+                </figure>
+                <p>
+                    Unfortunately, The hot air ballon can not yet freely go up and down. The fire I have doesn't raise the temperature enough; therefore it doesn't create enough bouancy force to make a difference in the ballooon's direction.
+                </p>
+
+                <!-- New Section -->
+                <h2>Electronics</h2>
+                <p>
+                    On board the balloon, I had an esp32 feather, various input devices, and a servo motor. The esp32 feather is a great choice since it easily provides wireless transmission. Here's a list of the devices I used.
+                </p>
+                <p>
+                    <ol>
+                        <li>
+                            <a href="https://www.digikey.com/products/en?keywords=BC2301-ND">NTC 10k Ohms</a> Thermistor
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/gp/product/B017PEIGIG/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1">BNO055 IMU</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/gp/product/B07S98QBTQ/ref=ask_ql_qh_dp_hza">BMP280 Pressure Sensor</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/Micro-Helicopter-Airplane-Remote-Control/dp/B072V529YD/ref=sr_1_6?dchild=1&keywords=10+Pcs+SG90+9G+Micro+Servo+Motor+%28typ%29&qid=1596182236&sr=8-6">Servo Motor</a>
+                        </li>
+                    </ol>
+                </p>
+                <p>
+                    The IMU provided me with orientational data, the pressure sensor told me the balloon's altitude, the thermistor told me the temperature inside the envelope, and the servo motor controlled the hot air by covering the fire.
+                </p>
+                <p>
+                    In the future, I'd want to fix an issue with my sensors that didn't allow me to access the acceleration data.
+                </p>
+
+                <!-- New Section -->
+                <h2>Basket and Fuel</h2>
+                <figure>
+                    <img src = "img/third_sketch.png" alt = "third_sketch" style="width:100%">
+                    <figcaption>Basket Design</figcaption>
+                </figure>
+                <p>
+                   The small rectangular openings are for the wires of my electronics to fit through. I had originally designed four circular holes to accommodate the standoffs of my fuel container.
+                </p>
+                <p>
+                    Sadly, since I used Isopropyl alcohol as my fuel, it had a chemical reaction with my 3D printed container and destroyed it. I replaced it with a less-ideal small teapot that I hotglued onto the basket.
+                </p>
+                <figure>
+                    <img src = "img/Prototypes/burnt.JPG" alt = "brunt" style="width:100%">
+                    <figcaption>Destroyed Container</figcaption>
+                </figure>
+                <p>
+                    I need to mold clay into a custom container in the future. This will be able to withstand the heat and also be big enough to provide a sufficient fire.
+                </p>
+
+                <!-- New Section -->
+                <h2>Envelope</h2>
+                <p>
+                    The envelope was formed form a circle cutout of a mylar blanket. Mylar is extremely lightweight and has high heat retention. 
+                </p>
+                <p>
+                    The problem with mylar was actually one of its benefits: being lightweight. It is extremely floppy and gets out of shape with the silghtest wind. I plan on buying craft wires to shape my envelope in the future.
+                </p>
+
+                <!-- New Section -->
+                <h2>Networking</h2>
+                <p>
+                    The networking is what I am most proud of. I utilized the esp32's Wifi module to connect via wan. I used firebase for a real time database and p5.js for my web interface. I had to learn all these things from scratch, and it was a very fun experience.
+                </p>
+                <p>
+                    Here's my basic networking structure:
+                </p>
+                <figure>
+                    <img src = "../09_Networking/network_structure.png" alt = "network_structure" style="width:100%">
+                    <figcaption>Network Structure</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Improvements Needed</h2>
+                <p>
+                    As I've said already, my project needs further improvements. The main issue are that the fire wasn't big enough and the envelope was floppy. I plan on fixing these in the future by molding wax into a bigger fuel container and using sculpture wires to give structure to the envelope. Stay tuned for updates to this documentation!
+                </p>
+
+                <!-- New Section -->
+                <h2>Downloadable Files</h2>
+                <ol>
+                    <li><a href="code/interfacev3.zip">Interface Code</a></li>
+                    <li><a href="code/esp32_network.ino">Esp32 Code</a></li>
+                    <li><a href="code/design_files.zip">All design fiels</a></li>
+                </ol>
+            </div> <!-- column end -->
+        </div> <!-- row end -->
+    </div> <!-- container end -->
+
+    <script src="../scripts/back_top.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-class dataLine {
+dclass dataLine {
 	// For a single animated data line.
 	constructor(x, y1, y2, minData, maxData, strokeWeight, frames, caption, color) {
 		// x, beginning y coord, end y coord, stroke weight, frames = number of frames needed for data to slide
