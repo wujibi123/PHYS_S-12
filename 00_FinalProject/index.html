@@ -46,6 +46,7 @@
                         <li><a href="#7_14">7/14: Sensor Brainstorming</a></li>
                         <li><a href="#7_16">7/16: Testing</a></li>
                         <li><a href="#7_21">7/21: Networking</a></li>
+                        <li><a href="#7_29">7/29: Soldering</a></li>
                     </ul>
                 </p>
                 <h1 class="date-header" id="7_07">7/7</h1>
@@ -507,6 +508,139 @@
                     <img src = "../09_Networking/network_structure.png" alt = "structure" style="width:100%">
                     <figcaption>Database Structure</figcaption>
                 </figure>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="7_29">7/29</h1>
+                <div class="meta">Soldering</div>
+                <p>
+                    I needed to build the electronics of the hot air balloon before I start testing. The components I'm using are:
+                </p>
+                <p>
+                    <ol>
+                        <li>
+                            <a href="https://www.digikey.com/products/en?keywords=BC2301-ND">NTC 10k Ohms Thermistor</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/gp/product/B017PEIGIG/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1">BNO055 IMU</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/gp/product/B07S98QBTQ/ref=ask_ql_qh_dp_hza">BMP280 Pressure Sensor</a>
+                        </li>
+                        <li>
+                            <a href="https://www.amazon.com/Micro-Helicopter-Airplane-Remote-Control/dp/B072V529YD/ref=sr_1_6?dchild=1&keywords=10+Pcs+SG90+9G+Micro+Servo+Motor+%28typ%29&qid=1596182236&sr=8-6">Servo Motor</a>
+                        </li>
+                    </ol>
+                </p>
+                <p>
+                    I decided to solder everything onto a <a href="https://www.amazon.com/gp/product/B071R3BFNL/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1">proto board</a> for better organization and structural integrity.
+                </p>
+
+                <!-- New Section -->
+                <h2>Learning how to Solder</h2>
+                <p>
+                    I went to my friend Daniel's house where he had a soldering station. I have never soldered before, but with some much appreciated help from Daniel, I got started. First I needed to solder header pins onto the BNO055 and the BMP280. Here is my first attempt at soldering:
+                </p>
+                <figure>
+                    <img src = "img/Solder/bad_solder.JPG" alt = "bad_solder" style="width:100%">
+                    <figcaption>Botched Soldering Job</figcaption>
+                </figure>
+                <p>
+                    It doesn't look great. I was scared of the heat of the soldering pen, and it was awkward to get solder to stick onto the pins. I had more of the BMP280, so I soldered multiple times until I made one I was happy with. I still wasn't great at soldering, but I was a bit better. 
+                </p>
+
+                <!-- New Section -->
+                <h2>Sensors</h2>
+                <p>
+                    I felt ready to start soldering for real, and so I started with my sensors.
+                </p>
+                <figure>
+                    <img src = "img/Solder/BMP280.JPG" alt = "BMP280" style="width:100%">
+                    <figcaption>BMP280 Soldering</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/Solder/BNO055.JPG" alt = "BNO055" style="width:100%">
+                    <figcaption>BNO055 Soldering</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Breadboard and Circuit</h2>
+                <p>
+                    Now I needed to build circuits for these sensors on a breadboard before transferring them to a protoboard. It was fairly easy to setup as I followed the adafruit tutorials about the <a href="https://learn.adafruit.com/adafruit-bmp280-barometric-pressure-plus-temperature-sensor-breakout/arduino-test"BMP280</a> and the <a href="https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/arduino-code">BNO055</a>.
+                </p>
+                <p>
+                    I tested these circuits while they're still not permanently attached. I quickly found out that the Adafruit libraries are very poorly documented. Since I was using I2C connections, I needed to specify the addresses for each board (0x28 for BNO055, 0x76 for BMP280). The problem was that I didn't know how to, and I had to resort to going into the <a href="https://github.com/adafruit/Adafruit_BNO055/blob/master/Adafruit_BNO055.cpp">source code</a> on github to figure out which function allowed me to put in addresses.
+                </p>
+                <figure>
+                    <img src = "img/Solder/breadboard.JPG" alt = "breadboard" style="width:100%">
+                    <figcaption>Breadboard Circuit</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Protoboard</h2>
+                <p>
+                    Now it's time to get out the proto board. The board is larger than my 70 x 70 mm basket, but I can always cut the boad after soldering. I would leave female headers hanging lose off the proto board so that I can connect my esp32 feather at any time.
+                </p>
+                <p>
+                    First, I put on the thermistor. It is soldered to the two yellow wires going off the picture. They're each around three feet, which will allow me to tape the thermistor at the top of the envelope.
+                </p>
+                <figure>
+                    <img src = "img/Solder/protoboard_1.JPG" alt = "Thermistor" style="width:100%">
+                    <figcaption>Thermistor</figcaption>
+                </figure>
+                <p>
+                    Next, I soldered on the two sensor boards. 
+                </p>
+                <figure>
+                    <img src = "img/Solder/protoboard_2.JPG" alt = "Sensors" style="width:100%">
+                    <figcaption>Sensors</figcaption>
+                </figure>
+                <p>
+                    At this point, I felt pretty comfortable with soldering. I learned through experience that I needed to let a small amount of liquid iron sit on the soldering pen, and then let that drip onto the board and fill up the hole by itself. 
+                </p>
+                <p>
+                    Finally, I separated the three wires of the servo motor and connected them to the protoboard. I seem to have lost the frontside picture of this stage, so I put below a picture of the board after it's been cut. The circuits are still the exact same.
+                </p>
+                <figure>
+                    <img src = "img/Solder/protoboard_frontside.JPG" alt = "protoboard_frontside" style="width:100%">
+                    <figcaption>Protoboard Frontside</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/Solder/protoboard_backside.JPG" alt = "protoboard_backside" style="width:100%">
+                    <figcaption>Protoboard Backside</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Mistakes</h2>
+                <p>
+                    Unfortunately, as I was about to test, one of the data lines going to the esp32 broke, and I was left with a stump of iron. My solution was to go around the broken stump and build my own an electrical connection, which is the white line below.
+                </p>
+                <figure>
+                    <img src = "img/Solder/broken_wire.JPG" alt = "broken_wire" style="width:100%">
+                    <figcaption>Broken Wire (Frontside)</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/Solder/fixed_wire.JPG" alt = "fixed_wire" style="width:100%">
+                    <figcaption>Solution (Backside)</figcaption>
+                </figure>
+                <p>
+                    I used a <a href="/code/circuit_test.ino">crude temporary code</a> to test my circuit, and it worked! The next step is to build the basket and the envelope of the hot air balloon so I can start testing. The sensor data can come later.
+                </p>
+                <p class="edits">
+                    Edit (8/6): I'd like to point out that the stripped wires I attached straight to the protoboard was very prone to snapping off. In the future, I will always use jumper wires or header pins that aren't as fragile.
+                </p>
             </div> <!-- column end -->
         </div> <!-- row end -->
     </div> <!-- container end -->
