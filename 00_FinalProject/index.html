@@ -37,9 +37,15 @@
 
         <div class="row">
             <div class="col-sm-12">
+
+                <h2><a href="projectPage.html">Final Project Page</a></h2>
+                <p>
+                    Please click on the above link to see my final project presentation. This page is an extensive documentation of my process and contains all the files I used.
+                </p>
+
                 <h2>Contents</h2>
                 <p>
-                    This documentation will become quite long as I keep adding more content, so please feel free to click on the links below and skip around:
+                    This documentation will is quite long, so please feel free to click on the links below and skip around:
                     <ul>
                         <li><a href="#7_07">7/7: Getting Started</a></li>
                         <li><a href="#7_09">7/9: 3D Design and Printing</a></li>
@@ -47,6 +53,12 @@
                         <li><a href="#7_16">7/16: Testing</a></li>
                         <li><a href="#7_21">7/21: Networking</a></li>
                         <li><a href="#7_29">7/29: Soldering</a></li>
+                        <li><a href="#7_31">7/31: Basket</a></li>
+                        <li><a href="#8_01">8/1: Envelope and Testing</a></li>
+                        <li><a href="#8_03">8/3: Implementing Sensors</a></li>
+                        <li><a href="#8_04">8/4: Web Interface and Data Visualization</a></li>
+                        <li><a href="#8_05">8/5: Installing Electronics</a></li>
+                        <li><a href="#8_06">8/6: Results</a></li>
                     </ul>
                 </p>
                 <h1 class="date-header" id="7_07">7/7</h1>
@@ -636,10 +648,346 @@
                     <figcaption>Solution (Backside)</figcaption>
                 </figure>
                 <p>
-                    I used a <a href="/code/circuit_test.ino">crude temporary code</a> to test my circuit, and it worked! The next step is to build the basket and the envelope of the hot air balloon so I can start testing. The sensor data can come later.
+                    I used a <a href="/code/circuit_test.ino" download>crude temporary code</a> to test my circuit, and it worked! The next step is to build the basket and the envelope of the hot air balloon so I can start testing. The sensor data can come later.
                 </p>
                 <p class="edits">
                     Edit (8/6): I'd like to point out that the stripped wires I attached straight to the protoboard was very prone to snapping off. In the future, I will always use jumper wires or header pins that aren't as fragile.
+                </p>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="7_31">7/31</h1>
+                <div class="meta">Building the Basket</div>
+                <p>
+                    It turns out that the gorilla tape I was going to use on the envelope has a delayed delivery, so I just built my basket today. <a href="#basket">Here's</a> a reminder of what my basket is.
+                </p>
+                <p>
+                    I used Titebond III: a waterproof wood glue. It's important to apply glue to both pieces before sticking them together because the glue needs to spread into the wood pores. After gluing, I clamped them down with rubber bands and let the glue set for 24 hours.
+                </p>
+                <figure>
+                    <img src = "img/basket_incomplete.JPG" alt = "basket_incomplete" style="width:100%">
+                    <figcaption>Glue Setting in the Basket</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/basket_complete.JPG" alt = "basket_complete" style="width:100%">
+                    <figcaption>Completed Basket</figcaption>
+                </figure>
+                <p>
+                    They press-fit together into a single box. I opted out of gluing them together so I can freely move electronics in and out of the smaller box.
+                </p>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="8_01">8/1</h1>
+                <div class="meta">Envelope and Testing</div>
+                <p>
+                    I first tried to build the envelope according to my <a href="#calc">previous calculations</a>; however, I quickly found it to be too big for my backyard. It also would have been too hard to neatly organize that huge of an envelope. 
+                </p>
+                <p>
+                    Instead, I brought down the diameter of the circle cutout to just 3 meters (instead of 4.8), and this still could have lifted my balloon only with less leeway for extra weight. I taped together several mylar blankets and cut out the shape I wanted.
+                </p>
+                <figure>
+                    <img src = "img/Prototypes/envelope.JPG" alt = "envelope" style="width:100%">
+                    <figcaption>Envelope Cutout</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Prototype #1</h2>
+                <p>
+                    I attached that to my basket via four strings, and got to testing. This didn't go too well. I had used the alcohol I talked about <a href="#7_16">a couple weeks ago</a> (Isopropyl Alcochol), but it was too hot, and it burned my envelope, my 3d printed model, and my lasercut basket.
+                </p>
+                <figure>
+                    <img src = "img/Prototypes/burnt.JPG" alt = "Burnt Container" style="width:100%">
+                    <figcaption>Burnt Container</figcaption>
+                </figure>
+                <p>
+                    Additionally, the envelope was still very floppy and hard to control.
+                </p>
+
+                <!-- New Section -->
+                <h2>Prototype #2</h2>
+                <p>
+                    My attempted solutions were:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            Use helium balloons to create buoyancy so that the envelope can be smaller.
+                        </li>
+                        <li>
+                            Attach a square bracket to the bottom of the envelope to provide structure.
+                        </li>
+                        <li>
+                            Hang the basket with ropes to prevent fire from touching the flammable mylar.
+                        </li>
+                        <li>
+                            Replace the wax container with a heat-proof ceramic container, which only weighs 30 more grams.
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The helium balloons worked; however, the buoyancy force was still relatively smaller than the balloon's mass, so I needed more balloons to make them almost equal. The envelop was also squished by the balloons, which just means their strings need to be longer. I'll also add <a href="http://www.hi-float.com/">hi-float</a> next time so that the balloons can last for longer periods of time.
+                </p>
+                <figure>
+                    <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/VeiD3aaFUro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <figcaption>Hot Air Balloon Prototype #2</figcaption>
+                </figure>
+                <p>
+                    Before I get to the final test, I needed to calibrate my sensors, build a presentable web interface, and install electronics onto my balloon.
+                </p>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="8_03">8/3</h1>
+                <div class="meta">Networking with Sensors</div>
+                <p>
+                    I wrote some <a href="/code/esp32_network.ino" download>code</a> to read data from the sensors and send them to my firebase database. <a href="#7_21">Here's</a> a reminder of my network structure.
+                </p>
+                <!-- New Section -->
+                <h2>Sensor Problems</h2>
+                <p>
+                    The IMU sensor returned the same value for acceleration and orientation, and the BMP280 also reported the same for pressure and humidity. I looked online and found that <a href="https://forums.adafruit.com/viewtopic.php?f=19&t=91723&p=462337">other people had the same problem</a>. Their conclusion was that there's a flaw in the adafruit sensor library, and sadly, I don't know how to deal with that. 
+                </p>
+                <p>
+                    The returned data still represented orientation and pressure, just not acceleration and humidity; therefore, I was still able to get the two most important data I wanted.
+                </p>
+
+                <!-- New Section -->
+                <h2>Sensor Calibration</h2>
+                <p>
+                    I needed to calibrate two things: the Gyroscope and the Altimeter.
+                </p>
+                <p>
+                    According to the Adafruit website, I just needed to let the BNO055 stand still in any position for it to calibrate. There's also a very useful function <code class="language-arduino">bno.getCalibration(&system, &gyro, &accel, &mag)</code> that gives gyro a value of 3 when it is fully calibrated.
+                </p>
+                <p>
+                    I needed the current sea level pressure in my area to use the altitude sensor. This is easily done using the national weather service API that <a href="../09_Networking/index.html#api">I've already used before</a>. I'm accesing this API via javaScript, sending that to the database, and then having my esp32 get that data from the database. 
+                </p>
+                <p>
+                    In javaScript, using setInterval() allowed me to repeat this request at specified intervals of time. This is really helpful since I don't want to be constantly bugging APIs for data.
+                </p>
+                <p>
+                    Lastly, I added these data to the web interface. Here is my <a href="/code/oldInterface.zip" download>my website and database code</a>, and once again, here is my <a href="/code/esp32_network.ino" download>esp32 code</a>.
+                </p>
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="8_04">8/4</h1>
+                <div class="meta">p5.js and Web Interface</div>
+                <p>
+                    I wanted to make my web interface look presentable before testing since I wanted a side by side video of my web interface and the balloon flying.
+                </p>
+
+                <!-- New Section -->
+                <h2>Learning</h2>
+                <p>
+                    It was my first time encountering p5.js, but it wasn't as challenging as I thought it would be. Drawing the different shapes came naturally to me, and there were plenty of useful things like <code>mouseX</code>, <code>mouseY</code>, and <code>mouseIsPressed</code> to create interactivity with my mouse.
+                </p>
+                <p>
+                    The web pages that helped the most were <a href="https://p5js.org/learn/interactivity.html"> interactivity tutorial</a>, the <a href="https://p5js.org/reference/">reference page</a>, and the <a href="https://editor.p5js.org/sketches/">online editor</a>. The online editor was a life saver since it allowed me test my positions and proportions in real time, instead of wasting 10 minutes for my git commit to load onto my Github pages.
+                </p>
+                <p>
+                    Perhaps the most important less I learned was to always use <code>displayWidth</code> and <code>displayHeight</code> for everything. This will make the website adaptable to different browser windows.
+                </p>
+
+                <!-- New Section -->
+                <h2>Servo Slider</h2>
+                <p>
+                    I wanted to make my servo position's slider a half circle. This way, a user can visualize the 180 degrees right on the webpage. To do this, I needed to make a "knob" move around in a circular motion with my mouse.
+                </p>
+                <p>
+                    At first, I let the X position of the knob be the X position of my mouse (with a factor for speed), and I calculated y according to the equation of a circle. This did form a half circle, but the movement of the knob was super clunky. Obviously it doesn't feel very user-friendly when its position solely depends on my mouse's X coordinate.
+                </p>
+                <p>
+                    I realized that I needed to use trig functions to find the angle between the cursor and the center point. Then map that angle to the slider. To do this, I built a coordinate system with its origin at the center of the page. The below image shows how to calculate the angle of my mouse based on its and X and Y coordinates (Imagine the vertex of the triangle to be my mouse).
+                </p>
+                <figure>
+                    <img src = "img/Network/angle_calc.png" alt = "angle_calculation" style="width:100%">
+                    <figcaption>Angle of Mouse Pointer Calculations</figcaption>
+                </figure>
+                <p>
+                    The only problem was that cotangeant only gives back angles ranging from -90 to 90, so I used some if statements to identify each quadrant and correct the angle. Additionally, I told the program to ignore the angle when it was in the third and fourth quadrant.
+                </p>
+                <p>
+                    Knowing the angle and the radius, I can now calculate the X and Y coordinates of the black knob and plot it.
+                </p>
+                <figure>
+                    <img src = "img/Network/legs_calc.png" alt = "legs_calculation" style="width:100%">
+                    <figcaption>X and Y of Slider Knob Calculations</figcaption>
+                </figure>
+                <p>
+                    The icing on the cake is that these calculations have already given me the data I needed: the angle of the servo motor.
+                </p>
+
+                <!-- New Section -->
+                <h2>Sensor Data</h2>
+                <p>
+                The main challenge was building a smoothly sliding dataline. 
+                </p>
+                <p>
+                At first, I had a while loop that kept drawing lines with coordinates approaching the intended data. These coordinates would get closer and closer to the actual data by a given rate of change. However, I realized that since everything was happening in a while loop, the background wasn't being refreshed, so the lines were just overshadowing each other.
+                </p>
+                <p>
+                Next, I got rid of the while loop and just let the draw() function act as the loop. This way, the background refreshed every iteration of the loop, and I was able to see movement.
+                </p>
+                <p>
+                Here's the <a herf="/code/interfacev2.js">code</a> I used.
+                </p>
+                <p>
+                However, now I have to put in another data line. Since I didn't want to cluster my code with copy and paste, so I opted to create a dataLine class instead. It was pretty simple. The only annoying thing I found was that I need to put the <code>this</code> keyword in front of every single object instance variable.
+                </p>
+                <p>
+                Next, I added in time, orientation, and the national weather service API using the text() function. The frameCount asset allowed me to do asynchronous timing so that I'm not sending a request every frame. One weird thing that wasted a bit of my time was that frameCount is set at 1 during the first iteration of the draw() loop. I had written my program expecting it to be at 0.
+                </p>
+                <p>
+                To finish up, I tidied my code and removed the extra html elements from the first iteration of my interface. However, there was one last problem. My <code>once</code> function suddenly stopped working despite me not changing anything. The code is very standard:
+                </p>
+<pre><code class="language-arduino">
+function getTemperature() {
+  var tempRef = firebase.database().ref("Sensors/Temperature/Data");
+  var temp;
+  tempRef.once('value', function(tempDataSnapshot) {
+        temp = tempDataSnapshot.val();
+  });
+  return temp;
+}
+</code></pre>
+                <p>
+                    After debugging, it seems that tempDataSnapshot actually holds the correct value, but for some reason it is not passing that on to temp.
+                </p>
+                <p>
+                    I switched to on(), and it worked. However, since this function will be called repeatedly within the main loop of my p5.js, using on() would initiate an infinite amount of listeners. Once() would only make one query before closing itself. 
+                </p>
+                <p>
+                    In the end, I simply got rid of the functions and integrated once() straight into my draw() function.
+                </p>
+                <p>
+                    Here is the <a href="/code/interfacev3.zip" download>code</a> for the final version of my interface. You can also see it for yourself right <a href="../webInterface/index.html">here</a>, although the data probably won't be working since my esp32 is turned off most of the time.
+                </p>
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="8_05">8/5</h1>
+                <div class="meta">Installing Electronics</div>
+
+                <!-- New Section -->
+                <h2>Lipo Battery</h2>
+                <p>
+                    First I had to fix the Lipo batteries, which I've been fighting with for the past 2 weeks now. Fortunately, page 21 of this <a href="https://cdn-learn.adafruit.com/downloads/pdf/adafruit-huzzah32-esp32-feather.pdf">pdf</a> told me that the esp32 JST connector's polarity might not match the polarity of lipo batteries I find online. To switch the polarity, I the wires of the lipo battery apart and soldered them together again. It worked!
+                </p>
+                <figure>
+                    <img src = "img/electronics/lipo_incorrect.JPG" alt = "lipo_incorrect" style="width:100%">
+                    <figcaption>Lipo Wrong Polarity (Before)</figcaption>
+                </figure>
+                <figure>
+                    <img src = "img/electronics/lipo_correct.JPG" alt = "lipo_correct" style="width:100%">
+                    <figcaption>Lipo Right Polarity (After)</figcaption>
+                </figure>
+
+                <!-- New Section -->
+                <h2>Servo Motor</h2>
+                <p>
+                    Next I screwed the Servo motor on to the 3d printed mount. I had forgotten to consider the wires back then, so I had to attach the motor on the opposite side of what I had intended it to be on. 
+                </p>
+                <figure>
+                    <img src = "img/electronics/servo.JPG" alt = "servo" style="width:100%">
+                    <figcaption>Mounted Servo</figcaption>
+                </figure>
+                <p>
+                    I attached a few paper clips to the motor's horn and stuck a piece of aluminum foil on top of the paperclips. This aluminum foil would cover the fuel container and stop the fire. I used hot glue to secure everything.
+                </p>
+
+                <!-- New Section -->
+                <h2>Putting it all together</h2>
+                <p>
+                    The only inconvenience was that I had to cut open and resolder the motor wires so that my servo could connect to my esp32 through the tiny opening in my basket.
+                </p>
+                <p>
+                    I also tried my best to distribute weight evenly inside my basket. I put the lipo battery and esp32 on one side and the motor on the other. Here's a short demonstration of my electronics after I assembeled everything:
+                </p>
+                <figure>
+                    <iframe style="position:relative; width:100%" height=400rem src="https://www.youtube.com/embed/KCAg9S1oysc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <figcaption>Servo Demonstration</figcaption>
+                </figure>
+                
+
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <!-- New Day -->
+                <h1 class="date-header" id="8_05">8/6</h1>
+                <div class="meta">Results</div>
+                <p>
+                    Finally, it's all going to come together, and … it kind of worked. Please go <a href="projectPage.html">here</a> to see the results.
                 </p>
             </div> <!-- column end -->
         </div> <!-- row end -->
